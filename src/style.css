@@ -1,0 +1,68 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital@1&display=swap');
+
+html{
+  font-family: 'Lobster Two', sans-serif;
+  
+}
+
+header {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: end;
+  }
+
+/* #root{
+    margin-top: -6em;
+} */
+
+
+html,body{
+        
+    background: rgb(245,185,33);
+    background: linear-gradient(176deg, rgba(245,185,33,1) 38%, rgba(239,57,32,1) 80%, rgba(212,5,100,1) 100%);
+    background-repeat:no-repeat;
+    height: 100%;
+    margin: 0;
+    padding: 0; 
+    
+}
+.titulo {
+    padding: 15px;
+    color: #ca0f0d;
+  }
+@media (max-width: 768px) {
+
+    .form-data {
+        width: 80%;
+        padding: 10PX;
+        margin-bottom: 15px;
+        border-radius: 6px;
+    }
+    
+    .form-data-select{
+        width: 85%;
+        padding: 10PX;
+        margin-bottom: 15px;
+        border-radius: 6px;
+    }
+    
+    form {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .register {
+        width: 85%;
+        height: 40px;
+        margin: 10px;
+    }
+      
+    .logo {
+        width: 20%;
+        padding: 10px;
+    }
+    
+    
+}
