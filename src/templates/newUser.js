@@ -1,4 +1,5 @@
-import { registerNewUser } from "../lib/auth";
+import { GoogleAuthProvider } from "firebase/auth";
+import { registerNewUser, registerGoogle } from "../lib/auth";
 
 
 
@@ -66,7 +67,8 @@ function newUser(navigateTo) {
     });
     
     buttonGoogle.addEventListener('click', () => {
-      registerGoogle( )
+      const provider = new GoogleAuthProvider();
+      registerGoogle(provider)
     });
 
     buttonReturn.textContent = 'Return to home';
