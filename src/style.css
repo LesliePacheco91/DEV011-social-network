@@ -10,18 +10,44 @@ header {
     flex-wrap: wrap;
     display: flex;
     justify-content: end;
-  }
+}
 
-/* #root{
+.logo {
+    width: 20%;
+    padding: 32px 32px 0 0;
+}
+
+#root{
     margin-top: -6em;
-} */
+}
 
-
+section{
+    text-align: center;
+    padding: 30px;
+}
+.register{
+   color:#ed5221;
+    background:#ffffff7a;
+    font-family: 'Lobster Two', sans-serif;
+    font-size:18px;
+    border: 0;
+    border-radius: 10px;
+    margin: 25px auto 35px auto;
+}
+.form-data {
+    border:0;
+}
+.ButonGoogle {
+    background: 0;
+    border: 0;
+    width: 40%;
+    margin: 25px 0 35px 0;
+    
+}
 html,body{
         
     background: rgb(245,185,33);
     background: linear-gradient(176deg, rgba(245,185,33,1) 38%, rgba(239,57,32,1) 80%, rgba(212,5,100,1) 100%);
-    background-repeat:no-repeat;
     height: 100%;
     margin: 0;
     padding: 0; 
@@ -31,15 +57,43 @@ html,body{
     padding: 15px;
     color: #ca0f0d;
   }
-@media (max-width: 768px) {
+
+.img-login{
+    width: 70%;
+    margin: 10px;
+}
+@media (max-width: 900px) {
+
+    .imgGoogle {
+        width: 25px;
+        margin-left: 4px;
+    }
+    .title-google{
+        width: 60%;
+        padding: 0px 25px 0px 25px;
+    }
+
+    .butom-home {
+        width: 80%;
+        margin: 10px;
+        border: 0;
+        background: #ffffff5e;
+        border-radius: 10px;
+        padding: 10px;
+        color: #ed5221;
+        font-size: 20px;
+        font-family: 'Lobster Two', sans-serif;
+      }
 
     .form-data {
         width: 80%;
         padding: 10PX;
         margin-bottom: 15px;
-        border-radius: 6px;
-    }
-    
+        background: 0;
+        border-bottom: 2px solid #fff;
+        color: #fff;
+        font-size: 18px;
+    }    
     .form-data-select{
         width: 85%;
         padding: 10PX;
@@ -55,14 +109,10 @@ html,body{
     
     .register {
         width: 85%;
-        height: 40px;
-        margin: 10px;
+        height: 50px;
     }
       
-    .logo {
-        width: 20%;
-        padding: 10px;
-    }
+   
     
     
 }
