@@ -11,7 +11,7 @@ header {
     display: flex;
     justify-content: end;
 }
-}
+
 
 .logo {
     width: 20%;
@@ -27,7 +27,7 @@ section{
     padding: 30px;
 }
 .register{
-   color:#ed5221;
+    color:#ed5221;
     background:#ffffff7a;
     font-family: 'Lobster Two', sans-serif;
     font-size:18px;
@@ -57,7 +57,7 @@ html,body{
 .titulo {
     padding: 15px;
     color: #ca0f0d;
-  }
+}
 
 .img-login{
     width: 70%;
@@ -84,7 +84,7 @@ html,body{
         color: #ed5221;
         font-size: 20px;
         font-family: 'Lobster Two', sans-serif;
-      }
+    }
 
     .form-data {
         width: 80%;
@@ -112,7 +112,7 @@ html,body{
         width: 85%;
         height: 50px;
     }
-      
+    
     .logo {
         width: 20%;
         padding: 10px;
