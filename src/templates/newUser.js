@@ -69,7 +69,25 @@ function newUser(navigateTo) {
   buttonRegister.addEventListener('click', async (e) => {
     e.preventDefault();
 
-    registerNewUser(inputEmail.value, inputPass.value);
+    registerNewUser(inputEmail.value, inputPass.value)
+      .then((userCredential) => {
+      // Signed in
+        const user = userCredential.user;
+        navigateTo('/muro');
+
+      // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+        if (errorCode === 'auth/email-already-in-use') {
+          document.querySelector('#alerts-error').innerHTML = 'Ya existe este usuario';
+        } else if (errorCode === 'auth/weak-password') {
+          document.querySelector('#alerts-error').innerHTML = 'Contraseña invalida minino 6 caracteres';
+        }
+      // ..
+      });
   });
 
   buttonGoogle.className = 'register';
