@@ -6,12 +6,19 @@ export const registerNewUser = (email, password) => (
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
+      document.querySelector('#alerts-error').innerHTML = 'Te has registrado correctamente ';
       console.log(user);
       // ...
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
+
+      if (errorCode === 'auth/email-already-in-use') {
+        document.querySelector('#alerts-error').innerHTML = 'Ya existe este usuario';
+      } else if (errorCode === 'auth/weak-password') {
+        document.querySelector('#alerts-error').innerHTML = 'Contraseña invalida minino 6 caracteres';
+      }
       // ..
     })
 );
