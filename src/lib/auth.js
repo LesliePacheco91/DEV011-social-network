@@ -11,8 +11,12 @@ export const registerNewUser = (email, password) => (
     })
     .catch((error) => {
       const errorCode = error.code;
-      const errorMessage = error.message;
-      // ..
+      // const errorMessage = error.message;
+      if (errorCode === 'auth/email-already-in-use') {
+        document.querySelector("#alerts-error").innerHTML = 'Ya existe este usuario';
+      } else if (errorCode === 'auth/weak-password') {
+        document.querySelector("#alerts-error").innerHTML = 'Contraseña invalida minino 6 caracteres';
+      }
     })
 );
 
@@ -32,7 +36,7 @@ export const registerGoogle = (provider) => (
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
-      // The email of the user's account used.
+     
       const email = error.customData.email;
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
