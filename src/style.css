@@ -55,7 +55,8 @@ form {
 /* Botones de páginas login y newUser */
 .botones{
 display: flex;
-
+max-width: 800px;
+margin: 0 auto;
 }
 /* Botones SIN botón de Google */
 .register {
@@ -93,7 +94,7 @@ display: flex;
 footer{
     text-align: center;
     padding: 1%;
-    margin-top: 10%;
+    margin-top: 5%;
 }
 /* ------------------------------------------ Estilos Home --------------------------------------------------------- */
 /* Botones de Iniciar Sesión y Registro del home */
@@ -166,7 +167,7 @@ footer{
 
 /* Pie de página */
 footer{
-    margin-top: 10%;
+    margin-top: 3%;
 }
 .autoras{
     display: flex;
@@ -177,8 +178,16 @@ footer{
 }
 /* ------------------------------------------ Estilos Home --------------------------------------------------------- */
 /* Botones de Iniciar Sesión y Registro del Home */
+section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
 .butom-home {
-    width: 200px;
+    width: 150px;
     font-size: 25px;
 }
 }
