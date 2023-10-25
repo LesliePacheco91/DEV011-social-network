@@ -40,28 +40,29 @@ function newUser(navigateTo) {
   inputPass.required = 'true';
   inputPass.className = 'form-data';
 
-  /* inputCountry.name = 'pais';
-  inputCountry.required = 'true';
-  inputCountry.className = 'form-data-select';
-  // opciones
-  option0.text = 'Pais';
-  option0.value = '';
-
-  option1.text = 'México';
-  option1.value = 'México';
-
-  option2.text = 'Colombia';
-  option2.value = 'Colombia';
-
-  option3.text = 'Peru';
-  option3.value = 'Peru';
-
-  inputCountry.add(option0);
-  inputCountry.add(option1);
-  inputCountry.add(option2);
-  inputCountry.add(option3);
-*/
   alerts.setAttribute('id', 'alerts-error');
+  // <------ Campo para ingresar el pais para el registro con correo electrónico ----------->
+  // inputCountry.name = 'pais';
+  // inputCountry.required = 'true';
+  // inputCountry.className = 'form-data-select';
+
+  // option0.text = 'Pais';
+  // option0.value = '';
+
+  // option1.text = 'México';
+  // option1.value = 'México';
+
+  // option2.text = 'Colombia';
+  // option2.value = 'Colombia';
+
+  // option3.text = 'Chile';
+  // option3.value = 'Chile';
+
+  // inputCountry.add(option0);
+  // inputCountry.add(option1);
+  // inputCountry.add(option2);
+  // inputCountry.add(option3);
+
   buttonRegister.type = 'submit';
   buttonRegister.value = 'Registrar';
   buttonRegister.className = 'register';
@@ -97,7 +98,24 @@ function newUser(navigateTo) {
   buttonGoogle.addEventListener('click', (e) => {
     e.preventDefault();
     const provider = new GoogleAuthProvider();
-    registerGoogle(provider);
+    registerGoogle(provider).then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      navigateTo('/muro');
+      // ...
+    })
+      .catch((error) => {
+      // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+      });
   });
 
   imgGoogle.src = '../img/001-google.png';
@@ -116,10 +134,9 @@ function newUser(navigateTo) {
     navigateTo('/');
   });
 
-  form.append(inputEmail, inputPass, alerts, buttonRegister);
+  form.append(inputEmail, inputPass, buttonRegister);
   section.append(title, form, buttonGoogle, buttonReturn);
 
   return section;
 }
-
 export default newUser;
