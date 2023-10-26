@@ -42,7 +42,7 @@ function newUser(navigateTo) {
   inputPass.name = "password";
   inputPass.required = "true";
   inputPass.className = "form-data";
-
+// <------------------- Campo para mostrar los avisos de alerta -------------------------->
   alerts.setAttribute('id', 'alerts-error');
 // <------ Campo para ingresar el pais para el registro con correo electrónico ----------->
   // inputCountry.name = 'pais';
@@ -73,11 +73,23 @@ buttons.className = 'botones';
   buttonRegister.className = "register";
   buttonRegister.addEventListener("click", async (e) => {
     e.preventDefault();
-    try {
-      const useCredencial = await registerNewUser(inputEmail.value, inputPass.value);
-    } catch (error) {
-      console.log("error de contraseña");
-    }
+    
+      registerNewUser(inputEmail.value, inputPass.value)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+        navigateTo('/muro')
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        // const errorMessage = error.message;
+        if (errorCode === 'auth/email-already-in-use') {
+          document.querySelector("#alerts-error").innerHTML = 'Ya existe este usuario';
+        } else if (errorCode === 'auth/weak-password') {
+          document.querySelector("#alerts-error").innerHTML = 'Contraseña invalida minino 6 caracteres';
+        }
+      })
+    
   });
 // <-------------- Botón para registrarse con una cuenta de Google ----------------------->
   buttonGoogle.className = "registergoogle";

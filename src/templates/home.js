@@ -1,4 +1,3 @@
-
 function home(navigateTo) {
 // <------------------------- Creación de elementos HTML --------------------------------->
   const section = document.createElement('section');

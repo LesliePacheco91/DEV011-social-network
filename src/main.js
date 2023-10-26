@@ -1,15 +1,15 @@
-// import {myFunction} from './lib/index.js';
 
-// file main.js
 import home from './templates/home.js';
 import login from './templates/login.js';
 import newUser from './templates/newUser.js';
+import muro from './templates/muro.js'; 
 
 // rutas de los modulos
 const routes = [
   { path: '/', component: home }, // indica que es ruta por defencto
   { path: '/login', component: login },
   { path: '/newUser', component: newUser },
+  { path: '/muro', component: muro },
 ];
 // variable para iniciar la ruta inicial
 const defaultRoute = '/';
