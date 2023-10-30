@@ -28,9 +28,6 @@ header{
 section{
     text-align: center;
 }
-.register{
-   color:#c5040a;
-}
 /* Título de la página */
 .titulo {
     color: #ca0f0d;
@@ -84,7 +81,6 @@ margin: 0 auto;
     margin: 25px auto 35px auto;
     
 }
-/*<<<<<<< HEAD*/
 html,body{
         
     background: rgb(245,185,33);

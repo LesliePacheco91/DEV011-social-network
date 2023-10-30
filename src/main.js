@@ -3,8 +3,8 @@
 // file main.js
 import home from './templates/home.js';
 import login from './templates/login.js';
-import newUser from './templates/newUser.js';
-import muro from './templates/muro.js';
+import { newUser } from './templates/newUser.js';
+import { muro } from './templates/muro.js';
 
 // rutas de los modulos
 const routes = [

@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
 // import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -8,25 +9,25 @@ import { initializeApp } from "firebase/app";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
 
-  apiKey: "AIzaSyABq8MSX--dAspZWbMB59umYaMVjLHkNjI",
+  apiKey: 'AIzaSyABq8MSX--dAspZWbMB59umYaMVjLHkNjI',
 
-  authDomain: "gastrotour-17ada.firebaseapp.com",
+  authDomain: 'gastrotour-17ada.firebaseapp.com',
 
-  projectId: "gastrotour-17ada",
+  projectId: 'gastrotour-17ada',
 
-  storageBucket: "gastrotour-17ada.appspot.com",
+  storageBucket: 'gastrotour-17ada.appspot.com',
 
-  messagingSenderId: "38325177476",
+  messagingSenderId: '38325177476',
 
-  appId: "1:38325177476:web:43195b46f4f4c5ed2c06d1",
+  appId: '1:38325177476:web:43195b46f4f4c5ed2c06d1',
 
-  measurementId: "G-9BKFFCLQBP"
+  measurementId: 'G-9BKFFCLQBP',
 
 };
 // Initialize Firebase
+
 export const app = initializeApp(firebaseConfig);
-console.log('****', app);
-// const db = getFirestore(app);
+export const auth = getAuth(app);
 
 // // Get a list of cities from your database
 // async function getCities(db) {
