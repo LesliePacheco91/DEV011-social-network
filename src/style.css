@@ -81,6 +81,15 @@ margin: 0 auto;
     margin: 25px auto 35px auto;
     
 }
+html,body{
+        
+    background: rgb(245,185,33);
+    background: linear-gradient(176deg, rgba(245,185,33,1) 38%, rgba(239,57,32,1) 80%, rgba(212,5,100,1) 100%);
+    background-repeat: no-repeat;
+    max-height: 100%;
+    margin: 0;
+    padding: 0; 
+}
 /* Imagen del botón de Google */
 .imgGoogle {
     width: 25px;

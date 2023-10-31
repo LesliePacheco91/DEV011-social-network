@@ -1,9 +1,9 @@
 // <------------------------ Importación de funciones para testear -------------------------------->
 
-import { newUser } from '../src/templates/newUser';
+import { muro } from '../src/templates/muro';
 
-describe('newUser', () => {
+describe('muro es una funcion', () => {
   it('debería ser una función', () => {
-    expect(typeof newUser).toBe('function');
+    expect(typeof muro).toBe('function');
   });
 });

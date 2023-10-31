@@ -1,7 +1,7 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import { registerNewUser, registerGoogle } from '../lib/auth';
 
-function newUser(navigateTo) {
+const newUser = (navigateTo) => {
 // <------------------------- Creación de elementos HTML --------------------------------->
 
   const section = document.createElement('section');
@@ -136,5 +136,5 @@ function newUser(navigateTo) {
   section.append(title, form, buttons);
 
   return section;
-}
+};
 export { newUser };

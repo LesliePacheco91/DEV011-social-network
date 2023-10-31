@@ -1,35 +1,17 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-
-const auth = getAuth();
+import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { auth } from './fireBase.js';
+// const auth = getAuth();
 export const registerNewUser = (email, password) => new Promise((resolve, reject) => {
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      resolve(user.email);
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      reject(errorCode);
-    });
+  createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
+    const user = userCredential.user;
+    resolve(auth, user.email);
+  }).catch((error) => {
+    const errorCode = error.code;
+    reject(errorCode);
+  });
 });
 
-export const registerGoogle = (provider) => signInWithPopup(auth, provider)
-  .then(() => {
-    //     // This gives you a Google Access Token. You can use it to access the Google API.
-    //     const credential = GoogleAuthProvider.credentialFromResult(result);
-    //     const token = credential.accessToken;
-    //     // The signed-in user info.
-    //     const user = result.user;
-    //     // IdP data available using getAdditionalUserInfo(result)
-    //     // ...
-    //   })
-    //   .catch((error) => {
-    //     // Handle Errors here.
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
+export const registerGoogle = (provider) => (
 
-    //     const email = error.customData.email;
-    //     // The AuthCredential type that was used.
-    //     const credential = GoogleAuthProvider.credentialFromError(error);
-    //     // ...
-  });
+  signInWithPopup(auth, provider)
+);
