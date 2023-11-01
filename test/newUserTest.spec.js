@@ -4,6 +4,22 @@
 import { newUser } from '../src/templates/newUser';
 import * as auth from '../src/lib/auth';
 
+jest.mock('../src/lib/auth.js', () => ({
+  registerNewUser: jest.fn((email, password) => {
+    if (email === 'lesliepacheco@gmail.com' && password === 'abc1234') {
+      return Promise.resolve('se ha registrado');
+    }
+    return Promise.reject(new Error('error de registro'));
+  }),
+  registerGoogle: jest.fn((provider) => {
+    // if (provider === 'google.com') { preguntar en dudas rápidas
+    if (provider) {
+      return Promise.resolve('se ha registrado por google');
+    }
+    return Promise.reject(new Error('error de registro por google'));
+  }),
+}));
+
 describe('newUser', () => {
   it('newUser is a function', () => {
     expect(typeof newUser).toBe('function');
@@ -46,18 +62,26 @@ describe('newUser', () => {
   });
 });
 
-describe('buton save', () => {
-  test('Test of clic resgistes user', () => {
-    jest.spyOn(auth, 'registerNewUser').mockImplementation(() => Promise.resolve('lesli23@gmail.com'));
-    const DOM = document.createElement('div');
-    DOM.append(newUser());
-    const inputEmail = DOM.querySelector('#idEmail');
-    const inputpass = DOM.querySelector('#form-pass');
-    const buttonid = DOM.querySelector('#registerUser');
-    inputEmail.value = 'lesli23@gmail.com';
-    inputpass.value = 'abc1234';
-    buttonid.click();
-    expect(inputEmail.value).toBe('lesli23@gmail.com');
-  // expect(auth.registerNewUser).toHaveBeenCalledTimes();
-  });
+test('valide accout register', async () => {
+  const mock = jest.fn();
+  const DOM = document.createElement('div');
+  DOM.append(newUser(mock));
+  const inputMail = DOM.querySelector('#idEmail');
+  const inputPassword = DOM.querySelector('#form-pass');
+  const buttom = DOM.querySelector('#buttonUser');
+  inputMail.value = 'lesliepacheco@gmail.com';
+  inputPassword.value = 'abc1234';
+  buttom.click();
+  const data = await auth.registerNewUser(inputMail.value, inputPassword.value);
+  expect(data).toBe('se ha registrado');
+});
+
+test('Validar registro correcto por google', async () => {
+  const mock = jest.fn();
+  const DOM = document.createElement('div');
+  DOM.append(newUser(mock));
+  const buttoGoogle = DOM.querySelector('#buttonRegisterGoogle');
+  buttoGoogle.click();
+  const data = await auth.registerGoogle('google.com');
+  expect(data).toBe('se ha registrado por google');
 });

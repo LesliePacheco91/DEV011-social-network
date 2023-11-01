@@ -34,26 +34,21 @@ const newUser = (navigateTo) => {
   alerts.setAttribute('id', 'alerts-error');
   buttonRegister.textContent = 'Registrar';
   buttonRegister.className = 'register';
-  buttonRegister.setAttribute('id', 'registerUser');
+  buttonRegister.setAttribute('id', 'buttonUser');
   buttonRegister.addEventListener('click', (e) => {
     e.preventDefault();
-    const answer = document.querySelector('#alerts-error');
     registerNewUser(inputEmail.value, inputPass.value)
-      .then(() => {
-        navigateTo('/muro');
-      }).catch((no) => {
-        if (no === 'auth/email-already-in-use') {
-          answer.innerHTML = 'Ya existe este email';
-        } else if (no === 'auth/weak-password') {
-          answer.innerHTML = 'Contraseña invalida minino 6 caracteres';
-        } else if (no) {
-          answer.innerHTML = 'Error de registro intenta de nuevo';
+      .then((ok) => {
+        if (ok) {
+          navigateTo('/muro');
         }
+      }).catch((error) => {
+        document.getElementById('alerts-error').textContent = error;
       });
   });
 
   buttonGoogle.className = 'register';
-  buttonGoogle.setAttribute('id', 'registerGoogle');
+  buttonGoogle.setAttribute('id', 'buttonRegisterGoogle');
   textButtonGoogle.textContent = 'Registrarse con google';
   textButtonGoogle.className = 'title-google';
 
@@ -67,7 +62,6 @@ const newUser = (navigateTo) => {
   imgGoogle.alt = 'Logo Javascript';
   imgGoogle.className = 'imgGoogle';
   buttonGoogle.append(imgGoogle, textButtonGoogle);
-
   buttonReturn.textContent = 'Regresar';
   buttonReturn.setAttribute('id', 'buttomReturn');
   buttonReturn.className = 'register';
@@ -75,8 +69,8 @@ const newUser = (navigateTo) => {
     navigateTo('/');
   });
 
-  form.append(inputEmail, inputPass, alerts, buttonRegister);
-  section.append(title, form, buttonGoogle, buttonReturn);
+  form.append(inputEmail, inputPass, alerts);
+  section.append(title, form, buttonRegister, buttonGoogle, buttonReturn);
 
   return section;
 };

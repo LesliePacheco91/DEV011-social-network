@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital@1&family=Poppins:wght@300&display=swap');
+
 
 /* ------------------------------------------ Estilos Generales ---------------------------------------------------- */
 /* Selector universal */
 * {
-    font-family: 'Lobster Two', sans-serif;
+    /*font-family: 'Lobster Two', sans-serif;*/
     margin: 0;
     padding: 0;
 }
@@ -32,6 +34,7 @@ section{
 .titulo {
     color: #ca0f0d;
     font-size: 50px;
+    font-family: 'Lobster Two', sans-serif
 }
 /* Contenedor Inputs de correo y contraseña */
 form {
@@ -40,6 +43,11 @@ form {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    font-family: 'Lobster Two', sans-serif;
+
+    font-family: 'Poppins', sans-serif;
+
+
 }
 /* Inputs de correo y contraseña */
 .form-data {
@@ -68,6 +76,8 @@ margin: 0 auto;
     border: 0;
     border-radius: 10px;
     margin: 25px auto 35px auto;
+    font-family: 'Lobster Two', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 /* Botón de Google */
 .registergoogle{
@@ -139,9 +149,12 @@ footer{
 .botones{
     flex-direction: column;
 }
+form{
+    width: 90%;
+}
 /* Botones SIN botón de Google */
 .register {
-    width: 250px;
+    width: 80%;
     height: 45px;
     font-size:20px;
     margin: 25px auto 20px auto;

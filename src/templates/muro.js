@@ -1,7 +1,7 @@
 // file error.js
 const muro = () => {
   const title = document.createElement('h2');
-  title.textContent = 'Error 404 page no found, please go home';
+  title.textContent = 'Bienvenido al inicio';
   return title;
 };
 
