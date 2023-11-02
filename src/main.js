@@ -14,12 +14,11 @@ const routes = [
   { path: '/login', component: login },
   { path: '/newUser', component: newUser },
   { path: '/muro', component: muro },
-  { path: '/muro', component: muro },
 ];
 
 // <-------------------------------- Declaración de Variables ------------------------------------>
 
-// Variable para la ruta inicial por defecto
+// Variable para la ruta inicial
 const defaultRoute = '/';
 // Div en donde se muestra el contenido
 const root = document.getElementById('root');
@@ -57,4 +56,3 @@ window.onpopstate = () => {
 // se utiliza el valor de defaultRoute como ruta por defecto
 // y se pasa como argumento a la función navigateTo.
 navigateTo(window.location.pathname || defaultRoute);
-

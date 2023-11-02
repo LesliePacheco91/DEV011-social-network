@@ -8,10 +8,15 @@ const newUser = (navigateTo) => {
   const title = document.createElement('h2');
   const buttonReturn = document.createElement('button');
   const form = document.createElement('form');
-  // const inputName = document.createElement('input');
   const inputEmail = document.createElement('input');
   const inputPass = document.createElement('input');
-  const buttonRegister = document.createElement('input');
+  const buttonRegister = document.createElement('button');
+  const alerts = document.createElement('span');
+  const buttonGoogle = document.createElement('button');
+  const imgGoogle = document.createElement('img');
+  const textButtonGoogle = document.createElement('span');
+  const buttons = document.createElement('section');
+  // const inputName = document.createElement('input');
   // const imgRegister = document.createElement('img');
   /* const inputCountry = document.createElement('select');
   const option0 = document.createElement('option');
@@ -19,11 +24,10 @@ const newUser = (navigateTo) => {
   const option2 = document.createElement('option');
   const option3 = document.createElement('option');
   */
-  const buttonGoogle = document.createElement('button');
-  const imgGoogle = document.createElement('img');
-  const textButtonGoogle = document.createElement('span');
-  const alerts = document.createElement('span');
-  const buttons = document.createElement('section');
+
+  // <---- Sección que contiene toda la información de los campos de registro "newUser" ---->
+
+  section.setAttribute('id', 'contendSection');
 
   // <------------------------- Título de la página "newUser" ------------------------------>
 
@@ -43,6 +47,7 @@ const newUser = (navigateTo) => {
   inputEmail.name = 'email';
   inputEmail.required = 'true';
   inputEmail.className = 'form-data';
+  inputEmail.setAttribute('id', 'idEmail');
 
   // <------------------- Campo para ingresar contraseña de registro ----------------------->
 
@@ -51,6 +56,7 @@ const newUser = (navigateTo) => {
   inputPass.name = 'password';
   inputPass.required = 'true';
   inputPass.className = 'form-data';
+  inputPass.setAttribute('id', 'form-pass');
 
   // <------------------- Campo para mostrar los avisos de alerta -------------------------->
 
@@ -85,37 +91,36 @@ const newUser = (navigateTo) => {
 
   // <------ Botón para enviar los datos y registrarse con correo electrónico -------------->
 
-  buttonRegister.type = 'submit';
-  buttonRegister.value = 'Registrar';
+  buttonRegister.textContent = 'Registrar';
   buttonRegister.className = 'register';
-  buttonRegister.addEventListener('click', async (e) => {
+  buttonRegister.setAttribute('id', 'buttonUser');
+
+  buttonRegister.addEventListener('click', (e) => {
     e.preventDefault();
-    const answer = document.querySelector('#alerts-error');
     registerNewUser(inputEmail.value, inputPass.value)
-      .then(() => {
-        navigateTo('/muro');
+      .then((ok) => {
+        if (ok) {
+          navigateTo('/muro');
+        }
       })
       .catch((error) => {
-        if (error === 'auth/email-already-in-use') {
-          answer.innerHTML = 'Este email ya está registrado';
-        } else if (error === 'auth/weak-password') {
-          answer.innerHTML = 'Contraseña inválida debe contener mínino 6 caracteres';
-        } else if (error) {
-          answer.innerHTML = 'Error de registro intenta de nuevo';
-        }
+        document.getElementById('alerts-error').textContent = error;
       });
   });
 
   // <-------------- Botón para registrarse con una cuenta de Google ----------------------->
 
   buttonGoogle.className = 'registergoogle';
+  buttonGoogle.setAttribute('id', 'buttonRegisterGoogle');
   textButtonGoogle.textContent = 'Registrarse con google';
   textButtonGoogle.className = 'title-google';
+
   buttonGoogle.addEventListener('click', (e) => {
     e.preventDefault();
     const provider = new GoogleAuthProvider();
     registerGoogle(provider);
   });
+
   imgGoogle.src = '../img/001-google.png';
   imgGoogle.alt = 'Logo Javascript';
   imgGoogle.className = 'imgGoogle';
@@ -123,6 +128,7 @@ const newUser = (navigateTo) => {
   // <-------------------- Botón para regresar a la página "home" -------------------------->
 
   buttonReturn.textContent = 'Regresar';
+  buttonReturn.setAttribute('id', 'buttomReturn');
   buttonReturn.className = 'register';
   buttonReturn.addEventListener('click', () => {
     navigateTo('/');

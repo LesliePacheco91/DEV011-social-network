@@ -1,4 +1,4 @@
-function muro(navigateTo) {
+const muro = (navigateTo) => {
   // <------------------------- Creación de elementos HTML --------------------------------->
 
   const section = document.createElement('section');
@@ -23,6 +23,6 @@ function muro(navigateTo) {
   section.append(title, buttonLogout);
 
   return section;
-}
+};
 
 export { muro };
