@@ -1,45 +1,24 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-
-const auth = getAuth();
-export const registerNewUser = (email, password) => (
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      console.log(user);
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      // const errorMessage = error.message;
-      if (errorCode === 'auth/email-already-in-use') {
-        document.querySelector("#alerts-error").innerHTML = 'Ya existe este usuario';
-      } else if (errorCode === 'auth/weak-password') {
-        document.querySelector("#alerts-error").innerHTML = 'Contraseña invalida minino 6 caracteres';
-      }
-    })
-);
+import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { auth } from './fireBase.js';
+// const auth = getAuth(); este no lo tiene leslie
+export const registerNewUser = (email, password) => new Promise((resolve, reject) => {
+  createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
+    const user = userCredential.user;
+    // resolve(auth, user.email); leslie elimina el auth
+    resolve(user.email);
+  }).catch((error) => {
+    const errorCode = error.code;
+    if (errorCode === 'auth/email-already-in-use') {
+      reject(new Error('Ya existe este email'));
+    } else if (errorCode === 'auth/weak-password') {
+      reject(new Error('Contraseña invalida minino 6 caracteres'));
+    } else if (errorCode) {
+      reject(new Error('Error de registro intenta de nuevos'));
+    }
+  });
+});
 
 export const registerGoogle = (provider) => (
 
   signInWithPopup(auth, provider)
-    .then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-      // IdP data available using getAdditionalUserInfo(result)
-      // ...
-    })
-    .catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-     
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
-    })
 );
