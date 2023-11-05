@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital@1&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital@1&family=Poppins:wght@300&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
 
 /* ------------------------------------------ Estilos Generales ---------------------------------------------------- */
 /* Selector universal */
@@ -10,31 +9,27 @@
     padding: 0;
 }
 
-html{
-    background: linear-gradient(176deg, rgba(245,185,33,1) 38%, rgba(239,57,32,1) 80%, rgba(212,5,100,1) 100%);
-    height: 100%;
-}
 /* Encabezado */
 header{
     display: inline-flex;
-    flex-direction:row-reverse;
+    /*flex-direction:row-reverse;*/
     width: 100%;
 }
 /* Logo dentro del encabezado */
 .logo {
     width: 145px;
-    margin: 2% 3% 0 0;
-    
 }
 /* Contenedor del título y contenido */
 section{
     text-align: center;
 }
 /* Título de la página */
+.titulo , .titleStart, .nameUser {
+    color: #a10c0c;
+    font-family: 'Lobster Two', sans-serif;
+}
 .titulo {
-    color: #ca0f0d;
     font-size: 50px;
-    font-family: 'Lobster Two', sans-serif
 }
 /* Contenedor Inputs de correo y contraseña */
 form {
@@ -43,23 +38,26 @@ form {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    font-family: 'Lobster Two', sans-serif;
-
-    font-family: 'Poppins', sans-serif;
-
-
 }
 /* Inputs de correo y contraseña */
-.form-data {
+.form-data, .form-post {
     border:0;
-    width: 250px;
+    width: 80%;
     padding: 10PX;
     margin: 10px 0 15px 0;
     background: 0;
-    border-bottom: 2px solid #fff;
-    color: #fff;
     font-size: 18px;
 } 
+.form-data{
+    border-bottom: 2px solid #fff;
+    color: #fff;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.form-post{
+    border-bottom: 2px solid #ca0f0d;
+    color: #ca0f0d;
+    font-family: 'Josefin Sans', sans-serif;
+}
 /* Botones de páginas login y newUser */
 .botones{
 display: flex;
@@ -67,11 +65,8 @@ max-width: 800px;
 margin: 0 auto;
 }
 /* Botones SIN botón de Google */
-.register {
-    width: 250px;
-    height: 50px;
-    color:#ca0f0d;
-    background:#ffffff7a;
+.register, .registerPost {
+    padding: 9px 0 9px 0;
     font-size:20px;
     border: 0;
     border-radius: 10px;
@@ -79,16 +74,25 @@ margin: 0 auto;
     font-family: 'Lobster Two', sans-serif;
     font-family: 'Poppins', sans-serif;
 }
+.register{
+  color:#a10c0c;
+  background:#ffffff7a;
+}
+.registerPost{
+  width: 80%;
+  background:#a10c0c;
+  color:#fff;
+}
 /* Botón de Google */
 .registergoogle{
     width: 250px;
-    height: 50px;
     color:#ca0f0d;
     background:#ffffff7a;
     font-size:20px;
     border: 0;
     border-radius: 10px;
     margin: 25px auto 35px auto;
+    padding: 9px 0 9px 0;
     
 }
 html,body{
@@ -115,7 +119,7 @@ footer{
     padding: 1%;
     margin-top: 5%;
 }
-/* ------------------------------------------ Estilos Home --------------------------------------------------------- */
+/* -------- Estilos Home ----------------------------- */
 /* Botones de Iniciar Sesión y Registro del home */
 .butom-home {
     width: 270px;
@@ -132,6 +136,190 @@ footer{
     width: 70%;
     margin: 10px;
 }
+
+
+/* *******    estilos muro   *********/
+
+.rangeStart{
+  width: 90%;
+}
+.titleStart {
+  font-family: 'Josefin Sans', sans-serif;
+  width: 96%;
+}
+.logo {
+  width: 6%;
+  margin: 3% 0% 0px 5%;
+}
+.elementHeder {
+  background: #780606;
+  width: 100%;
+  margin: 1.5em 0 1.5em 0;
+}
+.buttonPost {
+  background: 0;
+  margin: 0;
+  width: 5%;
+  border: 0;
+}
+.imgNewPost {
+  width: 100%;
+}
+
+section {
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+section{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: -4em;
+}
+.modal {
+  width: 50%;
+  background: #ffffffed;
+  position: absolute;
+  margin: 10px;
+  border-radius: 10px;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .6s .9s;
+  top: 35px;
+  --transform: translateY(-100vh);
+  --transition: transform .8s;
+  /*overflow-x: none;
+  overflow-y: scroll;*/
+}
+.modal--show{
+  opacity: 1;
+  pointer-events: unset;
+  transition: opacity .6s;
+  --transform: translateY(0);
+  --transition: transform .8s .8s;
+}
+.titleModal {
+  padding-top: 20px;
+  font-family: 'Lobster Two', sans-serif;
+  width: 80%;
+}
+.buttonCloseMdl {
+  width: 2em;
+  height: 2em;
+  margin: 10px;
+}
+.buttonCloseMdl {
+  width: 2.3em;
+  height: 2.3em;
+  margin: 20px 0 0 0;
+  font-weight: bold;
+  color: #fff;
+  background: #a10c0c;
+  border: 0;
+  border-radius: 5px;
+}
+.head-modal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#posts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  width: 43%;
+  list-style: none;
+  background: #ffffffc4;
+  margin: 10px;
+  border-radius: 5px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.headerPost {
+  text-align: left;
+  width: 100%;
+  margin: auto;
+  padding: 10px 10px 0 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.imgLike, .iconHeader {
+  width: 100%;
+  padding: 3px;
+}
+
+.buttonDelete, .buttonUpdate{
+  width: 4%;
+  background: 0;
+  border: 0;
+  margin: 0 5px 0 5px;
+}
+
+.userPost, .titlePost{
+  width: 87%;
+  padding: 5px 0 5px 0;
+}
+
+.contend-img {
+  width: 25%;
+  margin: 10px;
+}
+
+.imgPost{
+  width: 100%;
+  height: 10em;
+  object-fit: cover;
+  display: block;
+}
+
+.contend-info {
+  width: 65%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  text-align: left;
+}
+
+#buttonLike{
+  display: flex;
+  background: 0;
+  border: 0;
+  width: 10%;
+}
+
+.iconloc{
+  width: 6%;
+  margin-right: 5px;
+}
+
+.assments {
+  width: 7%;
+  margin: 3px;
+  padding: 10px 0 10px 0;
+}
+
+.contedRange {
+  width: 33%;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: 'Josefin Sans', sans-serif;
+  justify-content: center;
+}
+.titleRange {
+  width: 100%;
+  text-align: center;
+}
 /* **************************************************** R E S P O N S I V E **************************************** */
 
 @media (max-width: 900px) {
@@ -139,11 +327,13 @@ footer{
 /* ------------------------------------------ Estilos Generales ---------------------------------------------------- */
 /* Logo dentro del encabezado */
 .logo {
-    width: 90px;
+    width: 70px;
+    margin: 5% 0% 0px 5%;
 }
 /* Título de la página */
 .titulo {
-    font-size: 35px;
+    font-size: 32px;
+    margin-bottom: 1em;
 }
 /* Botones de páginas login y newUser */
 .botones{
@@ -151,18 +341,18 @@ footer{
 }
 form{
     width: 90%;
+    margin: auto;
+    padding: 15px;
 }
 /* Botones SIN botón de Google */
-.register {
+.register, .registerPost{
     width: 80%;
-    height: 45px;
     font-size:20px;
     margin: 25px auto 20px auto;
 }
 /* Botón de Google */
 .registergoogle{
-    width: 250px;
-    height: 45px;
+    width: 80%;
     font-size:20px;
     border: 0;
     border-radius: 10px;
@@ -190,6 +380,8 @@ form{
 /* Pie de página */
 footer{
     margin-top: 3%;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 12px;
 }
 .autoras{
     display: flex;
@@ -200,16 +392,98 @@ footer{
 }
 /* ------------------------------------------ Estilos Home --------------------------------------------------------- */
 /* Botones de Iniciar Sesión y Registro del Home */
-section{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    
-}
 .butom-home {
-    width: 150px;
+    width: 60%;
     font-size: 25px;
 }
+/* -------------------Estilos del muro ---------------------- */
+.titleStart {
+    font-family: 'Josefin Sans', sans-serif;
+}
+.buttonPost {
+    width: 10%;
+  }
+  .elementHeder{
+    margin: 1.5em 0 0 0;
+  }
+  .filters {
+    width: 100%;
+    margin: 15px 0 5px 0;
+  }
+  .contenOrder{
+    font-family: 'Josefin Sans', sans-serif;
+  }
+  .Buttonfilrer {
+    width: 17%;
+    margin: 0 10px 0 10px;
+  }
+  .imgfilter {
+    width: 70%;
+  }
+  .form-select {
+    width: 47%;
+    padding: 7px;
+    margin: 10px;
+    background: #ffffffa1;
+    border-radius: 5px;
+    border: 0;
+    font-size: 15px;
+    font-family: 'Josefin Sans', sans-serif;
+  }
+
+  #posts {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .card {
+    /*display: flex;
+    flex-wrap: wrap;*/
+    width: 100%;
+    margin: 15px 0 15px 0;
+  }
+  .headerPost {
+    width: 90%;
+    padding-bottom:10px;
+  }
+  .contend-img {
+    width: 90%;
+    margin: auto;
+  }
+  .contend-info {
+    width: 88%;
+    padding: 20px 0 20px 0;
+  }
+  .contentPost {
+    width: 90%;
+  }
+  .titlePost {
+    width: 90%;
+    font-family: 'Josefin Sans', sans-serif;
+  }
+  article {
+    width: 95%;
+  }
+  .assments {
+    width: 10%;
+  }
+
+  .modal {
+    width: 95%;
+    top: 0;
+
+  }
+  .titleModal {
+    width: 80%;
+  }
+  .imgClear {
+    width: 40%;
+    padding: 0 10px 0 0;
+  }
+  .userPost, .titlePost{
+    width: 80%;
+  }
+  .buttonDelete, .buttonUpdate{
+      width: 6%;
+  }
+
 }

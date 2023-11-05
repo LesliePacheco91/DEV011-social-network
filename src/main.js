@@ -5,6 +5,7 @@ import home from './templates/home.js';
 import login from './templates/login.js';
 import { newUser } from './templates/newUser.js';
 import { muro } from './templates/muro.js';
+import { detail } from './templates/detail.js';
 
 // rutas de los modulos
 const routes = [
@@ -12,6 +13,7 @@ const routes = [
   { path: '/login', component: login },
   { path: '/newUser', component: newUser },
   { path: '/muro', component: muro },
+  { path: '/detail', component: detail },
 ];
 // variable para iniciar la ruta inicial
 const defaultRoute = '/';

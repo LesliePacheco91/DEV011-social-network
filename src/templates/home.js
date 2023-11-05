@@ -1,11 +1,15 @@
 function home(navigateTo) {
 // <------------------------- Creación de elementos HTML --------------------------------->
+  const imgfont = document.createElement('img');
   const section = document.createElement('section');
   const title = document.createElement('h2');
   const button = document.createElement('button');
   const buttonNew = document.createElement('button');
   const imgSesion = document.createElement('img');
   const imgRegister = document.createElement('img');
+  // -------------------imagen de fonfo --------
+  imgfont.src = '../img/fontHome.jpg';
+  imgfont.className = 'imageFond';
   // <-------------------------- Título de la página "home" -------------------------------->
   title.textContent = 'Bienvenido';
   title.className = 'titulo';
@@ -29,7 +33,6 @@ function home(navigateTo) {
   button.append(imgSesion);
   buttonNew.appendChild(imgRegister);
   section.append(title, button, buttonNew);
-
   return section;
 }
 export default home;

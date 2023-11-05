@@ -8,7 +8,7 @@ const newUser = (navigateTo) => {
   const form = document.createElement('form');
   const inputEmail = document.createElement('input');
   const inputPass = document.createElement('input');
-  const buttonRegister = document.createElement('buttom');
+  const buttonRegister = document.createElement('button');
   const alerts = document.createElement('span');
   const buttonGoogle = document.createElement('button');
   const imgGoogle = document.createElement('img');
@@ -47,7 +47,7 @@ const newUser = (navigateTo) => {
       });
   });
 
-  buttonGoogle.className = 'register';
+  buttonGoogle.className = 'registergoogle';
   buttonGoogle.setAttribute('id', 'buttonRegisterGoogle');
   textButtonGoogle.textContent = 'Registrarse con google';
   textButtonGoogle.className = 'title-google';
