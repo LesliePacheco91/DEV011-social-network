@@ -23,6 +23,7 @@ const muro = (navigateTo) => {
   section.append(title, buttonLogout);
 
   return section;
+  
 };
 
 export { muro };

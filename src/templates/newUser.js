@@ -94,7 +94,6 @@ const newUser = (navigateTo) => {
   buttonRegister.textContent = 'Registrar';
   buttonRegister.className = 'register';
   buttonRegister.setAttribute('id', 'buttonUser');
-
   buttonRegister.addEventListener('click', (e) => {
     e.preventDefault();
     registerNewUser(inputEmail.value, inputPass.value)
@@ -102,11 +101,13 @@ const newUser = (navigateTo) => {
         if (ok) {
           navigateTo('/muro');
         }
-      })
-      .catch((error) => {
+
+      }).catch((error) => {
+
         document.getElementById('alerts-error').textContent = error;
       });
   });
+
 
   // <-------------- Botón para registrarse con una cuenta de Google ----------------------->
 
@@ -124,6 +125,8 @@ const newUser = (navigateTo) => {
   imgGoogle.src = '../img/001-google.png';
   imgGoogle.alt = 'Logo Javascript';
   imgGoogle.className = 'imgGoogle';
+  //buttonGoogle.append(imgGoogle, textButtonGoogle);
+
 
   // <-------------------- Botón para regresar a la página "home" -------------------------->
 

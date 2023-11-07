@@ -1,7 +1,8 @@
 import { GoogleAuthProvider } from 'firebase/auth';
-import { registerGoogle } from '../lib/auth';
+import { loginGoogle, loginUser } from '../lib/auth';
 
 function login(navigateTo) {
+
 // <------------------------- Creación de elementos HTML --------------------------------->
 
   const section = document.createElement('section');
@@ -10,6 +11,7 @@ function login(navigateTo) {
   const form = document.createElement('form');
   const inputEmail = document.createElement('input');
   const inputPass = document.createElement('input');
+  const alerts = document.createElement('span');
   const buttonLogin = document.createElement('input');
   const buttonGoogle = document.createElement('button');
   const imgGoogle = document.createElement('img');
@@ -26,11 +28,16 @@ function login(navigateTo) {
   inputEmail.placeholder = 'Ingresa tu correo electrónico';
   inputEmail.className = 'form-data';
 
+  inputEmail.setAttribute('id', 'idEmail');
+
   // <------------------------ Campo para ingresar contraseña ------------------------------>
 
   inputPass.placeholder = 'Ingresa tu contraseña';
   inputPass.type = 'password';
   inputPass.className = 'form-data';
+
+  inputPass.setAttribute('id', 'inputPass');
+  alerts.setAttribute('id', 'alerts-error');
 
   // <-------------------------------- Sección de botones ---------------------------------->
 
@@ -41,19 +48,40 @@ function login(navigateTo) {
   buttonLogin.value = 'Iniciar';
   buttonLogin.type = 'submit';
   buttonLogin.className = 'register';
-
+  buttonLogin.setAttribute('id', 'buttonLogin');
+  buttonLogin.addEventListener('click', (e) => {
+    e.preventDefault();
+    loginUser(inputEmail.value, inputPass.value)
+      .then((ok) => {
+        if (ok) {
+          navigateTo('/muro');
+        }
+      }).catch((error) => {
+        document.getElementById('alerts-error').textContent = error;
+      });
+  });
+ 
   // <-------------- Botón para iniciar sesión con cuenta de Google ------------------------>
 
   buttonGoogle.className = 'registergoogle';
   buttonGoogle.addEventListener('click', () => {
     const provider = new GoogleAuthProvider();
-    registerGoogle(provider);
+    const resultado = loginGoogle(provider);
+    resultado.then((user) => {
+      if (user) {
+        navigateTo('/muro');
+      }  
+    }).catch((errorCode) => {
+      console.log('errorPrueba', errorCode);
+    });
   });
+
   imgGoogle.src = '../img/001-google.png';
   imgGoogle.alt = 'Logo Javascript';
   imgGoogle.className = 'imgGoogle';
   textButtonGoogle.textContent = 'Iniciar con google';
   textButtonGoogle.className = 'title-google';
+
 
   // <-------------------- Botón para regresar a la página "home" -------------------------->
 
@@ -66,9 +94,9 @@ function login(navigateTo) {
   // <---------------- Orden de la estructura de los elementos HTML ------------------------>
 
   buttonGoogle.append(imgGoogle, textButtonGoogle);
-  form.append(inputEmail, inputPass);
+  form.append(inputEmail, inputPass, alerts);
   buttons.append(buttonLogin, buttonGoogle, buttonReturn);
-  section.append(title, form, buttons);
+  section.append(title, form, buttons, buttonGoogle);
 
   return section;
 }

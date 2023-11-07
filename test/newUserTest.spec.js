@@ -7,8 +7,10 @@
 import { newUser } from '../src/templates/newUser';
 import * as auth from '../src/lib/auth';
 
+
 // <------------------------ Test: Prueba que es una función -------------------------------->
 // FALTA ESCRIBIR QUE HACE ESTE JEST.MOCK
+
 jest.mock('../src/lib/auth.js', () => ({
   registerNewUser: jest.fn((email, password) => {
     if (email === 'lesliepacheco@gmail.com' && password === 'abc1234') {
