@@ -1,4 +1,7 @@
 function home(navigateTo) {
+
+// <------------------------- Creación de elementos HTML --------------------------------->
+  const imgfont = document.createElement('img');
   // <------------------------- Creación de elementos HTML --------------------------------->
 
   const section = document.createElement('section');
@@ -38,7 +41,6 @@ function home(navigateTo) {
   button.append(imgSesion);
   buttonNew.appendChild(imgRegister);
   section.append(title, button, buttonNew);
-
   return section;
 }
 export default home;

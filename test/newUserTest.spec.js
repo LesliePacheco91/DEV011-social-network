@@ -19,7 +19,8 @@ jest.mock('../src/lib/auth.js', () => ({
     return Promise.reject(new Error('error de registro'));
   }),
   registerGoogle: jest.fn((provider) => {
-    // if (provider === 'google.com') { preguntar en dudas rápidas
+    // console.log(provider);
+    // if (provider === 'google.com') { // preguntar en dudas rápidas
     if (provider) {
       return Promise.resolve('se ha registrado por google');
     }
@@ -77,10 +78,10 @@ test('valide accout register', async () => {
   DOM.append(newUser(mock));
   const inputMail = DOM.querySelector('#idEmail');
   const inputPassword = DOM.querySelector('#form-pass');
-  const buttom = DOM.querySelector('#buttonUser');
+  const button = DOM.querySelector('#buttonUser');
   inputMail.value = 'lesliepacheco@gmail.com';
   inputPassword.value = 'abc1234';
-  buttom.click();
+  button.click();
   const data = await auth.registerNewUser(inputMail.value, inputPassword.value);
   expect(data).toBe('se ha registrado');
 });
