@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import {
-  auth, db, collection, addDoc, getDocs, onSnapshot, orderBy, query,
+  auth, db, collection, addDoc, getDocs, getDoc, onSnapshot, orderBy, query, doc, deleteDoc,
 } from './fireBase.js';
 
 // funcion para registro de usuario mediante formulario
@@ -26,7 +26,6 @@ export const registerGoogle = (provider) => (
 );
 
 // funcion para crear publicaciones
-
 const postCollection = collection(db, 'posts');
 export const createNewPost = (nameRest, loc, assm, clear, pri, categ, like) => {
   addDoc(postCollection, {
@@ -44,7 +43,20 @@ export const createNewPost = (nameRest, loc, assm, clear, pri, categ, like) => {
 // mostrar publicaciones
 export const querySnapshot = getDocs(postCollection);
 
+// ejecuta el ordenamiento descendente de las publicaciones
 const q = query(postCollection, orderBy('date', 'desc'));
 
 // mostrar publicaciones en tiempo real
 export const paintRealTtime = (Callback) => (onSnapshot(q, Callback));
+
+// eliminar post
+export const deletePost = (id) => deleteDoc(doc(db, 'posts', id));
+
+// modifica post
+export const getPost = (id) => getDoc(doc(db, 'posts', id));
+
+/* modifica el campo like del post
+export const moreLike = (id, estatus) => setDoc(doc(db, 'posts', id), {
+  like:estatus,
+});
+*/

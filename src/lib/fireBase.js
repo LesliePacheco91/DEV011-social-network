@@ -2,7 +2,17 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import {
-  getFirestore, collection, addDoc, getDocs, onSnapshot, orderBy, query, doc,
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  getDoc,
+  onSnapshot,
+  orderBy,
+  query,
+  doc,
+  deleteDoc,
+  setDoc,
 } from 'firebase/firestore';
 // import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -35,7 +45,17 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 
 export {
-  getFirestore, collection, addDoc, getDocs, onSnapshot, orderBy, query, doc,
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  getDoc,
+  onSnapshot,
+  orderBy,
+  query,
+  doc,
+  deleteDoc,
+  setDoc,
 };
 
 // // Get a list of cities from your database
