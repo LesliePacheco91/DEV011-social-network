@@ -1,8 +1,15 @@
 /**
- * @jest-environment jsdom
- */
+*@jest-environment jsdom
+*/
+
+// <------------------------ Importación de funciones para testear -------------------------------->
+
 import { newUser } from '../src/templates/newUser';
 import * as auth from '../src/lib/auth';
+
+
+// <------------------------ Test: Prueba que es una función -------------------------------->
+// FALTA ESCRIBIR QUE HACE ESTE JEST.MOCK
 
 jest.mock('../src/lib/auth.js', () => ({
   registerNewUser: jest.fn((email, password) => {
@@ -36,15 +43,15 @@ describe('newUser', () => {
   it('newUser have buttom return home', () => {
     const DOM = document.createElement('div');
     DOM.append(newUser());
-    const buttoReturn = DOM.querySelector('#buttomReturn');
-    expect(buttoReturn).not.toBe(undefined);
+    const buttonReturn = DOM.querySelector('#buttomReturn');
+    expect(buttonReturn).not.toBe(undefined);
   });
   it('function buttom return home', () => {
     const DOM = document.createElement('div');
     const mock = jest.fn();
     DOM.append(newUser(mock));
-    const buttoReturn = DOM.querySelector('#buttomReturn');
-    buttoReturn.click();
+    const buttonReturn = DOM.querySelector('#buttomReturn');
+    buttonReturn.click();
     expect(mock).toHaveBeenLastCalledWith('/');
   });
 
@@ -63,7 +70,9 @@ describe('newUser', () => {
   });
 });
 
-test('valide account register', async () => {
+// <------------------------ Test:  -------------------------------->
+
+test('valide accout register', async () => {
   const mock = jest.fn();
   const DOM = document.createElement('div');
   DOM.append(newUser(mock));

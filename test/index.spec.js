@@ -1,4 +1,5 @@
-// importamos la funcion que vamos a testear
+// <------------------------ Importación de funciones para testear -------------------------------->
+
 import { muro } from '../src/templates/muro';
 
 describe('muro es una funcion', () => {

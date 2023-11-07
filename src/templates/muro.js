@@ -327,6 +327,7 @@ const muro = () => {
   contentPost.append(listPost);
   section.append(modal, title, nameUser, elemenNav, contentPost);
   return section;
+
 };
 
 export { muro };
