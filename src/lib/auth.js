@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, signInWithPopup, signInWithEmailAndPassword, GoogleAuthProvider } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth';
 
 import { auth } from './fireBase.js';
 
@@ -26,6 +26,7 @@ export const loginUser = (email, password) => new Promise((resolve, reject) => {
     const errorCode = error.code;
     if (errorCode === 'auth/invalid-login-credentials') {
       const errorMessage = error.message;
+      console.log(errorMessage);
       reject(new Error('Usuario y/o Contraseña invalidas'));
     }
   });
@@ -34,11 +35,6 @@ export const registerGoogle = (provider) => (
 
   signInWithPopup(auth, provider)
 );
-
-// export const loginGoogleGoogle = (provider) => (
-
-//   signInWithPopup(auth, provider)
-// );
 
 export const loginGoogle = (provider) => (
   signInWithPopup(auth, provider)
