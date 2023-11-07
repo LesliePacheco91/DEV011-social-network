@@ -1,15 +1,20 @@
 function home(navigateTo) {
-// <------------------------- Creación de elementos HTML --------------------------------->
+  // <------------------------- Creación de elementos HTML --------------------------------->
+
   const section = document.createElement('section');
   const title = document.createElement('h2');
   const button = document.createElement('button');
   const buttonNew = document.createElement('button');
   const imgSesion = document.createElement('img');
   const imgRegister = document.createElement('img');
+
   // <-------------------------- Título de la página "home" -------------------------------->
+
   title.textContent = 'Bienvenido';
   title.className = 'titulo';
+
   // <---------------------- Botón para ir a la página "login" ----------------------------->
+
   button.textContent = 'Iniciar sesión';
   button.className = 'butom-home';
   imgSesion.src = '../img/usuario.png';
@@ -17,7 +22,9 @@ function home(navigateTo) {
   button.addEventListener('click', () => {
     navigateTo('/login');
   });
+
   // <---------------------- Botón para ir a la página "newUser" --------------------------->
+
   buttonNew.textContent = 'Registrarse';
   buttonNew.className = 'butom-home';
   imgRegister.src = '../img/Nuevo_usuario.png';
@@ -25,7 +32,9 @@ function home(navigateTo) {
   buttonNew.addEventListener('click', () => {
     navigateTo('/newUser');
   });
+
   // <---------------- Orden de la estructura de los elementos HTML ------------------------>
+
   button.append(imgSesion);
   buttonNew.appendChild(imgRegister);
   section.append(title, button, buttonNew);

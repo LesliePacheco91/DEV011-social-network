@@ -2,6 +2,8 @@ import { createUserWithEmailAndPassword, signInWithPopup, signInWithEmailAndPass
 
 import { auth } from './fireBase.js';
 
+//const auth = getAuth();
+
 export const registerNewUser = (email, password) => new Promise((resolve, reject) => {
   createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
     const user = userCredential.user;
