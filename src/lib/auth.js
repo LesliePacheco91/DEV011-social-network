@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, signInWithPopup, signInWithEmailAndPassword} from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth';
 import {
   auth, db, collection, addDoc, getDocs, onSnapshot, orderBy, query,
 } from './fireBase.js';
@@ -78,5 +78,4 @@ export const loginGoogle = (provider) => (
       // const errorMessage = error.message;
       // const email = error.customData.email;
       // const credential = GoogleAuthProvider.credentialFromError(error);
-  }));
-
+    }));

@@ -1,4 +1,4 @@
-import { createNewPost, paintRealTtime, querySnapshot } from '../lib/auth.js';
+import { createNewPost, paintRealTtime } from '../lib/auth.js';
 
 const muro = () => {
   // elementos de cabecera
@@ -327,7 +327,6 @@ const muro = () => {
   contentPost.append(listPost);
   section.append(modal, title, nameUser, elemenNav, contentPost);
   return section;
-
 };
 
 export { muro };
