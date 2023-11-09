@@ -54,6 +54,7 @@ function login(navigateTo) {
       .then((ok) => {
         if (ok) {
           navigateTo('/muro');
+          localStorage.setItem('user', ok);
         }
       }).catch((error) => {
         document.getElementById('alerts-error').textContent = error;
@@ -68,10 +69,11 @@ function login(navigateTo) {
     const resultado = loginGoogle(provider);
     resultado.then((user) => {
       if (user) {
+        localStorage.setItem('user', user);
         navigateTo('/muro');
       }
     }).catch((errorCode) => {
-      console.log('errorPrueba', errorCode);
+      document.getElementById('alerts-error').textContent = errorCode;
     });
   });
 
