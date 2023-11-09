@@ -90,7 +90,7 @@ margin: 0 auto;
     border-radius: 10px;
     margin: 25px auto 35px auto;
     padding: 9px 0 9px 0;
-    
+    cursor: pointer;
 }
 html,body{
         
@@ -137,6 +137,7 @@ footer{
 .img-login{
     width: 70%;
     margin: 10px;
+    cursor: pointer;
 }
 
 
@@ -177,6 +178,7 @@ label {
 }
 .imgNewPost {
   width: 100%;
+  cursor: pointer;
 }
 
 section{
@@ -215,7 +217,6 @@ section{
   font-family: 'Lobster Two', sans-serif;
   width: 80%;
 }
-
 .buttonCloseMdl {
   width: 2.3em;
   height: 2.3em;
@@ -261,6 +262,7 @@ section{
 .iconHeader {
   width: 100%;
   padding: 3px;
+  cursor: pointer;
 }
 .imgLike{
   width: 40%;
@@ -335,7 +337,7 @@ section{
 }
 .titleRange {
   width: 100%;
-  /*text-align: center;*/
+  text-align: center;
 }
 /* ------------------------------------------ Estilos New User ----------------------------------------------------- */
 /* Alertas */
@@ -371,6 +373,7 @@ form{
     width: 80%;
     font-size:20px;
     margin: 25px auto 20px auto;
+    cursor: pointer;
 }
 /* Botón de Google */
 .registergoogle{
@@ -507,6 +510,7 @@ footer{
   .buttonDelete, .buttonUpdate{
       width: 6%;
   }
+
   .totalLike{
     width: 50%;
   }
@@ -517,5 +521,10 @@ footer{
   .imgPost{
     height: 11em;
   }
+
+
+#idregister{
+  cursor: pointer;
+}
 
 }
