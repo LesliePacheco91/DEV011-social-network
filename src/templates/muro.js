@@ -1,10 +1,11 @@
-import { createNewPost, paintRealTtime, querySnapshot } from '../lib/auth.js';
+import { createNewPost, paintRealTtime } from '../lib/auth.js';
 
-const muro = () => {
+const muro = (navigateTo) => {
   // elementos de cabecera
   const section = document.createElement('section');
-  const title = document.createElement('h3');
-  const nameUser = document.createElement('h2');
+  const title = document.createElement('h1');
+  const buttonLogout = document.createElement('button');
+  // const nameUser = document.createElement('h2');
   const elemenNav = document.createElement('nav');
   const buttonPost = document.createElement('button');
   const imgNewPost = document.createElement('img');
@@ -21,10 +22,12 @@ const muro = () => {
   const cleaning = document.createElement('input');
   const likepost = document.createElement('input');
   const price = document.createElement('select');
+  const priceOpt0 = document.createElement('option');
   const priceOpt1 = document.createElement('option');
   const priceOpt2 = document.createElement('option');
   const priceOpt3 = document.createElement('option');
   const category = document.createElement('select');
+  const option0 = document.createElement('option');
   const option1 = document.createElement('option');
   const option2 = document.createElement('option');
   const option3 = document.createElement('option');
@@ -50,11 +53,19 @@ const muro = () => {
   const listPost = document.createElement('ul');
 
   // elementos de cabecera
-  title.textContent = 'Binveni@';
+  title.textContent = 'Bienvenid@';
   title.className = 'titleStart';
 
-  nameUser.textContent = 'Leslie Pacheco';
-  nameUser.className = 'nameUser';
+  // nameUser.textContent = 'Leslie Pacheco';
+  // nameUser.className = 'nameUser';
+  buttonLogout.textContent = 'Cerrar sesión';
+  buttonLogout.className = 'register';
+  buttonLogout.addEventListener('click', () => {
+    navigateTo('/');
+  });
+  const header = document.querySelector('header');
+
+  header.append(title, buttonLogout);
 
   elemenNav.className = 'elementHeder';
   buttonPost.className = 'buttonPost';
@@ -85,7 +96,7 @@ const muro = () => {
 
   // campo de rango de calificacion
   assment.type = 'number';
-  assment.placeholder = 'Calificacion de 1 - 5';
+  assment.placeholder = 'Calificación de 1 - 5';
   assment.min = 1;
   assment.max = 5;
   assment.id = 'assment';
@@ -107,26 +118,30 @@ const muro = () => {
   // campo de rango de precios
   price.id = 'price';
   price.className = 'form-post';
-  priceOpt1.value = 'Economico';
-  priceOpt1.textContent = 'Economico';
-  priceOpt2.value = 'Regualar';
+  priceOpt0.value = '';
+  priceOpt0.textContent = 'Precio';
+  priceOpt1.value = 'Económico';
+  priceOpt1.textContent = 'Económico';
+  priceOpt2.value = 'Regular';
   priceOpt2.textContent = 'Regular';
   priceOpt3.value = 'Caro';
   priceOpt3.textContent = 'Caro';
-  price.append(priceOpt1, priceOpt2, priceOpt3);
+  price.append(priceOpt0, priceOpt1, priceOpt2, priceOpt3);
 
   // campo de categoria
   category.id = 'category';
   category.className = 'form-post';
-  option1.value = 'Vegano';
-  option1.textContent = 'Vegano';
+  option0.value = '';
+  option0.textContent = 'Tipo de Comida';
+  option1.value = 'Cafetería';
+  option1.textContent = 'Cafetería';
   option2.value = 'Comida rápida';
   option2.textContent = 'Comida rápida';
-  option3.value = 'Cafetería';
-  option3.textContent = 'Cafetería';
-  option4.value = 'Gurmet';
-  option4.textContent = 'Gurmet';
-  category.append(option1, option2, option3, option4);
+  option3.value = 'Gourmet';
+  option3.textContent = 'Gourmet';
+  option4.value = 'Vegano';
+  option4.textContent = 'Vegano';
+  category.append(option0, option1, option2, option3, option4);
 
   // botón de publicar
   buttonRegPost.textContent = 'Publicar';
@@ -253,12 +268,13 @@ const muro = () => {
       li.setAttribute('itemtype', 'gastroTour');
       divimg.classList = ('contend-img');
       userPost.className = 'userPost';
-      userPost.textContent = 'Leslie Pacheco';
+      // userPost.textContent = 'Leslie Pacheco';
 
       headerPost.className = 'headerPost';
       iconDeletePost.src = '../img/basura.png';
       iconDeletePost.className = 'iconHeader';
       buttonDeletePost.className = 'buttonDelete';
+
       buttonDeletePost.append(iconDeletePost);
 
       iconUpdatePost.src = '../img/editar.png';
@@ -275,11 +291,27 @@ const muro = () => {
       divinfo.classList = ('contend-info');
       titlePost.textContent = doc.data().nameRest;
       titlePost.className = 'titlePost';
+
+      let counter = 0;
+      let isSelected = false;
+
       if (doc.data().like > 0) {
         likes.src = '../img/like.png';
       } else {
         likes.src = '../img/dislike.png';
       }
+
+      buttonLike.addEventListener('click', () => {
+        if (!isSelected) {
+          counter += 1;
+          isSelected = true;
+        } else {
+          counter -= 1;
+          isSelected = false;
+        }
+        buttonLike.textContent = counter;
+      });
+
       totalLike.textContent = doc.data().like;
       buttonLike.append(likes, totalLike);
       buttonLike.id = 'buttonLike';
@@ -298,6 +330,7 @@ const muro = () => {
 
         assmentsPost.src = '../img/start.png';
         assmentsPost.className = 'assments';
+
         article.appendChild(assmentsPost);
       }
 
@@ -305,18 +338,21 @@ const muro = () => {
       titleClear.className = 'titleRange';
       rangeClear.className = 'contedRange';
       numClear.textContent = `${doc.data().clear}/5`;
+
       rangeClear.append(titleClear, numClear);
 
       titlePrice.textContent = 'Precio';
       titlePrice.className = 'titleRange';
       numPrice.textContent = doc.data().pri;
       rangePrice.className = 'contedRange';
+
       rangePrice.append(titlePrice, numPrice);
 
       titleCateg.textContent = 'Categoría';
       titleCateg.className = 'titleRange';
       rangeCateg.className = 'contedRange';
       typeCateg.textContent = doc.data().categ;
+
       rangeCateg.append(titleCateg, typeCateg);
       divinfo.append(titlePost, buttonLike, local, article, rangeClear, rangePrice, rangeCateg);
       li.append(headerPost, divimg, divinfo);
@@ -325,9 +361,9 @@ const muro = () => {
   });
 
   contentPost.append(listPost);
-  section.append(modal, title, nameUser, elemenNav, contentPost);
-  return section;
+  section.append(modal, elemenNav, contentPost);
 
+  return section;
 };
 
 export { muro };

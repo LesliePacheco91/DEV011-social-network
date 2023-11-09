@@ -2,8 +2,7 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import { loginGoogle, loginUser } from '../lib/auth';
 
 function login(navigateTo) {
-
-// <------------------------- Creación de elementos HTML --------------------------------->
+  // <------------------------- Creación de elementos HTML --------------------------------->
 
   const section = document.createElement('section');
   const title = document.createElement('h2');
@@ -60,7 +59,7 @@ function login(navigateTo) {
         document.getElementById('alerts-error').textContent = error;
       });
   });
- 
+
   // <-------------- Botón para iniciar sesión con cuenta de Google ------------------------>
 
   buttonGoogle.className = 'registergoogle';
@@ -70,7 +69,7 @@ function login(navigateTo) {
     resultado.then((user) => {
       if (user) {
         navigateTo('/muro');
-      }  
+      }
     }).catch((errorCode) => {
       console.log('errorPrueba', errorCode);
     });
@@ -81,7 +80,6 @@ function login(navigateTo) {
   imgGoogle.className = 'imgGoogle';
   textButtonGoogle.textContent = 'Iniciar con google';
   textButtonGoogle.className = 'title-google';
-
 
   // <-------------------- Botón para regresar a la página "home" -------------------------->
 
