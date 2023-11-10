@@ -3,7 +3,6 @@ import { createNewPost, paintRealTtime } from '../lib/auth.js';
 const muro = (navigateTo) => {
   // elementos de cabecera
   const section = document.createElement('section');
-  const title = document.createElement('h1');
   const buttonLogout = document.createElement('button');
   // const nameUser = document.createElement('h2');
   const elemenNav = document.createElement('nav');
@@ -52,20 +51,46 @@ const muro = (navigateTo) => {
   const contentPost = document.createElement('div');
   const listPost = document.createElement('ul');
 
-  // elementos de cabecera
-  title.textContent = 'Bienvenid@';
-  title.className = 'titleStart';
+  // // Función para verificar si el usuario tiene la sesión iniciada
+  // const checkSession = () => new Promise((resolve, reject) => {
+  //   // Comprueba el estado de autenticación del usuario actual
+  //   auth.onAuthStateChanged((user) => {
+  //     if (user) {
+  //       // El usuario tiene la sesión iniciada
+  //       resolve(user);
+  //     } else {
+  //       // El usuario no tiene la sesión iniciada
+  //       reject(new Error('Usuario no autenticado'));
+  //     }
+  //   });
+  // });
 
+  // // Ejemplo de uso de la función checkSession
+  // checkSession()
+  //   .then((user) => {
+  //   // El usuario tiene la sesión iniciada
+  //     console.log('Usuario autenticado:', user.email);
+  //   // Aquí puedes realizar las acciones que necesites para un usuario autenticado
+  //   })
+  //   .catch((error) => {
+  //   // El usuario no tiene la sesión iniciada
+  //     console.error('Error:', error.message);
+  //   // Aquí puedes realizar las acciones que necesites para un usuario no autenticado
+  //   });
+
+  // elementos de cabecera
   // nameUser.textContent = 'Leslie Pacheco';
   // nameUser.className = 'nameUser';
+
   buttonLogout.textContent = 'Cerrar sesión';
   buttonLogout.className = 'register';
-  buttonLogout.addEventListener('click', () => {
+  buttonLogout.addEventListener('click', (e) => {
+    e.preventDefault();
     navigateTo('/');
   });
   const header = document.querySelector('header');
 
-  header.append(title, buttonLogout);
+  header.append(buttonLogout);
 
   elemenNav.className = 'elementHeder';
   buttonPost.className = 'buttonPost';
@@ -292,24 +317,26 @@ const muro = (navigateTo) => {
       titlePost.textContent = doc.data().nameRest;
       titlePost.className = 'titlePost';
 
-      let counter = 0;
-      let isSelected = false;
-
       if (doc.data().like > 0) {
         likes.src = '../img/like.png';
       } else {
         likes.src = '../img/dislike.png';
       }
+      let counter = 0;
+      let isSelected = false;
 
       buttonLike.addEventListener('click', () => {
         if (!isSelected) {
           counter += 1;
           isSelected = true;
+          likes.src = '../img/like.png';
         } else {
           counter -= 1;
           isSelected = false;
+          likes.src = '../img/dislike.png';
         }
-        buttonLike.textContent = counter;
+
+        totalLike.textContent = counter;
       });
 
       totalLike.textContent = doc.data().like;

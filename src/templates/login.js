@@ -20,7 +20,7 @@ function login(navigateTo) {
   // <-------------------------- Título de la página "login" ------------------------------->
 
   title.textContent = 'Iniciar sesión';
-  title.className = 'titulo';
+  title.className = 'tituloLogin';
 
   // <------------------- Campo para ingresar correo electrónico --------------------------->
 

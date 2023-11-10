@@ -32,7 +32,7 @@ const newUser = (navigateTo) => {
   // <------------------------- Título de la página "newUser" ------------------------------>
 
   title.textContent = 'Registro';
-  title.className = 'titulo';
+  title.className = 'tituloRegistro';
 
   // <------ Campo para ingresar nombre para el registro con correo electrónico ------------>
 
@@ -101,13 +101,10 @@ const newUser = (navigateTo) => {
         if (ok) {
           navigateTo('/muro');
         }
-
       }).catch((error) => {
-
         document.getElementById('alerts-error').textContent = error;
       });
   });
-
 
   // <-------------- Botón para registrarse con una cuenta de Google ----------------------->
 
@@ -125,8 +122,7 @@ const newUser = (navigateTo) => {
   imgGoogle.src = '../img/001-google.png';
   imgGoogle.alt = 'Logo Javascript';
   imgGoogle.className = 'imgGoogle';
-  //buttonGoogle.append(imgGoogle, textButtonGoogle);
-
+  // buttonGoogle.append(imgGoogle, textButtonGoogle);
 
   // <-------------------- Botón para regresar a la página "home" -------------------------->
 

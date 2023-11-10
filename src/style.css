@@ -4,32 +4,33 @@
 /* ------------------------------------------ Estilos Generales ---------------------------------------------------- */
 /* Selector universal */
 * {
-    /*font-family: 'Lobster Two', sans-serif;*/
     margin: 0;
     padding: 0;
 }
 
 /* Encabezado */
-header{
+.header{
     display: inline-flex;
-    /*flex-direction:row-reverse;*/
+    flex-direction:row-reverse;
     width: 100%;
 }
 /* Logo dentro del encabezado */
 .logo {
-    width: 145px;
+    width: 100%;
+    padding-right: 2%;
+    
 }
 /* Contenedor del título y contenido */
 section{
     text-align: center;
 }
 /* Título de la página */
-.titulo , .titleStart, .nameUser {
+.titulo , .titleStart {
     color: #a10c0c;
     font-family: 'Lobster Two', sans-serif;
 }
 .titulo {
-    font-size: 50px;
+    font-size: 270%;
 }
 /* Contenedor Inputs de correo y contraseña */
 form {
@@ -43,10 +44,10 @@ form {
 .form-data, .form-post {
     border:0;
     width: 80%;
-    padding: 10PX;
-    margin: 10px 0 15px 0;
+    padding: 2%;
+    margin: 2% 0 2% 0;
     background: 0;
-    font-size: 18px;
+    font-size: 120%;
 } 
 .form-data{
     border-bottom: 2px solid #fff;
@@ -61,18 +62,23 @@ form {
 /* Botones de páginas login y newUser */
 .botones{
 display: flex;
-max-width: 800px;
+max-width: 100%;
 margin: 0 auto;
+align-content: center;
 }
 /* Botones SIN botón de Google */
+
 .register, .registerPost {
-    padding: 9px 0 9px 0;
-    font-size:20px;
+    padding: 5%;
+    width: 100%;
+    font-size:115%;
     border: 0;
     border-radius: 10px;
     margin: 25px auto 35px auto;
     font-family: 'Lobster Two', sans-serif;
     font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+
 }
 .register{
   color:#a10c0c;
@@ -85,33 +91,32 @@ margin: 0 auto;
 }
 /* Botón de Google */
 .registergoogle{
-    width: 250px;
-    color:#ca0f0d;
+    display: inline-flex;
+    width: 100%;
+    color:#a10c0c;
     background:#ffffff7a;
-    font-size:20px;
+    font-size: 115%;
     border: 0;
     border-radius: 10px;
     margin: 25px auto 35px auto;
-    padding: 9px 0 9px 0;
-    
+    padding: 5%;
+    cursor: pointer;    
 }
-html,body{
-        
-    background: rgb(245,185,33);
+
+html, body{
+    height: 100%;
     background: linear-gradient(176deg, rgba(245,185,33,1) 38%, rgba(239,57,32,1) 80%, rgba(212,5,100,1) 100%);
     background-repeat: no-repeat;
-    max-height: 100%;
-    margin: 0;
-    padding: 0; 
 }
 /* Imagen del botón de Google */
 .imgGoogle {
-    width: 25px;
-    padding-left: 7px;
+    width: 10%;
+    padding-left: 2%;
+    margin: 0 auto;
 }
 /* Nombre del botón de Google */
 .title-google{
-    padding-left: 26px;
+    padding-left: 3%;
 }
 /* Pie de página */
 footer{
@@ -122,21 +127,20 @@ footer{
 /* -------- Estilos Home ----------------------------- */
 /* Botones de Iniciar Sesión y Registro del home */
 .butom-home {
-    width: 270px;
+    width: 15%;
     margin: 10px;
     border: 0;
     padding: 10px;
     background: rgba(255, 255, 255, 0.369);
     border-radius: 10px;
     color: rgb(200, 53, 8);
-    font-size: 40px;
+    font-size: 150%;
 }
 /* Imagen de los botones del home */
 .img-login{
-    width: 70%;
+    width: 60%;
     margin: 10px;
 }
-
 
 /* *******    estilos muro   *********/
 
@@ -161,6 +165,7 @@ footer{
   margin: 0;
   width: 5%;
   border: 0;
+  cursor: pointer;
 }
 .imgNewPost {
   width: 100%;
@@ -213,6 +218,7 @@ section{
   width: 2em;
   height: 2em;
   margin: 10px;
+  cursor: pointer;
 }
 .buttonCloseMdl {
   width: 2.3em;
@@ -223,6 +229,8 @@ section{
   background: #a10c0c;
   border: 0;
   border-radius: 5px;
+  cursor: pointer;
+
 }
 .head-modal {
   display: flex;
@@ -264,6 +272,7 @@ section{
   background: 0;
   border: 0;
   margin: 0 5px 0 5px;
+  cursor: pointer;
 }
 
 .userPost, .titlePost{
@@ -296,6 +305,7 @@ section{
   background: 0;
   border: 0;
   width: 10%;
+  cursor: pointer;
 }
 
 .iconloc{
@@ -332,7 +342,7 @@ section{
 /* ------------------------------------------ Estilos Generales ---------------------------------------------------- */
 /* Logo dentro del encabezado */
 .logo {
-    width: 70px;
+    width: 25%;
     margin: 5% 0% 0px 5%;
 }
 /* Título de la página */
@@ -407,6 +417,7 @@ footer{
 }
 .buttonPost {
     width: 10%;
+    cursor: pointer;
   }
   .elementHeder{
     margin: 1.5em 0 0 0;
@@ -489,6 +500,7 @@ footer{
   }
   .buttonDelete, .buttonUpdate{
       width: 6%;
+      cursor: pointer;
   }
 
 }
