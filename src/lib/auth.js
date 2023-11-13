@@ -1,4 +1,3 @@
-
 import {
   createUserWithEmailAndPassword, signInWithPopup, signInWithEmailAndPassword, GoogleAuthProvider,
 } from 'firebase/auth';
@@ -112,20 +111,3 @@ export const updateLikes = (idPost, likes) => {
     like: likes,
   });
 };
-
-// login por google
-export const loginGoogle = (provider) => (
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      // const credential = GoogleAuthProvider.credentialFromResult(result);
-      // const token = credential.accessToken;
-      const user = result.user;
-      return user;
-    }).catch((error) => {
-      const errorCode = error.code;
-      return errorCode;
-      // const errorMessage = error.message;
-      // const email = error.customData.email;
-      // const credential = GoogleAuthProvider.credentialFromError(error);
-    }));
-
