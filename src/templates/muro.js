@@ -1,8 +1,6 @@
-
 import {
   createNewPost, paintRealTtime, deletePost, UpdatePost, updateLikes,
 } from '../lib/auth.js';
-
 
 const muro = () => {
   const iduser = localStorage.getItem('user');

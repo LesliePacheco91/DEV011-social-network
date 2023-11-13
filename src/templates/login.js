@@ -62,8 +62,8 @@ function login(navigateTo) {
   });
 
   // <-------------- Botón para iniciar sesión con cuenta de Google ------------------------>
-
   buttonGoogle.className = 'registergoogle';
+  buttonGoogle.setAttribute('id', 'buttonLoginGoogle');
   buttonGoogle.addEventListener('click', () => {
     const provider = new GoogleAuthProvider();
     const resultado = loginGoogle(provider);
