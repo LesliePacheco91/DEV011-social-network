@@ -1,4 +1,3 @@
-
 import {
   createNewPost, UpdatePost, paintRealTtime, deletePost,
 } from '../lib/auth.js';
@@ -115,8 +114,7 @@ const muro = (navigateTo) => {
   header.append(buttonLogout);
 
   // nameUser.textContent = user;
-  nameUser.className = 'nameUser';
-
+  // nameUser.className = 'nameUser';
 
   elemenNav.className = 'elementHeder';
   buttonPost.className = 'buttonPost';
@@ -452,9 +450,7 @@ const muro = (navigateTo) => {
       iconDeletePost.className = 'iconHeader';
       buttonDeletePost.className = 'buttonDelete';
 
-
       buttonDeletePost.append(iconDeletePost);
-
 
       iconUpdatePost.src = '../img/editar.png';
       iconUpdatePost.className = 'iconHeader';
@@ -573,9 +569,6 @@ const muro = (navigateTo) => {
   contentPost.append(listPost);
 
   section.append(modal, elemenNav, contentPost, modalUpdt);
-
-
-
 
   return section;
 };
