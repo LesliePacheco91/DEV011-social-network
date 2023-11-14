@@ -1,7 +1,7 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import { loginGoogle, loginUser } from '../lib/auth';
 
-function login(navigateTo) {
+const login = (navigateTo) => {
 // <------------------------- Creación de elementos HTML --------------------------------->
 
   const section = document.createElement('section');
@@ -34,7 +34,6 @@ function login(navigateTo) {
   inputPass.placeholder = 'Ingresa tu contraseña';
   inputPass.type = 'password';
   inputPass.className = 'form-data';
-
   inputPass.setAttribute('id', 'inputPass');
   alerts.setAttribute('id', 'alerts-error');
 
@@ -57,13 +56,14 @@ function login(navigateTo) {
           localStorage.setItem('user', ok);
         }
       }).catch((error) => {
-        document.getElementById('alerts-error').textContent = error;
+        alerts.textContent = error;
       });
   });
 
   // <-------------- Botón para iniciar sesión con cuenta de Google ------------------------>
 
   buttonGoogle.className = 'registergoogle';
+  buttonGoogle.id = 'loginWithGoogle';
   buttonGoogle.addEventListener('click', () => {
     const provider = new GoogleAuthProvider();
     const resultado = loginGoogle(provider);
@@ -73,7 +73,7 @@ function login(navigateTo) {
         navigateTo('/muro');
       }
     }).catch((errorCode) => {
-      document.getElementById('alerts-error').textContent = errorCode;
+      alerts.textContent = errorCode;
     });
   });
 
@@ -87,6 +87,7 @@ function login(navigateTo) {
 
   buttonReturn.textContent = 'Regresar al inicio';
   buttonReturn.className = 'register';
+  buttonReturn.id = 'buttomReturn';
   buttonReturn.addEventListener('click', () => {
     navigateTo('/');
   });
@@ -99,5 +100,6 @@ function login(navigateTo) {
   section.append(title, form, buttons, buttonGoogle);
 
   return section;
-}
-export default login;
+};
+
+export { login };

@@ -2,7 +2,7 @@
 
 // home y login van sin llaves porque se exportan por default
 import { home } from './templates/home.js';
-import login from './templates/login.js';
+import { login } from './templates/login.js';
 // newUser y muro van con llaves porque se usan en más de una hoja
 import { newUser } from './templates/newUser.js';
 import { muro } from './templates/muro.js';

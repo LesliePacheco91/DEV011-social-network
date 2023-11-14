@@ -1,8 +1,7 @@
-
 import {
-  createNewPost, paintRealTtime, deletePost, UpdatePost, updateLikes,
-} from '../lib/auth.js';
+  createNewPost, UpdatePost, paintRealTtime, deletePost,
 
+} from '../lib/auth.js';
 
 const muro = () => {
   const iduser = localStorage.getItem('user');
@@ -85,6 +84,7 @@ const muro = () => {
 
   // elementos del modal
   modal.className = 'modal';
+  modal.id = 'modalRegister';
   // cabecera del modal
   headModal.className = 'head-modal';
   buttonCloseMdl.textContent = 'X';
@@ -92,47 +92,61 @@ const muro = () => {
   titleModal.textContent = 'Nueva reseña';
   titleModal.className = 'titleModal';
   // cuerpo del modal
+  formNewPost.id = 'formNewPost';
   imagPost.type = 'text';
   imagPost.className = 'form-post';
   imagPost.id = 'idImgPost';
   imagPost.placeholder = 'Ingresa una imagen';
-  nameRest.type = 'text';
+  imagPost.name = 'imgPost';
+  imagPost.required = 'true';
   // campo nombre del restaurante
-  formNewPost.id = 'formNewPost';
+  nameRest.type = 'text';
   nameRest.className = 'form-post';
   nameRest.placeholder = 'Nombre del restaurante';
-  nameRest.id = 'nameRest';
+  nameRest.id = 'idnameRest';
+  nameRest.name = 'nameRest';
+  nameRest.required = 'true';
 
   // campo dirección del restaurante
   location.type = 'text';
   location.placeholder = 'Dirección';
-  location.id = 'location';
+  location.id = 'idlocation';
   location.className = 'form-post';
+  location.name = 'location';
+  location.required = 'true';
 
   // campo de rango de calificacion
   assment.type = 'number';
   assment.placeholder = 'Calificacion de 1 - 5';
   assment.min = 1;
   assment.max = 5;
-  assment.id = 'assment';
+  assment.id = 'idassment';
   assment.className = 'form-post';
+  assment.name = 'assment';
+  assment.required = 'true';
 
   // campo de rango calificacion de limpieza
   cleaning.type = 'number';
   cleaning.placeholder = 'Rango de limpieza de 1 - 5';
-  cleaning.id = 'clear';
+  cleaning.id = 'idclear';
   cleaning.min = 1;
   cleaning.max = 5;
   cleaning.className = 'form-post';
+  cleaning.name = 'clear';
+  cleaning.required = 'true';
 
   // campo like "es un campo oculto"
   likepost.type = 'hidden';
   likepost.id = 'idLike';
   likepost.value = '0';
+  likepost.name = 'likePost';
+  likepost.required = 'true';
 
   // campo de rango de precios
-  price.id = 'price';
+  price.id = 'idprice';
   price.className = 'form-post';
+  price.name = 'price';
+  price.required = 'true';
   priceOpt1.value = 'Economico';
   priceOpt1.textContent = 'Economico';
   priceOpt2.value = 'Regular';
@@ -142,20 +156,25 @@ const muro = () => {
   price.append(priceOpt1, priceOpt2, priceOpt3);
 
   // campo de categoria
-  category.id = 'category';
+  category.id = 'idcategory';
   category.className = 'form-post';
+  category.name = 'category';
+  category.required = 'true';
   option1.value = 'Vegano';
-  option1.textContent = 'Vegano';
+  option1.text = 'Vegano';
   option2.value = 'Comida rápida';
-  option2.textContent = 'Comida rápida';
+  option2.text = 'Comida rápida';
   option3.value = 'Cafetería';
-  option3.textContent = 'Cafetería';
+  option3.text = 'Cafetería';
   option4.value = 'Gourmet';
-  option4.textContent = 'Gourmet';
+  option4.text = 'Gourmet';
   category.append(option1, option2, option3, option4);
+
+  // campo usuario
   user.type = 'hidden';
   user.id = 'idUser';
   user.value = iduser;
+  user.name = 'iduser';
 
   // botón de publicar
   buttonRegPost.textContent = 'Publicar';
@@ -191,20 +210,21 @@ const muro = () => {
   });
 
   // Boton para registrar reseña
-  modal.querySelector('#idregisterPost').addEventListener('click', (e) => {
+  buttonRegPost.addEventListener('click', (e) => {
     e.preventDefault();
+
+    const imagePost = document.querySelector('#idImgPost');
+    const namePost = document.querySelector('#idnameRest');
+    const loc = document.querySelector('#idlocation');
+    const assm = document.querySelector('#idassment');
+    const clear = document.querySelector('#idclear');
+    const pri = document.querySelector('#idprice');
+    const categ = document.querySelector('#idcategory');
+    const like = document.querySelector('#idLike');
+    const idUser = document.querySelector('#idUser');
+    createNewPost(imagePost.value, namePost.value, loc.value, assm.value, clear.value, pri.value, categ.value, like.value, idUser.value);
     modal.classList.remove('modal--show');
-    const imagePost = document.querySelector('#idImgPost').value;
-    const namePost = document.querySelector('#nameRest').value;
-    const loc = document.querySelector('#location').value;
-    const assm = document.querySelector('#assment').value;
-    const clear = document.querySelector('#clear').value;
-    const pri = document.querySelector('#price').value;
-    const categ = document.querySelector('#category').value;
-    const like = document.querySelector('#idLike').value;
-    const idUser = document.querySelector('#idUser').value;
-    createNewPost(imagePost, namePost, loc, assm, clear, pri, categ, like, idUser);
-    document.querySelector('#formNewPost').reset();
+    // document.querySelector('#formNewPost').reset();
   });
 
   // modal para actualizar reseñas
@@ -327,20 +347,12 @@ const muro = () => {
     const Limpieza = document.querySelector('#clearUpdt');
     const precio = document.querySelector('#priceUpdt');
     const categoria = document.querySelector('#categoryUpdt');
-    UpdatePost(
-      id.value,
-      nombreRest.value,
-      locali.value,
-      Calfic.value,
-      Limpieza.value,
-      precio.value,
-      categoria.value,
-    );
+    UpdatePost(id.value, nombreRest.value, locali.value, Calfic.value, Limpieza.value, precio.value, categoria.value);
   });
 
   // elementos del post
   contentPost.className = 'contentPost';
-  listPost.setAttribute('id', 'posts');
+  listPost.id = 'posts';
 
   paintRealTtime((querySnapshot) => {
     listPost.textContent = '';
@@ -442,13 +454,14 @@ const muro = () => {
       local.className = 'titleLocal';
       likes.className = 'imgLike';
 
-      buttonLike.addEventListener('click', (e) => {
+      /* buttonLike.addEventListener('click', (e) => {
         e.preventDefault();
         const idPost = doc.id;
         const totalLikes = parseInt(doc.data().like, 10) + 1;
 
         updateLikes(idPost, totalLikes);
       });
+      */
       // impresion de las estrellas
       article.className = 'rangeStart';
       for (let z = 0; z < doc.data().assm; z += 1) {
