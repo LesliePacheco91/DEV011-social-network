@@ -1,8 +1,10 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import { loginGoogle, loginUser } from '../lib/auth';
 
+
 const login = (navigateTo) => {
 // <------------------------- Creación de elementos HTML --------------------------------->
+
 
   const section = document.createElement('section');
   const title = document.createElement('h2');
@@ -20,7 +22,7 @@ const login = (navigateTo) => {
   // <-------------------------- Título de la página "login" ------------------------------->
 
   title.textContent = 'Iniciar sesión';
-  title.className = 'titulo';
+  title.className = 'tituloLogin';
 
   // <------------------- Campo para ingresar correo electrónico --------------------------->
 
@@ -59,6 +61,7 @@ const login = (navigateTo) => {
         alerts.textContent = error;
       });
   });
+
 
   // <-------------- Botón para iniciar sesión con cuenta de Google ------------------------>
   buttonGoogle.className = 'registergoogle';

@@ -1,19 +1,15 @@
+
 const home = (navigateTo) => {
 // <------------------------- Creación de elementos HTML --------------------------------->
   // const imgfont = document.createElement('img');
-  // <------------------------- Creación de elementos HTML --------------------------------->
 
+  // <------------------------- Creación de elementos HTML --------------------------------->
+  // const imgfont = document.createElement('img');
   const section = document.createElement('section');
-  const title = document.createElement('h2');
   const button = document.createElement('button');
   const buttonNew = document.createElement('button');
   const imgSesion = document.createElement('img');
   const imgRegister = document.createElement('img');
-
-  // <-------------------------- Título de la página "home" -------------------------------->
-
-  title.textContent = 'Bienvenido';
-  title.className = 'titulo';
 
   // <---------------------- Botón para ir a la página "login" ----------------------------->
 
@@ -41,7 +37,7 @@ const home = (navigateTo) => {
 
   button.append(imgSesion);
   buttonNew.appendChild(imgRegister);
-  section.append(title, button, buttonNew);
+  section.append(button, buttonNew);
   return section;
 };
 

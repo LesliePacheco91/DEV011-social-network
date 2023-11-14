@@ -32,7 +32,7 @@ const newUser = (navigateTo) => {
   // <------------------------- Título de la página "newUser" ------------------------------>
 
   title.textContent = 'Registro';
-  title.className = 'titulo';
+  title.className = 'tituloRegistro';
 
   // <------ Campo para ingresar nombre para el registro con correo electrónico ------------>
 
@@ -123,6 +123,7 @@ const newUser = (navigateTo) => {
   imgGoogle.alt = 'Logo Javascript';
   imgGoogle.className = 'imgGoogle';
   // buttonGoogle.append(imgGoogle, textButtonGoogle);
+
   // <-------------------- Botón para regresar a la página "home" -------------------------->
 
   buttonReturn.textContent = 'Regresar';

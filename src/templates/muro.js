@@ -1,14 +1,16 @@
+
 import {
   createNewPost, UpdatePost, paintRealTtime, deletePost,
 } from '../lib/auth.js';
 
-const muro = () => {
+const muro = (navigateTo) => {
   const iduser = localStorage.getItem('user');
   // localStorage.removeItem(user);
+
   // elementos de cabecera
   const section = document.createElement('section');
-  const title = document.createElement('h3');
-  const nameUser = document.createElement('h2');
+  const buttonLogout = document.createElement('button');
+  // const nameUser = document.createElement('h2');
   const elemenNav = document.createElement('nav');
   const buttonPost = document.createElement('button');
   const imgNewPost = document.createElement('img');
@@ -26,10 +28,12 @@ const muro = () => {
   const cleaning = document.createElement('input');
   const likepost = document.createElement('input');
   const price = document.createElement('select');
+  const priceOpt0 = document.createElement('option');
   const priceOpt1 = document.createElement('option');
   const priceOpt2 = document.createElement('option');
   const priceOpt3 = document.createElement('option');
   const category = document.createElement('select');
+  const option0 = document.createElement('option');
   const option1 = document.createElement('option');
   const option2 = document.createElement('option');
   const option3 = document.createElement('option');
@@ -69,12 +73,50 @@ const muro = () => {
   const contentPost = document.createElement('div');
   const listPost = document.createElement('ul');
 
+  // // Función para verificar si el usuario tiene la sesión iniciada
+  // const checkSession = () => new Promise((resolve, reject) => {
+  //   // Comprueba el estado de autenticación del usuario actual
+  //   auth.onAuthStateChanged((user) => {
+  //     if (user) {
+  //       // El usuario tiene la sesión iniciada
+  //       resolve(user);
+  //     } else {
+  //       // El usuario no tiene la sesión iniciada
+  //       reject(new Error('Usuario no autenticado'));
+  //     }
+  //   });
+  // });
+
+  // // Ejemplo de uso de la función checkSession
+  // checkSession()
+  //   .then((user) => {
+  //   // El usuario tiene la sesión iniciada
+  //     console.log('Usuario autenticado:', user.email);
+  //   // Aquí puedes realizar las acciones que necesites para un usuario autenticado
+  //   })
+  //   .catch((error) => {
+  //   // El usuario no tiene la sesión iniciada
+  //     console.error('Error:', error.message);
+  //   // Aquí puedes realizar las acciones que necesites para un usuario no autenticado
+  //   });
+
   // elementos de cabecera
-  title.textContent = 'Binveni@';
-  title.className = 'titleStart';
+  // nameUser.textContent = 'Leslie Pacheco';
+  // nameUser.className = 'nameUser';
+
+  buttonLogout.textContent = 'Cerrar sesión';
+  buttonLogout.className = 'register';
+  buttonLogout.addEventListener('click', (e) => {
+    e.preventDefault();
+    navigateTo('/');
+  });
+  const header = document.querySelector('header');
+
+  header.append(buttonLogout);
 
   // nameUser.textContent = user;
   nameUser.className = 'nameUser';
+
 
   elemenNav.className = 'elementHeder';
   buttonPost.className = 'buttonPost';
@@ -116,7 +158,7 @@ const muro = () => {
 
   // campo de rango de calificacion
   assment.type = 'number';
-  assment.placeholder = 'Calificacion de 1 - 5';
+  assment.placeholder = 'Calificación de 1 - 5';
   assment.min = 1;
   assment.max = 5;
   assment.id = 'idassment';
@@ -144,30 +186,37 @@ const muro = () => {
   // campo de rango de precios
   price.id = 'idprice';
   price.className = 'form-post';
+
   price.name = 'price';
   price.required = 'true';
-  priceOpt1.value = 'Economico';
-  priceOpt1.textContent = 'Economico';
+  priceOpt0.value = '';
+  priceOpt0.textContent = 'Precio';
+  priceOpt1.value = 'Económico';
+  priceOpt1.textContent = 'Económico';
+
   priceOpt2.value = 'Regular';
   priceOpt2.textContent = 'Regular';
   priceOpt3.value = 'Caro';
   priceOpt3.textContent = 'Caro';
-  price.append(priceOpt1, priceOpt2, priceOpt3);
+  price.append(priceOpt0, priceOpt1, priceOpt2, priceOpt3);
 
   // campo de categoria
   category.id = 'idcategory';
   category.className = 'form-post';
   category.name = 'category';
   category.required = 'true';
-  option1.value = 'Vegano';
-  option1.text = 'Vegano';
+
+  option0.value = '';
+  option0.textContent = 'Tipo de Comida';
+  option1.value = 'Cafetería';
+  option1.textContent = 'Cafetería';
   option2.value = 'Comida rápida';
-  option2.text = 'Comida rápida';
-  option3.value = 'Cafetería';
-  option3.text = 'Cafetería';
-  option4.value = 'Gourmet';
-  option4.text = 'Gourmet';
-  category.append(option1, option2, option3, option4);
+  option2.textContent = 'Comida rápida';
+  option3.value = 'Gourmet';
+  option3.textContent = 'Gourmet';
+  option4.value = 'Vegano';
+  option4.textContent = 'Vegano';
+  category.append(option0, option1, option2, option3, option4);
 
   // campo usuario
   user.type = 'hidden';
@@ -403,6 +452,10 @@ const muro = () => {
       iconDeletePost.className = 'iconHeader';
       buttonDeletePost.className = 'buttonDelete';
 
+
+      buttonDeletePost.append(iconDeletePost);
+
+
       iconUpdatePost.src = '../img/editar.png';
       iconUpdatePost.className = 'iconHeader';
       buttonUpdatepost.className = 'buttonUpdate';
@@ -436,11 +489,29 @@ const muro = () => {
       divinfo.classList = ('contend-info');
       titlePost.textContent = doc.data().nameRest;
       titlePost.className = 'titlePost';
+
       if (doc.data().like > 0) {
         likes.src = '../img/like.png';
       } else {
         likes.src = '../img/dislike.png';
       }
+      let counter = 0;
+      let isSelected = false;
+
+      buttonLike.addEventListener('click', () => {
+        if (!isSelected) {
+          counter += 1;
+          isSelected = true;
+          likes.src = '../img/like.png';
+        } else {
+          counter -= 1;
+          isSelected = false;
+          likes.src = '../img/dislike.png';
+        }
+
+        totalLike.textContent = counter;
+      });
+
       totalLike.textContent = doc.data().like;
       totalLike.className = 'totalLike';
       buttonLike.append(likes, totalLike);
@@ -468,6 +539,7 @@ const muro = () => {
 
         assmentsPost.src = '../img/start.png';
         assmentsPost.className = 'assments';
+
         article.appendChild(assmentsPost);
       }
 
@@ -475,18 +547,21 @@ const muro = () => {
       titleClear.className = 'titleRange';
       rangeClear.className = 'contedRange';
       numClear.textContent = `${doc.data().clear}/5`;
+
       rangeClear.append(titleClear, numClear);
 
       titlePrice.textContent = 'Precio';
       titlePrice.className = 'titleRange';
       numPrice.textContent = doc.data().pri;
       rangePrice.className = 'contedRange';
+
       rangePrice.append(titlePrice, numPrice);
 
       titleCateg.textContent = 'Categoría';
       titleCateg.className = 'titleRange';
       rangeCateg.className = 'contedRange';
       typeCateg.textContent = doc.data().categ;
+
       rangeCateg.append(titleCateg, typeCateg);
       divinfo.append(local, rangeClear, rangePrice, rangeCateg, article, buttonLike);
       headerPost.append(titlePost, buttonUpdatepost, buttonDeletePost);
@@ -496,7 +571,12 @@ const muro = () => {
   });
 
   contentPost.append(listPost);
-  section.append(modal, modalUpdt, title, nameUser, elemenNav, contentPost);
+
+  section.append(modal, elemenNav, contentPost, modalUpdt);
+
+
+
+
   return section;
 };
 
