@@ -6,7 +6,6 @@ import { login } from './templates/login.js';
 // newUser y muro van con llaves porque se usan en más de una hoja
 import { newUser } from './templates/newUser.js';
 import { muro } from './templates/muro.js';
-import { detail } from './templates/detail.js';
 
 // <---------------------------------- Rutas de los módulos -------------------------------------->
 
@@ -15,7 +14,6 @@ const routes = [
   { path: '/login', component: login },
   { path: '/newUser', component: newUser },
   { path: '/muro', component: muro },
-  { path: '/detail', component: detail },
 ];
 
 // <-------------------------------- Declaración de Variables ------------------------------------>
