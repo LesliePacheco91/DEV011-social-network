@@ -7,7 +7,6 @@
 import { newUser } from '../src/templates/newUser';
 import * as auth from '../src/lib/auth';
 
-
 // <------------------------ Test: Prueba que es una función -------------------------------->
 // FALTA ESCRIBIR QUE HACE ESTE JEST.MOCK
 
