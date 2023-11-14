@@ -81,7 +81,7 @@ export const createNewPost = (img, nameRest, loc, assm, clear, pri, categ, like,
   });
 };
 
-// llamar la coleccion
+// llamar la coleccion de manera ordenada
 const q = query(postCollection, orderBy('date', 'desc'));
 
 // mostrar publicaciones en tiempo real
@@ -92,7 +92,6 @@ export const deletePost = (id) => deleteDoc(doc(db, 'posts', id));
 
 // actualizar datos del post
 export const UpdatePost = (idPost, nombreRest, locali, Calfic, Limpieza, precio, categoria) => {
-  // console.log(idPost, nombreRest, locali, Calfic, Limpieza, precio, categoria);
   const docRef = doc(db, 'posts', idPost);
   updateDoc(docRef, {
     nameRest: nombreRest,
