@@ -1,8 +1,10 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import { loginGoogle, loginUser } from '../lib/auth';
 
-function login(navigateTo) {
-  // <------------------------- Creación de elementos HTML --------------------------------->
+
+const login = (navigateTo) => {
+// <------------------------- Creación de elementos HTML --------------------------------->
+
 
   const section = document.createElement('section');
   const title = document.createElement('h2');
@@ -34,7 +36,6 @@ function login(navigateTo) {
   inputPass.placeholder = 'Ingresa tu contraseña';
   inputPass.type = 'password';
   inputPass.className = 'form-data';
-
   inputPass.setAttribute('id', 'inputPass');
   alerts.setAttribute('id', 'alerts-error');
 
@@ -54,24 +55,28 @@ function login(navigateTo) {
       .then((ok) => {
         if (ok) {
           navigateTo('/muro');
+          localStorage.setItem('user', ok);
         }
       }).catch((error) => {
-        document.getElementById('alerts-error').textContent = error;
+        alerts.textContent = error;
       });
   });
 
-  // <-------------- Botón para iniciar sesión con cuenta de Google ------------------------>
 
+  // <-------------- Botón para iniciar sesión con cuenta de Google ------------------------>
   buttonGoogle.className = 'registergoogle';
+  buttonGoogle.setAttribute('id', 'buttonLoginGoogle');
+
   buttonGoogle.addEventListener('click', () => {
     const provider = new GoogleAuthProvider();
     const resultado = loginGoogle(provider);
     resultado.then((user) => {
       if (user) {
+        localStorage.setItem('user', user);
         navigateTo('/muro');
       }
     }).catch((errorCode) => {
-      console.log('errorPrueba', errorCode);
+      alerts.textContent = errorCode;
     });
   });
 
@@ -85,6 +90,7 @@ function login(navigateTo) {
 
   buttonReturn.textContent = 'Regresar al inicio';
   buttonReturn.className = 'register';
+  buttonReturn.id = 'buttomReturn';
   buttonReturn.addEventListener('click', () => {
     navigateTo('/');
   });
@@ -97,5 +103,6 @@ function login(navigateTo) {
   section.append(title, form, buttons, buttonGoogle);
 
   return section;
-}
-export default login;
+};
+
+export { login };

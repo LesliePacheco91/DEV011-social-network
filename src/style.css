@@ -21,9 +21,6 @@
     
 }
 /* Contenedor del título y contenido */
-section{
-    text-align: center;
-}
 /* Título de la página */
 .titulo , .titleStart {
     color: #a10c0c;
@@ -44,8 +41,10 @@ form {
 .form-data, .form-post {
     border:0;
     width: 80%;
+
     padding: 2%;
     margin: 2% 0 2% 0;
+
     background: 0;
     font-size: 120%;
 } 
@@ -99,8 +98,10 @@ align-content: center;
     border: 0;
     border-radius: 10px;
     margin: 25px auto 35px auto;
+
     padding: 5%;
     cursor: pointer;    
+
 }
 
 html, body{
@@ -124,6 +125,10 @@ footer{
     padding: 1%;
     margin-top: 5%;
 }
+
+.titleLocal {
+  padding-bottom: 10px;
+}
 /* -------- Estilos Home ----------------------------- */
 /* Botones de Iniciar Sesión y Registro del home */
 .butom-home {
@@ -135,14 +140,24 @@ footer{
     border-radius: 10px;
     color: rgb(200, 53, 8);
     font-size: 150%;
+    cursor: pointer;
+
 }
 /* Imagen de los botones del home */
 .img-login{
     width: 60%;
     margin: 10px;
+    cursor: pointer;
 }
 
 /* *******    estilos muro   *********/
+
+label {
+  text-align: left;
+  width: 85%;
+  padding-top: 5px;
+  font-family: 'Josefin Sans', sans-serif;
+}
 
 .rangeStart{
   width: 90%;
@@ -150,15 +165,18 @@ footer{
 .titleStart {
   font-family: 'Josefin Sans', sans-serif;
   width: 96%;
+  text-align: center;
 }
-.logo {
+/*.logo {
   width: 6%;
   margin: 3% 0% 0px 5%;
-}
+}*/
 .elementHeder {
   background: #780606;
   width: 100%;
   margin: 1.5em 0 1.5em 0;
+  justify-content: center;
+  display: flex;
 }
 .buttonPost {
   background: 0;
@@ -169,13 +187,7 @@ footer{
 }
 .imgNewPost {
   width: 100%;
-}
-
-section {
-  text-align: center;
-  justify-content: center;
-  display: flex;
-  flex-wrap: wrap;
+  cursor: pointer;
 }
 
 section{
@@ -189,7 +201,7 @@ section{
 .modal {
   width: 50%;
   background: #ffffffed;
-  position: absolute;
+  position: fixed;
   margin: 10px;
   border-radius: 10px;
   z-index: 1;
@@ -219,18 +231,11 @@ section{
   height: 2em;
   margin: 10px;
   cursor: pointer;
-}
-.buttonCloseMdl {
-  width: 2.3em;
-  height: 2.3em;
-  margin: 20px 0 0 0;
   font-weight: bold;
   color: #fff;
   background: #a10c0c;
   border: 0;
   border-radius: 5px;
-  cursor: pointer;
-
 }
 .head-modal {
   display: flex;
@@ -261,10 +266,16 @@ section{
   padding: 10px 10px 0 10px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: end;
 }
-.imgLike, .iconHeader {
+.iconHeader {
   width: 100%;
   padding: 3px;
+  cursor: pointer;
+}
+.imgLike{
+  width: 40%;
+  padding-right: 4px;
 }
 
 .buttonDelete, .buttonUpdate{
@@ -273,10 +284,16 @@ section{
   border: 0;
   margin: 0 5px 0 5px;
   cursor: pointer;
+
+}
+.totalLike{
+  width: 40%;
+  text-align: left;
+
 }
 
 .userPost, .titlePost{
-  width: 87%;
+  width: 80%;
   padding: 5px 0 5px 0;
 }
 
@@ -302,10 +319,13 @@ section{
 
 #buttonLike{
   display: flex;
+  flex-wrap: wrap;
   background: 0;
   border: 0;
+
   width: 10%;
   cursor: pointer;
+
 }
 
 .iconloc{
@@ -325,6 +345,7 @@ section{
   flex-wrap: wrap;
   font-family: 'Josefin Sans', sans-serif;
   justify-content: center;
+  text-align: center;
 }
 .titleRange {
   width: 100%;
@@ -342,7 +363,9 @@ section{
 /* ------------------------------------------ Estilos Generales ---------------------------------------------------- */
 /* Logo dentro del encabezado */
 .logo {
+
     width: 25%;
+
     margin: 5% 0% 0px 5%;
 }
 /* Título de la página */
@@ -364,6 +387,7 @@ form{
     width: 80%;
     font-size:20px;
     margin: 25px auto 20px auto;
+    cursor: pointer;
 }
 /* Botón de Google */
 .registergoogle{
@@ -420,7 +444,7 @@ footer{
     cursor: pointer;
   }
   .elementHeder{
-    margin: 1.5em 0 0 0;
+    margin: 3em 0 0 0;
   }
   .filters {
     width: 100%;
@@ -502,5 +526,21 @@ footer{
       width: 6%;
       cursor: pointer;
   }
+
+  .totalLike{
+    width: 50%;
+  }
+  #buttonLike{
+    width: 20%;
+  }
+
+  .imgPost{
+    height: 11em;
+  }
+
+
+#idregister{
+  cursor: pointer;
+}
 
 }

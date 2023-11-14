@@ -1,4 +1,8 @@
-function home(navigateTo) {
+
+const home = (navigateTo) => {
+// <------------------------- Creación de elementos HTML --------------------------------->
+  // const imgfont = document.createElement('img');
+
   // <------------------------- Creación de elementos HTML --------------------------------->
   // const imgfont = document.createElement('img');
   const section = document.createElement('section');
@@ -10,6 +14,7 @@ function home(navigateTo) {
   // <---------------------- Botón para ir a la página "login" ----------------------------->
 
   button.textContent = 'Iniciar sesión';
+  button.id = 'buttonLogin';
   button.className = 'butom-home';
   imgSesion.src = '../img/usuario.png';
   imgSesion.className = 'img-login';
@@ -21,6 +26,7 @@ function home(navigateTo) {
 
   buttonNew.textContent = 'Registrarse';
   buttonNew.className = 'butom-home';
+  buttonNew.id = 'buttonNewUser';
   imgRegister.src = '../img/Nuevo_usuario.png';
   imgRegister.className = 'img-login';
   buttonNew.addEventListener('click', () => {
@@ -33,5 +39,6 @@ function home(navigateTo) {
   buttonNew.appendChild(imgRegister);
   section.append(button, buttonNew);
   return section;
-}
-export default home;
+};
+
+export { home };

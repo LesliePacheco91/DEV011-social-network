@@ -1,6 +1,12 @@
-import { createNewPost, paintRealTtime } from '../lib/auth.js';
+
+import {
+  createNewPost, UpdatePost, paintRealTtime, deletePost,
+} from '../lib/auth.js';
 
 const muro = (navigateTo) => {
+  const iduser = localStorage.getItem('user');
+  // localStorage.removeItem(user);
+
   // elementos de cabecera
   const section = document.createElement('section');
   const buttonLogout = document.createElement('button');
@@ -9,12 +15,13 @@ const muro = (navigateTo) => {
   const buttonPost = document.createElement('button');
   const imgNewPost = document.createElement('img');
 
-  // elementos del modal
+  // elementos del modal para registrar reseña
   const modal = document.createElement('div');
   const buttonCloseMdl = document.createElement('button');
   const headModal = document.createElement('div');
   const titleModal = document.createElement('h2');
   const formNewPost = document.createElement('form');
+  const imagPost = document.createElement('input');
   const nameRest = document.createElement('input');
   const location = document.createElement('input');
   const assment = document.createElement('input');
@@ -33,21 +40,36 @@ const muro = (navigateTo) => {
   const option4 = document.createElement('option');
   const buttonRegPost = document.createElement('button');
 
-  // elements de filtro
-  const navfilters = document.createElement('nav');
-  const butonFilter1 = document.createElement('button');
-  const butonFilter2 = document.createElement('button');
-  const butonFilter3 = document.createElement('button');
-  const imgfilter1 = document.createElement('img');
-  const imgfilter2 = document.createElement('img');
-  const imgfilter3 = document.createElement('img');
-
-  // elementos los filtros del post
-  const divOrderBy = document.createElement('div');
-  const listOrderBy = document.createElement('select');
-  const opcion1 = document.createElement('option');
-  const opcion2 = document.createElement('option');
-  const label = document.createElement('label');
+  // modal para actualizar reseña
+  // elementos del modal para registrar nuevo post
+  const user = document.createElement('input');
+  const modalUpdt = document.createElement('div');
+  const idP = document.createElement('input');
+  const buttonCloseMdlUpdt = document.createElement('button');
+  const headModalUpdt = document.createElement('div');
+  const titleModalUpdt = document.createElement('h2');
+  const formPostUpdt = document.createElement('form');
+  const labelNameRest = document.createElement('label');
+  const nameRestUpdt = document.createElement('input');
+  const labelLoc = document.createElement('label');
+  const locationUpdt = document.createElement('input');
+  const labelAssment = document.createElement('label');
+  const assmentUpdt = document.createElement('input');
+  const labelClear = document.createElement('label');
+  const cleaningUpdt = document.createElement('input');
+  const likepostUpdt = document.createElement('input');
+  const labelPrice = document.createElement('label');
+  const priceUpdt = document.createElement('select');
+  const priceOpt1Updt = document.createElement('option');
+  const priceOpt2Updt = document.createElement('option');
+  const priceOpt3Updt = document.createElement('option');
+  const labelCategory = document.createElement('label');
+  const categoryUpdt = document.createElement('select');
+  const option1Updt = document.createElement('option');
+  const option2Updt = document.createElement('option');
+  const option3Updt = document.createElement('option');
+  const option4Updt = document.createElement('option');
+  const buttonPostUpdt = document.createElement('button');
   const contentPost = document.createElement('div');
   const listPost = document.createElement('ul');
 
@@ -92,6 +114,10 @@ const muro = (navigateTo) => {
 
   header.append(buttonLogout);
 
+  // nameUser.textContent = user;
+  nameUser.className = 'nameUser';
+
+
   elemenNav.className = 'elementHeder';
   buttonPost.className = 'buttonPost';
   imgNewPost.src = '../img/add.png';
@@ -99,6 +125,7 @@ const muro = (navigateTo) => {
 
   // elementos del modal
   modal.className = 'modal';
+  modal.id = 'modalRegister';
   // cabecera del modal
   headModal.className = 'head-modal';
   buttonCloseMdl.textContent = 'X';
@@ -106,47 +133,67 @@ const muro = (navigateTo) => {
   titleModal.textContent = 'Nueva reseña';
   titleModal.className = 'titleModal';
   // cuerpo del modal
-  nameRest.type = 'text';
-  // campo nombre del restaurante
   formNewPost.id = 'formNewPost';
+  imagPost.type = 'text';
+  imagPost.className = 'form-post';
+  imagPost.id = 'idImgPost';
+  imagPost.placeholder = 'Ingresa una imagen';
+  imagPost.name = 'imgPost';
+  imagPost.required = 'true';
+  // campo nombre del restaurante
+  nameRest.type = 'text';
   nameRest.className = 'form-post';
   nameRest.placeholder = 'Nombre del restaurante';
-  nameRest.id = 'nameRest';
+  nameRest.id = 'idnameRest';
+  nameRest.name = 'nameRest';
+  nameRest.required = 'true';
 
   // campo dirección del restaurante
   location.type = 'text';
   location.placeholder = 'Dirección';
-  location.id = 'location';
+  location.id = 'idlocation';
   location.className = 'form-post';
+  location.name = 'location';
+  location.required = 'true';
 
   // campo de rango de calificacion
   assment.type = 'number';
   assment.placeholder = 'Calificación de 1 - 5';
   assment.min = 1;
   assment.max = 5;
-  assment.id = 'assment';
+  assment.id = 'idassment';
   assment.className = 'form-post';
+  assment.name = 'assment';
+  assment.required = 'true';
 
   // campo de rango calificacion de limpieza
   cleaning.type = 'number';
   cleaning.placeholder = 'Rango de limpieza de 1 - 5';
-  cleaning.id = 'clear';
+  cleaning.id = 'idclear';
   cleaning.min = 1;
   cleaning.max = 5;
   cleaning.className = 'form-post';
+  cleaning.name = 'clear';
+  cleaning.required = 'true';
 
   // campo like "es un campo oculto"
   likepost.type = 'hidden';
   likepost.id = 'idLike';
   likepost.value = '0';
+  likepost.name = 'likePost';
+  likepost.required = 'true';
 
   // campo de rango de precios
-  price.id = 'price';
+  price.id = 'idprice';
   price.className = 'form-post';
+
+  price.name = 'price';
+  price.required = 'true';
   priceOpt0.value = '';
   priceOpt0.textContent = 'Precio';
   priceOpt1.value = 'Económico';
   priceOpt1.textContent = 'Económico';
+
   priceOpt2.value = 'Regular';
   priceOpt2.textContent = 'Regular';
   priceOpt3.value = 'Caro';
@@ -154,8 +201,11 @@ const muro = (navigateTo) => {
   price.append(priceOpt0, priceOpt1, priceOpt2, priceOpt3);
 
   // campo de categoria
-  category.id = 'category';
+  category.id = 'idcategory';
   category.className = 'form-post';
+  category.name = 'category';
+  category.required = 'true';
+
   option0.value = '';
   option0.textContent = 'Tipo de Comida';
   option1.value = 'Cafetería';
@@ -168,12 +218,19 @@ const muro = (navigateTo) => {
   option4.textContent = 'Vegano';
   category.append(option0, option1, option2, option3, option4);
 
+  // campo usuario
+  user.type = 'hidden';
+  user.id = 'idUser';
+  user.value = iduser;
+  user.name = 'iduser';
+
   // botón de publicar
   buttonRegPost.textContent = 'Publicar';
   buttonRegPost.className = 'registerPost';
   buttonRegPost.id = 'idregisterPost';
 
   formNewPost.append(
+    imagPost,
     nameRest,
     location,
     assment,
@@ -181,6 +238,7 @@ const muro = (navigateTo) => {
     price,
     category,
     likepost,
+    user,
     buttonRegPost,
   );
   buttonPost.append(imgNewPost);
@@ -200,56 +258,149 @@ const muro = (navigateTo) => {
   });
 
   // Boton para registrar reseña
-  modal.querySelector('#idregisterPost').addEventListener('click', (e) => {
+  buttonRegPost.addEventListener('click', (e) => {
     e.preventDefault();
+
+    const imagePost = document.querySelector('#idImgPost');
+    const namePost = document.querySelector('#idnameRest');
+    const loc = document.querySelector('#idlocation');
+    const assm = document.querySelector('#idassment');
+    const clear = document.querySelector('#idclear');
+    const pri = document.querySelector('#idprice');
+    const categ = document.querySelector('#idcategory');
+    const like = document.querySelector('#idLike');
+    const idUser = document.querySelector('#idUser');
+    createNewPost(imagePost.value, namePost.value, loc.value, assm.value, clear.value, pri.value, categ.value, like.value, idUser.value);
     modal.classList.remove('modal--show');
-    const namePost = document.querySelector('#nameRest').value;
-    const loc = document.querySelector('#location').value;
-    const assm = document.querySelector('#assment').value;
-    const clear = document.querySelector('#clear').value;
-    const pri = document.querySelector('#price').value;
-    const categ = document.querySelector('#category').value;
-    const like = document.querySelector('#idLike').value;
-    createNewPost(namePost, loc, assm, clear, pri, categ, like);
-    document.querySelector('#formNewPost').reset();
+    // document.querySelector('#formNewPost').reset();
   });
 
-  // elementos de filtros ( por el momento no se están mostrando)
-  // **elementos de botones**
-  navfilters.className = 'filters';
-  butonFilter1.className = 'Buttonfilrer';
-  butonFilter2.className = 'Buttonfilrer';
-  butonFilter3.className = 'Buttonfilrer';
-  imgfilter1.src = '../img/add.png';
-  imgfilter1.className = 'imgfilter';
-  imgfilter2.src = '../img/add.png';
-  imgfilter2.className = 'imgfilter';
-  imgfilter3.src = '../img/add.png';
-  imgfilter3.className = 'imgfilter';
-  butonFilter1.append(imgfilter1);
-  butonFilter2.append(imgfilter2);
-  butonFilter3.append(imgfilter3);
+  // modal para actualizar reseñas
+  // elementos del modal
+  modalUpdt.className = 'modal';
+  // cabecera del modal
+  headModalUpdt.className = 'head-modal';
+  buttonCloseMdlUpdt.textContent = 'X';
+  buttonCloseMdlUpdt.className = 'buttonCloseMdl';
+  titleModalUpdt.textContent = 'Modificar reseña';
+  titleModalUpdt.className = 'titleModal';
+
+  buttonCloseMdlUpdt.addEventListener('click', (e) => {
+    e.preventDefault();
+    modalUpdt.classList.remove('modal--show');
+  });
+
+  // cuerpo del modal
+  nameRestUpdt.type = 'text';
+  // campo nombre del restaurante
+  labelNameRest.textContent = 'Nombre del restaurante';
+  formPostUpdt.id = 'formPostUpdt';
+  idP.id = 'idpost';
+  idP.type = 'hidden';
+  nameRestUpdt.className = 'form-post';
+  nameRestUpdt.placeholder = 'Nombre del restaurante';
+  nameRestUpdt.id = 'nameRestUdt';
+
+  // campo dirección del restaurante
+  labelLoc.textContent = 'Localización del restaurante';
+  locationUpdt.type = 'text';
+  locationUpdt.placeholder = 'Dirección';
+  locationUpdt.id = 'locationUdt';
+  locationUpdt.className = 'form-post';
+
+  // campo de rango de calificacion
+  labelAssment.textContent = 'Rango de calificacion';
+  assmentUpdt.type = 'number';
+  assmentUpdt.placeholder = 'Calificacion de 1 - 5';
+  assmentUpdt.min = 1;
+  assmentUpdt.max = 5;
+  assmentUpdt.id = 'assmentUdt';
+  assmentUpdt.className = 'form-post';
+
+  // campo de rango calificacion de limpieza
+  labelClear.textContent = 'Rando de limpieza';
+  cleaningUpdt.type = 'number';
+  cleaningUpdt.placeholder = 'Rango de limpieza de 1 - 5';
+  cleaningUpdt.id = 'clearUpdt';
+  cleaningUpdt.min = 1;
+  cleaningUpdt.max = 5;
+  cleaningUpdt.className = 'form-post';
+
+  // campo like "es un campo oculto"
+  likepostUpdt.type = 'hidden';
+  likepostUpdt.id = 'idLikeUpdt';
+  likepostUpdt.value = '0';
+
+  // campo de rango de precios
+  labelPrice.textContent = 'Rango de precios';
+  priceUpdt.id = 'priceUpdt';
+  priceUpdt.className = 'form-post';
+  priceOpt1Updt.value = 'Economico';
+  priceOpt1Updt.textContent = 'Economico';
+  priceOpt2Updt.value = 'Regualar';
+  priceOpt2Updt.textContent = 'Regular';
+  priceOpt3Updt.value = 'Caro';
+  priceOpt3Updt.textContent = 'Caro';
+  priceUpdt.append(priceOpt1Updt, priceOpt2Updt, priceOpt3Updt);
+
+  // campo de categoria
+  labelCategory.textContent = 'Categoría';
+  categoryUpdt.id = 'categoryUpdt';
+  categoryUpdt.className = 'form-post';
+  option1Updt.value = 'Vegano';
+  option1Updt.textContent = 'Vegano';
+  option2Updt.value = 'Comida rápida';
+  option2Updt.textContent = 'Comida rápida';
+  option3Updt.value = 'Cafetería';
+  option3Updt.textContent = 'Cafetería';
+  option4Updt.value = 'Gurmet';
+  option4Updt.textContent = 'Gurmet';
+  categoryUpdt.append(option1Updt, option2Updt, option3Updt, option4Updt);
+
+  // botón de publicar
+  buttonPostUpdt.textContent = 'Actualizar';
+  buttonPostUpdt.className = 'registerPost';
+  buttonPostUpdt.id = 'idregisterPostUpdate';
+
+  formPostUpdt.append(
+    idP,
+    labelNameRest,
+    nameRestUpdt,
+    labelLoc,
+    locationUpdt,
+    labelAssment,
+    assmentUpdt,
+    labelClear,
+    cleaningUpdt,
+    labelPrice,
+    priceUpdt,
+    labelCategory,
+    categoryUpdt,
+    likepostUpdt,
+    buttonPostUpdt,
+  );
+
+  headModalUpdt.append(titleModalUpdt, buttonCloseMdlUpdt);
+  modalUpdt.append(headModalUpdt, formPostUpdt);
   elemenNav.append(buttonPost);
 
-  // ** elementos de lista de ordenamiento**
-  divOrderBy.className = 'contenOrder';
-  label.textContent = ('Ordenar');
-  label.for = 'order';
-  listOrderBy.name = 'orderBy';
-  listOrderBy.className = 'form-select';
-  listOrderBy.setAttribute('id', 'order');
-  opcion1.value = 'mayorAmenor';
-  opcion1.textContent = 'De mayor a menor';
-  opcion2.value = 'MenorAMayor';
-  opcion2.textContent = 'De menor a mayor';
-  listOrderBy.append(opcion1, opcion2);
-  divOrderBy.append(label, listOrderBy);
-
-  navfilters.append(butonFilter1, butonFilter2, butonFilter3, divOrderBy);
+  /// funcion de actualizar post
+  modalUpdt.querySelector('#idregisterPostUpdate').addEventListener('click', (e) => {
+    e.preventDefault();
+    modalUpdt.classList.remove('modal--show');
+    const id = document.querySelector('#idpost');
+    const nombreRest = document.querySelector('#nameRestUdt');
+    const locali = document.querySelector('#locationUdt');
+    const Calfic = document.querySelector('#assmentUdt');
+    const Limpieza = document.querySelector('#clearUpdt');
+    const precio = document.querySelector('#priceUpdt');
+    const categoria = document.querySelector('#categoryUpdt');
+    UpdatePost(id.value, nombreRest.value, locali.value, Calfic.value, Limpieza.value, precio.value, categoria.value);
+  });
 
   // elementos del post
   contentPost.className = 'contentPost';
-  listPost.setAttribute('id', 'posts');
+  listPost.id = 'posts';
 
   paintRealTtime((querySnapshot) => {
     listPost.textContent = '';
@@ -296,20 +447,42 @@ const muro = (navigateTo) => {
       // userPost.textContent = 'Leslie Pacheco';
 
       headerPost.className = 'headerPost';
+
       iconDeletePost.src = '../img/basura.png';
       iconDeletePost.className = 'iconHeader';
       buttonDeletePost.className = 'buttonDelete';
 
+
       buttonDeletePost.append(iconDeletePost);
+
 
       iconUpdatePost.src = '../img/editar.png';
       iconUpdatePost.className = 'iconHeader';
       buttonUpdatepost.className = 'buttonUpdate';
-      buttonUpdatepost.append(iconUpdatePost);
 
-      headerPost.append(userPost, buttonUpdatepost, buttonDeletePost);
+      if (doc.data().user === iduser) {
+        buttonDeletePost.append(iconDeletePost);
+        buttonUpdatepost.append(iconUpdatePost);
+      }
+      buttonUpdatepost.addEventListener('click', async (e) => {
+        e.preventDefault();
+        modalUpdt.classList.add('modal--show');
+        document.querySelector('#idpost').value = doc.id;
+        document.querySelector('#nameRestUdt').value = doc.data().nameRest;
+        document.querySelector('#locationUdt').value = doc.data().loc;
+        document.querySelector('#assmentUdt').value = doc.data().assm;
+        document.querySelector('#clearUpdt').value = doc.data().clear;
+        document.querySelector('#priceUpdt').value = doc.data().pri;
+        document.querySelector('#categoryUpdt').value = doc.data().categ;
+      });
 
-      imgPost.src = '../img/primer-plano-deliciosos-tacos.jpg';
+      buttonDeletePost.addEventListener('click', (e) => {
+        e.preventDefault();
+        const idPost = doc.id;
+        deletePost(idPost);
+      });
+
+      imgPost.src = doc.data().img;
       imgPost.className = 'imgPost';
       divimg.append(imgPost);
 
@@ -340,6 +513,7 @@ const muro = (navigateTo) => {
       });
 
       totalLike.textContent = doc.data().like;
+      totalLike.className = 'totalLike';
       buttonLike.append(likes, totalLike);
       buttonLike.id = 'buttonLike';
       iconloc.src = '../img/ubicacion.png';
@@ -350,6 +524,14 @@ const muro = (navigateTo) => {
       local.className = 'titleLocal';
       likes.className = 'imgLike';
 
+      /* buttonLike.addEventListener('click', (e) => {
+        e.preventDefault();
+        const idPost = doc.id;
+        const totalLikes = parseInt(doc.data().like, 10) + 1;
+
+        updateLikes(idPost, totalLikes);
+      });
+      */
       // impresion de las estrellas
       article.className = 'rangeStart';
       for (let z = 0; z < doc.data().assm; z += 1) {
@@ -381,14 +563,19 @@ const muro = (navigateTo) => {
       typeCateg.textContent = doc.data().categ;
 
       rangeCateg.append(titleCateg, typeCateg);
-      divinfo.append(titlePost, buttonLike, local, article, rangeClear, rangePrice, rangeCateg);
+      divinfo.append(local, rangeClear, rangePrice, rangeCateg, article, buttonLike);
+      headerPost.append(titlePost, buttonUpdatepost, buttonDeletePost);
       li.append(headerPost, divimg, divinfo);
       listPost.appendChild(li);
     });
   });
 
   contentPost.append(listPost);
-  section.append(modal, elemenNav, contentPost);
+
+  section.append(modal, elemenNav, contentPost, modalUpdt);
+
+
+
 
   return section;
 };

@@ -7,7 +7,6 @@
 import { newUser } from '../src/templates/newUser';
 import * as auth from '../src/lib/auth';
 
-
 // <------------------------ Test: Prueba que es una función -------------------------------->
 // FALTA ESCRIBIR QUE HACE ESTE JEST.MOCK
 
@@ -19,8 +18,6 @@ jest.mock('../src/lib/auth.js', () => ({
     return Promise.reject(new Error('error de registro'));
   }),
   registerGoogle: jest.fn((provider) => {
-    // console.log(provider);
-    // if (provider === 'google.com') { // preguntar en dudas rápidas
     if (provider) {
       return Promise.resolve('se ha registrado por google');
     }
@@ -70,8 +67,6 @@ describe('newUser', () => {
   });
 });
 
-// <------------------------ Test:  -------------------------------->
-
 test('valide accout register', async () => {
   const mock = jest.fn();
   const DOM = document.createElement('div');
@@ -79,6 +74,7 @@ test('valide accout register', async () => {
   const inputMail = DOM.querySelector('#idEmail');
   const inputPassword = DOM.querySelector('#form-pass');
   const button = DOM.querySelector('#buttonUser');
+
   inputMail.value = 'lesliepacheco@gmail.com';
   inputPassword.value = 'abc1234';
   button.click();
