@@ -1,6 +1,5 @@
 import {
   createNewPost, UpdatePost, paintRealTtime, deletePost,
-
 } from '../lib/auth.js';
 
 const muro = () => {
