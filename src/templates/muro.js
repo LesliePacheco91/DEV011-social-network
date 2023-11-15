@@ -473,7 +473,9 @@ const muro = (navigateTo) => {
       buttonDeletePost.addEventListener('click', (e) => {
         e.preventDefault();
         const idPost = doc.id;
-        deletePost(idPost);
+        if (window.confirm('Confirmar para eliminar post')) {
+          deletePost(idPost);
+        }
       });
 
       imgPost.src = doc.data().img;
