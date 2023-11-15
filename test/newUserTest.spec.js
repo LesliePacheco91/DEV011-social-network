@@ -30,29 +30,29 @@ describe('newUser', () => {
     expect(typeof newUser).toBe('function');
   });
 
-  it('newUser have a buttom new register', () => {
+  it('newUser have a button new register', () => {
     const DOM = document.createElement('div');
     DOM.append(newUser());
-    const buttomid = DOM.querySelector('#buttonRegister');
-    expect(buttomid).not.toBe(undefined);
+    const buttonid = DOM.querySelector('#buttonRegister');
+    expect(buttonid).not.toBe(undefined);
   });
 
-  it('newUser have buttom return home', () => {
+  it('newUser have button return home', () => {
     const DOM = document.createElement('div');
     DOM.append(newUser());
-    const buttonReturn = DOM.querySelector('#buttomReturn');
+    const buttonReturn = DOM.querySelector('#buttonReturn');
     expect(buttonReturn).not.toBe(undefined);
   });
-  it('function buttom return home', () => {
+  it('function button return home', () => {
     const DOM = document.createElement('div');
     const mock = jest.fn();
     DOM.append(newUser(mock));
-    const buttonReturn = DOM.querySelector('#buttomReturn');
+    const buttonReturn = DOM.querySelector('#buttonReturn');
     buttonReturn.click();
     expect(mock).toHaveBeenLastCalledWith('/');
   });
 
-  it('newUser have buttom register with google', () => {
+  it('newUser have button register with google', () => {
     const DOM = document.createElement('div');
     DOM.append(newUser());
     const buttoGoogle = DOM.querySelector('#registerGoogle');

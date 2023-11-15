@@ -36,35 +36,35 @@ describe('muro', () => {
     expect(typeof muro).toBe('function');
   });
 
-  it('muro have buttom open modal', () => {
+  it('muro have button open modal', () => {
     const DOM = document.createElement('div');
     DOM.append(muro());
     const buttonModal = DOM.querySelector('.buttonPost');
     expect(buttonModal).not.toBe(undefined);
   });
 
-  it('muro have buttom close modal', () => {
+  it('muro have button close modal', () => {
     const DOM = document.createElement('div');
     DOM.append(muro());
     const buttonCloseModal = DOM.querySelector('.buttonCloseMdl');
     expect(buttonCloseModal).not.toBe(undefined);
   });
 
-  it('muro have buttom open modal update post', () => {
+  it('muro have button open modal update post', () => {
     const DOM = document.createElement('div');
     DOM.append(muro());
     const buttonModal = DOM.querySelector('.buttonUpdate');
     expect(buttonModal).not.toBe(undefined);
   });
 
-  it('muro have buttom close modal update post', () => {
+  it('muro have button close modal update post', () => {
     const DOM = document.createElement('div');
     DOM.append(muro());
     const buttonCloseModalUpdate = DOM.querySelector('#butttonCloseMdlUpdate');
     expect(buttonCloseModalUpdate).not.toBe(undefined);
   });
 
-  it('muro have buttom save post', () => {
+  it('muro have button save post', () => {
     const DOM = document.createElement('div');
     DOM.append(muro());
     const buttonCloseModalUpdate = DOM.querySelector('#idregisterPost');

@@ -8,17 +8,17 @@ describe('loginUser', () => {
     expect(typeof login).toBe('function');
   });
 
-  it('loginUser have a buttom login', () => {
+  it('loginUser have a button login', () => {
     const DOM = document.createElement('div');
     DOM.append(login());
-    const buttomid = DOM.querySelector('#buttonLogin');
-    expect(buttomid).not.toBe(undefined);
+    const buttonid = DOM.querySelector('#buttonLogin');
+    expect(buttonid).not.toBe(undefined);
   });
 
-  it('loginUser have buttom return home', () => {
+  it('loginUser have button return home', () => {
     const DOM = document.createElement('div');
     DOM.append(login());
-    const buttonReturn = DOM.querySelector('#buttomRetur');
+    const buttonReturn = DOM.querySelector('#buttonRetur');
     expect(buttonReturn).not.toBe(undefined);
   });
 
