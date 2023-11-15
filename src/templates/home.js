@@ -1,4 +1,3 @@
-
 const home = (navigateTo) => {
 // <------------------------- Creación de elementos HTML --------------------------------->
   // const imgfont = document.createElement('img');

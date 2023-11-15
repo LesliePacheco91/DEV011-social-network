@@ -1,15 +1,13 @@
-
 import {
   createNewPost, UpdatePost, paintRealTtime, deletePost,
 } from '../lib/auth.js';
 
-const muro = (navigateTo) => {
+const muro = () => {
   const iduser = localStorage.getItem('user');
   // localStorage.removeItem(user);
 
   // elementos de cabecera
   const section = document.createElement('section');
-  const buttonLogout = document.createElement('button');
   // const nameUser = document.createElement('h2');
   const elemenNav = document.createElement('nav');
   const buttonPost = document.createElement('button');
@@ -104,20 +102,13 @@ const muro = (navigateTo) => {
   // nameUser.textContent = 'Leslie Pacheco';
   // nameUser.className = 'nameUser';
 
-  buttonLogout.textContent = 'Cerrar sesión';
-  buttonLogout.className = 'register';
+  /* const buttonLogout = document.querySelector('#buttonLogut');
   buttonLogout.addEventListener('click', (e) => {
     e.preventDefault();
     navigateTo('/');
-  });
-  const header = document.querySelector('header');
-
-  header.append(buttonLogout);
-
+  }); */
   // nameUser.textContent = user;
-  nameUser.className = 'nameUser';
-
-
+  // nameUser.className = 'nameUser';
   elemenNav.className = 'elementHeder';
   buttonPost.className = 'buttonPost';
   imgNewPost.src = '../img/add.png';
@@ -452,10 +443,6 @@ const muro = (navigateTo) => {
       iconDeletePost.className = 'iconHeader';
       buttonDeletePost.className = 'buttonDelete';
 
-
-      buttonDeletePost.append(iconDeletePost);
-
-
       iconUpdatePost.src = '../img/editar.png';
       iconUpdatePost.className = 'iconHeader';
       buttonUpdatepost.className = 'buttonUpdate';
@@ -479,7 +466,10 @@ const muro = (navigateTo) => {
       buttonDeletePost.addEventListener('click', (e) => {
         e.preventDefault();
         const idPost = doc.id;
-        deletePost(idPost);
+
+        if (window.confirm('Confirmar para eliminar post')) {
+          deletePost(idPost);
+        }
       });
 
       imgPost.src = doc.data().img;
@@ -573,9 +563,6 @@ const muro = (navigateTo) => {
   contentPost.append(listPost);
 
   section.append(modal, elemenNav, contentPost, modalUpdt);
-
-
-
 
   return section;
 };

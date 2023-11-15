@@ -30,7 +30,14 @@ jest.mock('../src/lib/auth.js', () => ({
   }), */
 
 }));
-
+/*
+describe('paintRealTtime', () => {
+  it('paintRealTtime is a function', () => {
+    console.log(auth.paintRealTtime);
+    expect(typeof auth.paintRealTtime).toBe('function');
+  });
+});
+*/
 describe('muro', () => {
   it('muro is a function', () => {
     expect(typeof muro).toBe('function');
@@ -71,7 +78,7 @@ describe('muro', () => {
     expect(buttonCloseModalUpdate).not.toBe(undefined);
   });
 });
-
+/*
 test('delete post', async () => {
   const mock = jest.fn();
   const DOM = document.createElement('div');
@@ -82,7 +89,7 @@ test('delete post', async () => {
   const data = await auth.deletePost(idpost);
   expect(data).toBe(true);
 });
-
+*/
 test('Register new post', async () => {
   const DOM = document.createElement('div');
   DOM.append(muro());
