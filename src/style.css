@@ -10,15 +10,23 @@
 
 /* Encabezado */
 .header{
-    display: inline-flex;
-    flex-direction:row-reverse;
-    width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 15px;
+  margin-bottom: 15px;
 }
 /* Logo dentro del encabezado */
-.logo {
+.logo, .imgLogout {
     width: 100%;
     padding-right: 2%;
     
+}
+.buttonLogout{
+
+  width: 20%;
+  background: none;
+  border: 0;
+
 }
 /* Contenedor del título y contenido */
 /* Título de la página */
@@ -105,7 +113,6 @@ align-content: center;
 }
 
 html, body{
-    /* height: 100%; */
     background: linear-gradient(176deg, rgba(245,185,33,1) 38%, rgba(239,57,32,1) 80%, rgba(212,5,100,1) 100%);
     background-repeat: no-repeat;
 }
@@ -361,17 +368,28 @@ section{
 @media (max-width: 900px) {
 
 /* ------------------------------------------ Estilos Generales ---------------------------------------------------- */
+.buttonLogout {
+  width: 15%;
+  background: none;
+  border: 0;
+  right: 15px;
+  position: absolute;
+  top: 11px;
+}
+
 /* Logo dentro del encabezado */
 .logo {
 
-    width: 25%;
+    width: 20%;
 
-    margin: 5% 0% 0px 5%;
+    /*margin: 5% 0% 0px 5%;*/
 }
 /* Título de la página */
 .titulo {
     font-size: 32px;
     margin-bottom: 1em;
+    width: 55%;
+    text-align: center;
 }
 /* Botones de páginas login y newUser */
 .botones{

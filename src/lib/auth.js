@@ -7,6 +7,7 @@ import {
   db,
   collection,
   addDoc,
+  getDocs,
   onSnapshot,
   orderBy, query, doc, deleteDoc, updateDoc,
 } from './fireBase.js';
@@ -85,23 +86,11 @@ export const createNewPost = (img, nameRest, loc, assm, clear, pri, categ, like,
 const q = query(postCollection, orderBy('date', 'desc'));
 
 // mostrar publicaciones en tiempo real
-export const paintRealTtime = (Callback) => { (onSnapshot(q, Callback)); };
 
-// login por google
-// export const loginGoogle = (provider) => (
-//   signInWithPopup(auth, provider)
-//     .then((result) => {
-// const credential = GoogleAuthProvider.credentialFromResult(result);
-// const token = credential.accessToken;
-//   const user = result.user;
-//   return user;
-// }).catch((error) => {
-//   const errorCode = error.code;
-//   return errorCode;
-// const errorMessage = error.message;
-// const email = error.customData.email;
-// const credential = GoogleAuthProvider.credentialFromError(error);
-// }));
+export const querySnapshot = getDocs(q);
+
+// imprime los post en tiempo real
+export const paintRealTtime = (Callback) => (onSnapshot(q, Callback));
 
 // eliminar post
 export const deletePost = (id) => deleteDoc(doc(db, 'posts', id));

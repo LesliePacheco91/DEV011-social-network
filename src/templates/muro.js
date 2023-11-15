@@ -4,12 +4,15 @@ import {
 
 const muro = (navigateTo) => {
   const iduser = localStorage.getItem('user');
-  // localStorage.removeItem(user);
+
+  if (iduser === undefined || iduser === null) {
+    return navigateTo('/login');
+  }
 
   // elementos de cabecera
   const section = document.createElement('section');
   const buttonLogout = document.createElement('button');
-  // const nameUser = document.createElement('h2');
+  const imgLogout = document.createElement('img');
   const elemenNav = document.createElement('nav');
   const buttonPost = document.createElement('button');
   const imgNewPost = document.createElement('img');
@@ -72,55 +75,25 @@ const muro = (navigateTo) => {
   const contentPost = document.createElement('div');
   const listPost = document.createElement('ul');
 
-  // // Función para verificar si el usuario tiene la sesión iniciada
-  // const checkSession = () => new Promise((resolve, reject) => {
-  //   // Comprueba el estado de autenticación del usuario actual
-  //   auth.onAuthStateChanged((user) => {
-  //     if (user) {
-  //       // El usuario tiene la sesión iniciada
-  //       resolve(user);
-  //     } else {
-  //       // El usuario no tiene la sesión iniciada
-  //       reject(new Error('Usuario no autenticado'));
-  //     }
-  //   });
-  // });
-
-  // // Ejemplo de uso de la función checkSession
-  // checkSession()
-  //   .then((user) => {
-  //   // El usuario tiene la sesión iniciada
-  //     console.log('Usuario autenticado:', user.email);
-  //   // Aquí puedes realizar las acciones que necesites para un usuario autenticado
-  //   })
-  //   .catch((error) => {
-  //   // El usuario no tiene la sesión iniciada
-  //     console.error('Error:', error.message);
-  //   // Aquí puedes realizar las acciones que necesites para un usuario no autenticado
-  //   });
-
-  // elementos de cabecera
-  // nameUser.textContent = 'Leslie Pacheco';
-  // nameUser.className = 'nameUser';
-
   buttonLogout.textContent = 'Cerrar sesión';
   buttonLogout.className = 'register';
   buttonLogout.addEventListener('click', (e) => {
     e.preventDefault();
     navigateTo('/');
   });
-  // const header = document.querySelector('header');
 
-  // header.append(buttonLogout);
-
-  // nameUser.textContent = user;
-  // nameUser.className = 'nameUser';
-
-  elemenNav.className = 'elementHeader';
   buttonPost.className = 'buttonPost';
   imgNewPost.src = '../img/add.png';
   imgNewPost.className = 'imgNewPost';
-
+  buttonLogout.classList = ('buttonLogout');
+  imgLogout.src = '../img/cerrar-sesion.png';
+  imgLogout.classList = 'imgLogout';
+  buttonLogout.append(imgLogout);
+  buttonLogout.addEventListener('click', (e) => {
+    e.preventDefault();
+    localStorage.removeItem('user');
+    navigateTo('/login');
+  });
   // elementos del modal
   modal.className = 'modal';
   modal.id = 'modalRegister';
@@ -473,6 +446,7 @@ const muro = (navigateTo) => {
       buttonDeletePost.addEventListener('click', (e) => {
         e.preventDefault();
         const idPost = doc.id;
+
         if (window.confirm('Confirmar para eliminar post')) {
           deletePost(idPost);
         }
@@ -520,15 +494,6 @@ const muro = (navigateTo) => {
       local.className = 'titleLocal';
       likes.className = 'imgLike';
 
-      /* buttonLike.addEventListener('click', (e) => {
-        e.preventDefault();
-        const idPost = doc.id;
-        const totalLikes = parseInt(doc.data().like, 10) + 1;
-
-        updateLikes(idPost, totalLikes);
-      });
-      */
-      // impresion de las estrellas
       article.className = 'rangeStart';
       for (let z = 0; z < doc.data().assm; z += 1) {
         const assmentsPost = document.createElement('img');
@@ -568,7 +533,7 @@ const muro = (navigateTo) => {
 
   contentPost.append(listPost);
 
-  section.append(modal, elemenNav, contentPost, modalUpdt);
+  section.append(modal, buttonLogout, elemenNav, contentPost, modalUpdt);
 
   return section;
 };
