@@ -88,8 +88,8 @@ const q = query(postCollection, orderBy('date', 'desc'));
 // mostrar publicaciones en tiempo real
 
 export const querySnapshot = getDocs(q);
-console.log(querySnapshot);
 
+// imprime los post en tiempo real
 export const paintRealTtime = (Callback) => (onSnapshot(q, Callback));
 
 // eliminar post
