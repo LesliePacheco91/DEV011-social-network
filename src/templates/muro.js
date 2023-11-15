@@ -75,7 +75,13 @@ const muro = (navigateTo) => {
   const contentPost = document.createElement('div');
   const listPost = document.createElement('ul');
 
-  elemenNav.className = 'elementHeder';
+  buttonLogout.textContent = 'Cerrar sesión';
+  buttonLogout.className = 'register';
+  buttonLogout.addEventListener('click', (e) => {
+    e.preventDefault();
+    navigateTo('/');
+  });
+
   buttonPost.className = 'buttonPost';
   imgNewPost.src = '../img/add.png';
   imgNewPost.className = 'imgNewPost';

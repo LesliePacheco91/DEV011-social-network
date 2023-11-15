@@ -174,14 +174,14 @@ label {
   width: 96%;
   text-align: center;
 }
-/*.logo {
+.logo {
   width: 6%;
   margin: 3% 0% 0px 5%;
-}*/
-.elementHeder {
+}
+.elementHeader {
   background: #780606;
   width: 100%;
-  margin: 1.5em 0 1.5em 0;
+  margin: 5em 0 1.5em 0;
   justify-content: center;
   display: flex;
 }

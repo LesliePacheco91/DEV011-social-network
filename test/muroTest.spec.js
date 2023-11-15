@@ -3,25 +3,23 @@
 */
 
 import { muro } from '../src/templates/muro';
-import * as auth from '../src/lib/auth';
+// import * as auth from '../src/lib/auth';
 
-jest.mock('../src/lib/auth.js', () => ({
+// jest.mock('../src/lib/auth.js', () => ({
 
-  createNewPost: jest.fn((img, nameRest, loc, assm, clear, pri, categ, like, user) => {
-    if (img !== null && nameRest !== null && loc !== null && assm !== null && clear !== null && pri !== null && categ !== null && like !== null && user !== null) {
-      return true;
-    }
-    return false;
-  }),
+//   createNewPost: jest.fn((img, nameRest, loc, assm, clear, pri, categ, like, user) => {
+//     if (img !== null && nameRest !== null && loc !== null && assm !== null && clear !== null && pri !== null && categ !== null && like !== null && user !== null) {
+//       return true;
+//     }
+//     return false;
+//   }),
 
-  UpdatePost: jest.fn((id, nombreRest, locali, Calfic, Limpieza, precio, categoria) => {
-    if (id !== null && nombreRest !== null && locali !== null && Calfic !== null && Limpieza !== null && precio !== null && categoria !== null) {
-      return true;
-    }
-    return false;
-  }),
-
-}));
+//   UpdatePost: jest.fn((id, nombreRest, locali, Calfic, Limpieza, precio, categoria) => {
+//     if (id !== null && nombreRest !== null && locali !== null && Calfic !== null && Limpieza !== null && precio !== null && categoria !== null) {
+//       return true;
+//     }
+//     return false;
+//   }),
 
 describe('muro', () => {
   it('muro is a function', () => {
