@@ -20,7 +20,7 @@ const login = (navigateTo) => {
   // <-------------------------- Título de la página "login" ------------------------------->
 
   title.textContent = 'Iniciar sesión';
-  title.className = 'tituloLogin';
+  title.className = 'tituloLogin titulo';
 
   // <------------------- Campo para ingresar correo electrónico --------------------------->
 
@@ -87,7 +87,7 @@ const login = (navigateTo) => {
 
   buttonReturn.textContent = 'Regresar al inicio';
   buttonReturn.className = 'register';
-  buttonReturn.id = 'buttomReturn';
+  buttonReturn.id = 'buttonReturn';
   buttonReturn.addEventListener('click', () => {
     navigateTo('/');
   });
@@ -97,7 +97,7 @@ const login = (navigateTo) => {
   buttonGoogle.append(imgGoogle, textButtonGoogle);
   form.append(inputEmail, inputPass, alerts);
   buttons.append(buttonLogin, buttonGoogle, buttonReturn);
-  section.append(title, form, buttons, buttonGoogle);
+  section.append(title, form, buttons);
 
   return section;
 };

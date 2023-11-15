@@ -32,7 +32,7 @@ const newUser = (navigateTo) => {
   // <------------------------- Título de la página "newUser" ------------------------------>
 
   title.textContent = 'Registro';
-  title.className = 'tituloRegistro';
+  title.className = 'tituloRegistro titulo';
 
   // <------ Campo para ingresar nombre para el registro con correo electrónico ------------>
 
@@ -127,7 +127,7 @@ const newUser = (navigateTo) => {
   // <-------------------- Botón para regresar a la página "home" -------------------------->
 
   buttonReturn.textContent = 'Regresar';
-  buttonReturn.setAttribute('id', 'buttomReturn');
+  buttonReturn.setAttribute('id', 'buttonReturn');
   buttonReturn.className = 'register';
   buttonReturn.addEventListener('click', () => {
     navigateTo('/');

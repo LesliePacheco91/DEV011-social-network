@@ -9,7 +9,7 @@ describe('home', () => {
     expect(typeof home).toBe('function');
   });
 
-  it('function buttom go login', () => {
+  it('function button go login', () => {
     const DOM = document.createElement('div');
     const mock = jest.fn();
     DOM.append(home(mock));
@@ -18,7 +18,7 @@ describe('home', () => {
     expect(mock).toHaveBeenLastCalledWith('/login');
   });
 
-  it('function buttom go register', () => {
+  it('function button go register', () => {
     const DOM = document.createElement('div');
     const mock = jest.fn();
     DOM.append(home(mock));

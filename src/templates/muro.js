@@ -1,5 +1,9 @@
 import {
-  createNewPost, UpdatePost, paintRealTtime, deletePost,
+  createNewPost,
+  UpdatePost,
+  paintRealTtime,
+  deletePost,
+  updateLikes,
 } from '../lib/auth.js';
 
 const muro = (navigateTo) => {
@@ -75,12 +79,19 @@ const muro = (navigateTo) => {
   const contentPost = document.createElement('div');
   const listPost = document.createElement('ul');
 
+  // elementos de cabecera
+
   buttonLogout.textContent = 'Cerrar sesión';
-  buttonLogout.className = 'register';
+  buttonLogout.className = 'buttonLogout';
   buttonLogout.addEventListener('click', (e) => {
     e.preventDefault();
     navigateTo('/');
   });
+
+  // nameUser.textContent = user;
+  // nameUser.className = 'nameUser';
+
+  elemenNav.className = 'elementHeader';
 
   buttonPost.className = 'buttonPost';
   imgNewPost.src = '../img/add.png';
@@ -101,7 +112,7 @@ const muro = (navigateTo) => {
   headModal.className = 'head-modal';
   buttonCloseMdl.textContent = 'X';
   buttonCloseMdl.className = 'buttonCloseMdl';
-  titleModal.textContent = 'Nueva reseña';
+  titleModal.textContent = 'Nueva Reseña';
   titleModal.className = 'titleModal';
   // cuerpo del modal
   formNewPost.id = 'formNewPost';
@@ -241,7 +252,17 @@ const muro = (navigateTo) => {
     const categ = document.querySelector('#idcategory');
     const like = document.querySelector('#idLike');
     const idUser = document.querySelector('#idUser');
-    createNewPost(imagePost.value, namePost.value, loc.value, assm.value, clear.value, pri.value, categ.value, like.value, idUser.value);
+    createNewPost(
+      imagePost.value,
+      namePost.value,
+      loc.value,
+      assm.value,
+      clear.value,
+      pri.value,
+      categ.value,
+      like.value,
+      idUser.value,
+    );
     modal.classList.remove('modal--show');
     // document.querySelector('#formNewPost').reset();
   });
@@ -356,18 +377,28 @@ const muro = (navigateTo) => {
   elemenNav.append(buttonPost);
 
   /// funcion de actualizar post
-  modalUpdt.querySelector('#idregisterPostUpdate').addEventListener('click', (e) => {
-    e.preventDefault();
-    modalUpdt.classList.remove('modal--show');
-    const id = document.querySelector('#idpost');
-    const nombreRest = document.querySelector('#nameRestUdt');
-    const locali = document.querySelector('#locationUdt');
-    const Calfic = document.querySelector('#assmentUdt');
-    const Limpieza = document.querySelector('#clearUpdt');
-    const precio = document.querySelector('#priceUpdt');
-    const categoria = document.querySelector('#categoryUpdt');
-    UpdatePost(id.value, nombreRest.value, locali.value, Calfic.value, Limpieza.value, precio.value, categoria.value);
-  });
+  modalUpdt
+    .querySelector('#idregisterPostUpdate')
+    .addEventListener('click', (e) => {
+      e.preventDefault();
+      modalUpdt.classList.remove('modal--show');
+      const id = document.querySelector('#idpost');
+      const nombreRest = document.querySelector('#nameRestUdt');
+      const locali = document.querySelector('#locationUdt');
+      const Calfic = document.querySelector('#assmentUdt');
+      const Limpieza = document.querySelector('#clearUpdt');
+      const precio = document.querySelector('#priceUpdt');
+      const categoria = document.querySelector('#categoryUpdt');
+      UpdatePost(
+        id.value,
+        nombreRest.value,
+        locali.value,
+        Calfic.value,
+        Limpieza.value,
+        precio.value,
+        categoria.value,
+      );
+    });
 
   // elementos del post
   contentPost.className = 'contentPost';
@@ -413,7 +444,7 @@ const muro = (navigateTo) => {
       li.classList.add('card');
       li.setAttribute('itemscope', '');
       li.setAttribute('itemtype', 'gastroTour');
-      divimg.classList = ('contend-img');
+      divimg.classList = 'contend-img';
       userPost.className = 'userPost';
       // userPost.textContent = 'Leslie Pacheco';
 
@@ -456,7 +487,7 @@ const muro = (navigateTo) => {
       imgPost.className = 'imgPost';
       divimg.append(imgPost);
 
-      divinfo.classList = ('contend-info');
+      divinfo.classList = 'contend-info';
       titlePost.textContent = doc.data().nameRest;
       titlePost.className = 'titlePost';
 
@@ -465,22 +496,27 @@ const muro = (navigateTo) => {
       } else {
         likes.src = '../img/dislike.png';
       }
-      let counter = 0;
-      let isSelected = false;
+      if (doc.data().user === iduser) {
+        let counter = 0;
+        let isSelected = false;
 
-      buttonLike.addEventListener('click', () => {
-        if (!isSelected) {
-          counter += 1;
-          isSelected = true;
-          likes.src = '../img/like.png';
-        } else {
-          counter -= 1;
-          isSelected = false;
-          likes.src = '../img/dislike.png';
-        }
-
-        totalLike.textContent = counter;
-      });
+        buttonLike.addEventListener('click', (e) => {
+          e.preventDefault();
+          const idPost = doc.id;
+          const totalLikes = parseInt(doc.data().like, 10);
+          if (!isSelected) {
+            counter += 1;
+            isSelected = true;
+            likes.src = '../img/like.png';
+          } else {
+            counter -= 1;
+            isSelected = false;
+            likes.src = '../img/dislike.png';
+          }
+          totalLike.textContent = counter;
+          updateLikes(idPost, totalLikes);
+        });
+      }
 
       totalLike.textContent = doc.data().like;
       totalLike.className = 'totalLike';
@@ -493,6 +529,8 @@ const muro = (navigateTo) => {
       local.append(iconloc, contendLoc);
       local.className = 'titleLocal';
       likes.className = 'imgLike';
+
+      // impresion de las estrellas
 
       article.className = 'rangeStart';
       for (let z = 0; z < doc.data().assm; z += 1) {
@@ -524,7 +562,14 @@ const muro = (navigateTo) => {
       typeCateg.textContent = doc.data().categ;
 
       rangeCateg.append(titleCateg, typeCateg);
-      divinfo.append(local, rangeClear, rangePrice, rangeCateg, article, buttonLike);
+      divinfo.append(
+        local,
+        rangeClear,
+        rangePrice,
+        rangeCateg,
+        article,
+        buttonLike,
+      );
       headerPost.append(titlePost, buttonUpdatepost, buttonDeletePost);
       li.append(headerPost, divimg, divinfo);
       listPost.appendChild(li);
