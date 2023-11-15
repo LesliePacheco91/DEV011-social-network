@@ -8,12 +8,15 @@ import {
 
 const muro = (navigateTo) => {
   const iduser = localStorage.getItem('user');
-  // localStorage.removeItem(user);
+
+  if (iduser === undefined || iduser === null) {
+    return navigateTo('/login');
+  }
 
   // elementos de cabecera
   const section = document.createElement('section');
   const buttonLogout = document.createElement('button');
-  // const nameUser = document.createElement('h2');
+  const imgLogout = document.createElement('img');
   const elemenNav = document.createElement('nav');
   const buttonPost = document.createElement('button');
   const imgNewPost = document.createElement('img');
@@ -78,9 +81,6 @@ const muro = (navigateTo) => {
 
   // elementos de cabecera
 
-  // nameUser.textContent = 'Leslie Pacheco';
-  // nameUser.className = 'nameUser';
-
   buttonLogout.textContent = 'Cerrar sesión';
   buttonLogout.className = 'buttonLogout';
   buttonLogout.addEventListener('click', (e) => {
@@ -92,10 +92,19 @@ const muro = (navigateTo) => {
   // nameUser.className = 'nameUser';
 
   elemenNav.className = 'elementHeader';
+
   buttonPost.className = 'buttonPost';
   imgNewPost.src = '../img/add.png';
   imgNewPost.className = 'imgNewPost';
-
+  buttonLogout.classList = ('buttonLogout');
+  imgLogout.src = '../img/cerrar-sesion.png';
+  imgLogout.classList = 'imgLogout';
+  buttonLogout.append(imgLogout);
+  buttonLogout.addEventListener('click', (e) => {
+    e.preventDefault();
+    localStorage.removeItem('user');
+    navigateTo('/login');
+  });
   // elementos del modal
   modal.className = 'modal';
   modal.id = 'modalRegister';
@@ -468,7 +477,10 @@ const muro = (navigateTo) => {
       buttonDeletePost.addEventListener('click', (e) => {
         e.preventDefault();
         const idPost = doc.id;
-        deletePost(idPost);
+
+        if (window.confirm('Confirmar para eliminar post')) {
+          deletePost(idPost);
+        }
       });
 
       imgPost.src = doc.data().img;
@@ -519,6 +531,7 @@ const muro = (navigateTo) => {
       likes.className = 'imgLike';
 
       // impresion de las estrellas
+
       article.className = 'rangeStart';
       for (let z = 0; z < doc.data().assm; z += 1) {
         const assmentsPost = document.createElement('img');
@@ -564,7 +577,8 @@ const muro = (navigateTo) => {
   });
 
   contentPost.append(listPost);
-  section.append(modal, elemenNav, buttonLogout, contentPost, modalUpdt);
+
+  section.append(modal, buttonLogout, elemenNav, contentPost, modalUpdt);
 
   return section;
 };

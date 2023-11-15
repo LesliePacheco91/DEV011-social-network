@@ -21,16 +21,6 @@ import { muro } from '../src/templates/muro';
 //     return false;
 //   }),
 
-/* paintRealTtime: jest.fin((querySnapshot) => {
-    if (querySnapshot !== null) {
-      return querySnapshot;
-    }
-
-    return false;
-  }), */
-
-// }));
-
 describe('muro', () => {
   it('muro is a function', () => {
     expect(typeof muro).toBe('function');
@@ -72,64 +62,53 @@ describe('muro', () => {
   });
 });
 
-// test('delete post', async () => {
-//   const mock = jest.fn();
-//   const DOM = document.createElement('div');
-//   DOM.append(muro(mock));
-//   const button = DOM.querySelector('#buttonUser');
-//   const idpost = 'sfghh';
-//   button.click();
-//   const data = await auth.deletePost(idpost);
-//   expect(data).toBe(true);
-// });
+test('Register new post', async () => {
+  const DOM = document.createElement('div');
+  DOM.append(muro());
 
-// test('Register new post', async () => {
-//   const DOM = document.createElement('div');
-//   DOM.append(muro());
+  const imagePost = DOM.querySelector('#idImgPost');
+  const namePost = DOM.querySelector('#idnameRest');
+  const loc = DOM.querySelector('#idlocation');
+  const assm = DOM.querySelector('#idassment');
+  const clear = DOM.querySelector('#idclear');
+  const pri = DOM.querySelector('#idprice');
+  const categ = DOM.querySelector('#idcategory');
+  const like = DOM.querySelector('#idLike');
+  const idUser = DOM.querySelector('#idUser');
 
-//   const imagePost = DOM.querySelector('#idImgPost');
-//   const namePost = DOM.querySelector('#idnameRest');
-//   const loc = DOM.querySelector('#idlocation');
-//   const assm = DOM.querySelector('#idassment');
-//   const clear = DOM.querySelector('#idclear');
-//   const pri = DOM.querySelector('#idprice');
-//   const categ = DOM.querySelector('#idcategory');
-//   const like = DOM.querySelector('#idLike');
-//   const idUser = DOM.querySelector('#idUser');
+  imagePost.value = 'imagenDeRestaurant.jpg';
+  namePost.value = 'taqueria el taco loco';
+  loc.value = 'calle 34';
+  assm.value = '5';
+  clear.value = '5';
+  pri.value = 'Regular';
+  categ.value = 'Gourmet';
+  like.value = '1';
+  idUser.value = 'id12345';
 
-//   imagePost.value = 'imagenDeRestaurant.jpg';
-//   namePost.value = 'taqueria el taco loco';
-//   loc.value = 'calle 34';
-//   assm.value = '5';
-//   clear.value = '5';
-//   pri.value = 'Regular';
-//   categ.value = 'Gourmet';
-//   like.value = '1';
-//   idUser.value = 'id12345';
+  const data = await auth.createNewPost(imagePost.value, namePost.value, loc.value, assm.value, clear.value, pri.value, categ.value, like.value, idUser.value);
+  expect(data).toBe(true);
+});
 
-//   const data = await auth.createNewPost(imagePost.value, namePost.value, loc.value, assm.value, clear.value, pri.value, categ.value, like.value, idUser.value);
-//   expect(data).toBe(true);
-// });
+test('Update post', async () => {
+  const DOM = document.createElement('div');
+  DOM.append(muro());
+  const idPost = DOM.querySelector('#idpost');
+  const namePost = DOM.querySelector('#idnameRest');
+  const loc = DOM.querySelector('#idlocation');
+  const assm = DOM.querySelector('#idassment');
+  const clear = DOM.querySelector('#idclear');
+  const pri = DOM.querySelector('#idprice');
+  const categ = DOM.querySelector('#idcategory');
 
-// test('Update post', async () => {
-//   const DOM = document.createElement('div');
-//   DOM.append(muro());
-//   const idPost = DOM.querySelector('#idpost');
-//   const namePost = DOM.querySelector('#idnameRest');
-//   const loc = DOM.querySelector('#idlocation');
-//   const assm = DOM.querySelector('#idassment');
-//   const clear = DOM.querySelector('#idclear');
-//   const pri = DOM.querySelector('#idprice');
-//   const categ = DOM.querySelector('#idcategory');
+  idPost.value = 'abv1234';
+  namePost.value = 'NombreActualizado';
+  loc.value = 'calle 34 Actualizado';
+  assm.value = '5';
+  clear.value = '5';
+  pri.value = 'Regular';
+  categ.value = 'Gourmet';
 
-//   idPost.value = 'abv1234';
-//   namePost.value = 'NombreActualizado';
-//   loc.value = 'calle 34 Actualizado';
-//   assm.value = '5';
-//   clear.value = '5';
-//   pri.value = 'Regular';
-//   categ.value = 'Gourmet';
-
-//   const data = await auth.UpdatePost(idPost.value, namePost.value, loc.value, assm.value, clear.value, pri.value, categ.value);
-//   expect(data).toBe(true);
-// });
+  const data = await auth.UpdatePost(idPost.value, namePost.value, loc.value, assm.value, clear.value, pri.value, categ.value);
+  expect(data).toBe(true);
+});
