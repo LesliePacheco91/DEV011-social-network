@@ -109,14 +109,14 @@ const muro = (navigateTo) => {
     e.preventDefault();
     navigateTo('/');
   });
-  const header = document.querySelector('header');
+  // const header = document.querySelector('header');
 
-  header.append(buttonLogout);
+  // header.append(buttonLogout);
 
   // nameUser.textContent = user;
   // nameUser.className = 'nameUser';
 
-  elemenNav.className = 'elementHeder';
+  elemenNav.className = 'elementHeader';
   buttonPost.className = 'buttonPost';
   imgNewPost.src = '../img/add.png';
   imgNewPost.className = 'imgNewPost';
@@ -449,8 +449,6 @@ const muro = (navigateTo) => {
       iconDeletePost.src = '../img/basura.png';
       iconDeletePost.className = 'iconHeader';
       buttonDeletePost.className = 'buttonDelete';
-
-      buttonDeletePost.append(iconDeletePost);
 
       iconUpdatePost.src = '../img/editar.png';
       iconUpdatePost.className = 'iconHeader';
