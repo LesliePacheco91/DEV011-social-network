@@ -8,6 +8,12 @@
     padding: 0;
 }
 
+body{
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
+}
+
 /* Encabezado */
 .header{
     display: flex;
@@ -24,7 +30,7 @@
 /* Logo dentro del encabezado */
 .logo {
     width: 8%;
-    height: 8%;
+    /* height: 8%; */
     margin: 1% 2% 0 2%;  
 }
 
@@ -53,10 +59,8 @@ form {
 .form-data, .form-post {
     border:0;
     width: 80%;
-
     padding: 2%;
     margin: 2% 0 2% 0;
-
     background: 0;
     font-size: 120%;
 } 
@@ -155,7 +159,6 @@ html, body{
 footer{
     text-align: center;
     padding: 1%;
-    margin-top: 5%;
 }
 
 .titleLocal {
@@ -465,7 +468,7 @@ form{
 
 /* Pie de página */
 footer{
-    margin-top: 35.5%;
+    /* margin-top: 35.5%; */
     font-family: 'Josefin Sans', sans-serif;
     font-size: 12px;
 }

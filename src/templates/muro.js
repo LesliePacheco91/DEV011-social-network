@@ -76,33 +76,6 @@ const muro = (navigateTo) => {
   const contentPost = document.createElement('div');
   const listPost = document.createElement('ul');
 
-  // // Función para verificar si el usuario tiene la sesión iniciada
-  // const checkSession = () => new Promise((resolve, reject) => {
-  //   // Comprueba el estado de autenticación del usuario actual
-  //   auth.onAuthStateChanged((user) => {
-  //     if (user) {
-  //       // El usuario tiene la sesión iniciada
-  //       resolve(user);
-  //     } else {
-  //       // El usuario no tiene la sesión iniciada
-  //       reject(new Error('Usuario no autenticado'));
-  //     }
-  //   });
-  // });
-
-  // // Ejemplo de uso de la función checkSession
-  // checkSession()
-  //   .then((user) => {
-  //   // El usuario tiene la sesión iniciada
-  //     console.log('Usuario autenticado:', user.email);
-  //   // Aquí puedes realizar las acciones que necesites para un usuario autenticado
-  //   })
-  //   .catch((error) => {
-  //   // El usuario no tiene la sesión iniciada
-  //     console.error('Error:', error.message);
-  //   // Aquí puedes realizar las acciones que necesites para un usuario no autenticado
-  //   });
-
   // elementos de cabecera
 
   // nameUser.textContent = 'Leslie Pacheco';
@@ -528,7 +501,6 @@ const muro = (navigateTo) => {
             isSelected = false;
             likes.src = '../img/dislike.png';
           }
-
           totalLike.textContent = counter;
           updateLikes(idPost, totalLikes);
         });
