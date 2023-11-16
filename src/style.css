@@ -6,6 +6,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body{
@@ -42,9 +43,9 @@ body{
 
 .buttonLogout{
   padding: 1%;
-  margin: -11.5em 0.5em 11em 92em;
+  margin: -9em 0.2em 11em 112em;
   cursor: pointer;
-  width: 8%;
+  width: 7%;
   background: none;
   border: 0;
 }
@@ -68,10 +69,13 @@ form {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 25%;
+    width: 32%;
     margin: 3% 0 0 2%;
 }
 
+#formNewPost{
+  width: 92%;
+}
 /* Inputs de correo y contraseña */
 .form-data, .form-post {
     border:0;
@@ -120,11 +124,12 @@ align-content: center;
   background:#ffffff7a;
 }
 
-/* .registerPost{
-  width: 80%;
+.registerPost{
+  width: 79%;
   background:#a10c0c;
   color:#fff;
-} */
+  padding: 3%;
+}
 
 /* Botón de Google */
 .registergoogle{
@@ -201,7 +206,7 @@ label {
 }
 
 .rangeStart{
-  width: 65%;
+  width: 62%;
 }
 
 .elementHeader {
@@ -210,8 +215,8 @@ label {
   align-content: center;
   background: #780606;
   width: 100%;
-  height: 5em;
-  margin: 2em 0 1em 0;
+  height: auto;
+  margin: -6em 0 1em 0;
 }
 
 .buttonPost {
@@ -222,7 +227,7 @@ label {
 }
 
 .imgNewPost {
-  width: 80%;
+  width: 75%;
   cursor: pointer;
 }
 
@@ -235,7 +240,7 @@ section{
 }
 
 .modal {
-  width: 50%;
+  width: 40%;
   background: #ffffffed;
   position: fixed;
   margin: 10px;
@@ -258,23 +263,24 @@ section{
 }
 
 .titleModal {
-  padding-top: 20px;
   font-family: 'Lobster Two', sans-serif;
-  width: 80%;
+  width: 75%;
   text-align: center;
   color: #a10c0c;
+  font-size: 220%;
+  margin-top: 3%;
 }
 
 .buttonCloseMdl {
   width: 2em;
-  height: 2em;
-  margin: 10px;
+  margin: 3% 0 0 2%;
   cursor: pointer;
   font-weight: bold;
   color: #fff;
   background: #a10c0c;
   border: 0;
-  border-radius: 5px;
+  border-radius: 20%;
+  font-size: larger;
 }
 
 .head-modal {
@@ -317,7 +323,7 @@ section{
 }
 
 .imgLike{
-  width: 70%;
+  width: 38%;
   margin-top: 15%;
 }
 
@@ -330,7 +336,7 @@ section{
 }
 
 .totalLike{
-  width: 50%;
+  width: 37%;
   margin: 25% 0 0 2%;
 }
 
@@ -364,8 +370,9 @@ section{
   flex-wrap: wrap;
   background: 0;
   border: 0;
-  width: 10%;
+  width: 24%;
   cursor: pointer;
+  margin: 0 1% 0 13%;
 }
 
 .iconloc{
@@ -374,8 +381,8 @@ section{
 }
 
 .assments {
-  width: 7%;
-  margin: 3px;
+  width: 8%;
+  margin: 2%;
   padding: 10px 0 10px 0;
 }
 
@@ -451,6 +458,8 @@ form{
 
 .registerPost{
   width: 79%;
+  background:#a10c0c;
+  color:#fff;
   padding: 3%;
 }
 
@@ -547,7 +556,6 @@ footer{
 
 .imgLike{
     width: 46%;
-    margin-top: 15%;
   }
 
 .Buttonfilrer {
@@ -605,7 +613,7 @@ footer{
   }
 
 .rangeStart {
-    width: 74%;
+    width: 78%;
   }
 
 .assments {
@@ -642,7 +650,6 @@ footer{
 
 #buttonLike{
     width: 26%;
-    margin: 0 auto;
   }
 
 .imgPost{
