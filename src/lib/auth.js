@@ -16,7 +16,7 @@ import {
 export const registerNewUser = (email, password) => new Promise((resolve, reject) => {
   createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
     const user = userCredential.user;
-    resolve(user.email);
+    resolve(user.uid);
   }).catch((error) => {
     const errorCode = error.code;
     if (errorCode === 'auth/email-already-in-use') {
@@ -29,24 +29,36 @@ export const registerNewUser = (email, password) => new Promise((resolve, reject
   });
 });
 
-// funcion para registro de cuenta mediante cuenta de usuario
+// funcion para loguearse de cuenta mediante cuenta de usuario
 export const loginUser = (email, password) => new Promise((resolve, reject) => {
   signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
     const user = userCredential.user;
     resolve(user.uid);
   }).catch((error) => {
     const errorCode = error.code;
-    if (errorCode === 'auth/invalid-login-credentials') {
-      // const errorMessage = error.message;
+    if (errorCode === 'auth/invalid-email') {
       reject(new Error('Usuario y/o Contraseña invalidas'));
     }
   });
 });
 
-// registro mediante login
+// registro mediante Google
 export const registerGoogle = (provider) => (
   signInWithPopup(auth, provider)
-);
+    .then((result) => {
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      const user = result.user.uid;
+      console.log(token);
+      return user;
+    }).catch((error) => {
+      const errorCode = error.code;
+      return errorCode;
+    // const errorMessage = error.message;
+    // const email = error.customData.email;
+    // const credential = GoogleAuthProvider.credentialFromError(error);
+    }));
+
 // login por google
 export const loginGoogle = (provider) => (
   signInWithPopup(auth, provider)

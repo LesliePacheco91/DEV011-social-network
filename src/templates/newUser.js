@@ -99,6 +99,7 @@ const newUser = (navigateTo) => {
     registerNewUser(inputEmail.value, inputPass.value)
       .then((ok) => {
         if (ok) {
+          localStorage.setItem('user', ok);
           navigateTo('/muro');
         }
       }).catch((error) => {
@@ -116,7 +117,15 @@ const newUser = (navigateTo) => {
   buttonGoogle.addEventListener('click', (e) => {
     e.preventDefault();
     const provider = new GoogleAuthProvider();
-    registerGoogle(provider);
+    const resultado = registerGoogle(provider);
+    resultado.then((user) => {
+      if (user) {
+        localStorage.setItem('user', user);
+        navigateTo('/muro');
+      }
+    }).catch((errorCode) => {
+      document.getElementById('alerts-error').textContent = errorCode;
+    });
   });
 
   imgGoogle.src = '../img/001-google.png';

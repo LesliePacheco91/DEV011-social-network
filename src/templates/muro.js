@@ -81,13 +81,6 @@ const muro = (navigateTo) => {
 
   // elementos de cabecera
 
-  buttonLogout.textContent = 'Cerrar sesión';
-  buttonLogout.className = 'buttonLogout';
-  buttonLogout.addEventListener('click', (e) => {
-    e.preventDefault();
-    navigateTo('/');
-  });
-
   // nameUser.textContent = user;
   // nameUser.className = 'nameUser';
 
