@@ -52,11 +52,13 @@ const login = (navigateTo) => {
     loginUser(inputEmail.value, inputPass.value)
       .then((ok) => {
         if (ok) {
-          navigateTo('/muro');
+          console.log('hola', ok);
           localStorage.setItem('user', ok);
+          navigateTo('/muro');
         }
       }).catch((error) => {
-        alerts.textContent = error;
+        console.log('hola', error);
+        document.getElementById('alerts-error').textContent = error;
       });
   });
 
@@ -73,7 +75,7 @@ const login = (navigateTo) => {
         navigateTo('/muro');
       }
     }).catch((errorCode) => {
-      alerts.textContent = errorCode;
+      document.getElementById('alerts-error').textContent = errorCode;
     });
   });
 

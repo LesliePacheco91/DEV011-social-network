@@ -35,33 +35,20 @@ body{
     margin: 1% 2% 0 2%;  
 }
 
-
-.logo, .imgLogout {
+.imgLogout {
     width: 100%;
-    padding-right: 2%;
-    
+    padding-right: 2%;  
 }
-.buttonLogout{
 
-  width: 20%;
+.buttonLogout{
+  padding: 1%;
+  margin: -11.5em 0.5em 11em 92em;
+  cursor: pointer;
+  width: 8%;
   background: none;
   border: 0;
-
 }
 
-.buttonLogout{
-  color:#a10c0c;
-  background:#ffffff7a;
-  padding: 1%;
-  width:max-content;
-  font-size:115%;
-  border: 0;
-  border-radius: 10px;
-  margin: -11.5em 0.5em 11em 92em;
-  font-family: 'Lobster Two', sans-serif;
-  font-family: 'Poppins', sans-serif;
-  cursor: pointer;
-}
 /* Contenedor del título y contenido */
 
 /* Títulos de la página */
@@ -81,6 +68,8 @@ form {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    width: 25%;
+    margin: 3% 0 0 2%;
 }
 
 /* Inputs de correo y contraseña */
@@ -131,11 +120,11 @@ align-content: center;
   background:#ffffff7a;
 }
 
-.registerPost{
+/* .registerPost{
   width: 80%;
   background:#a10c0c;
   color:#fff;
-}
+} */
 
 /* Botón de Google */
 .registergoogle{
@@ -212,7 +201,7 @@ label {
 }
 
 .rangeStart{
-  width: 90%;
+  width: 65%;
 }
 
 .elementHeader {
@@ -328,8 +317,8 @@ section{
 }
 
 .imgLike{
-  width: 100%;
-  padding-right: 2%;
+  width: 70%;
+  margin-top: 15%;
 }
 
 .buttonDelete, .buttonUpdate{
@@ -341,8 +330,8 @@ section{
 }
 
 .totalLike{
-  width: 40%;
-  text-align: left;
+  width: 50%;
+  margin: 25% 0 0 2%;
 }
 
 .userPost, .titlePost{
@@ -427,7 +416,8 @@ section{
 
 .tituloHeader.titulo{
   font-size: 240%;
-  margin: 7% 0 0 10%;
+  margin: 7% 0 0 5%;
+}
 
 .titulo {
     font-size: 32px;
@@ -457,6 +447,11 @@ form{
     font-size:20px;
     margin: 25px auto 20px auto;
     cursor: pointer;
+}
+
+.registerPost{
+  width: 79%;
+  padding: 3%;
 }
 
 /* Botón de Google */
@@ -517,21 +512,19 @@ footer{
 }
 
 /* -------------------Estilos del muro ---------------------- */
-.buttonLogout{
-  padding: 2%;
-  font-size:70%;
-  margin: -9em 0.5em 9em 26em;
-}
+
 .buttonLogout {
   width: 15%;
-  background: none;
-  border: 0;
   right: 15px;
   position: absolute;
   top: 11px;
+  margin: 1em 0em 2em 9em;
+  padding: 2%;
 }
+
 .elementHeader {
   height: 2.5em;
+  margin: 0 1em 0 0;
 }
 
 .buttonPost {
@@ -539,33 +532,34 @@ footer{
     cursor: pointer;
   }
 
-  .imgNewPost {
+.imgNewPost {
     width: 100%;
   }
 
-  .elementHeader{
-    margin: 0 1em 0 0;
-  }
-
-  .filters {
+.filters {
     width: 100%;
     margin: 15px 0 5px 0;
   }
 
-  .contenOrder{
+.contenOrder{
     font-family: 'Josefin Sans', sans-serif;
   }
 
-  .Buttonfilrer {
+.imgLike{
+    width: 46%;
+    margin-top: 15%;
+  }
+
+.Buttonfilrer {
     width: 17%;
     margin: 0 10px 0 10px;
   }
 
-  .imgfilter {
+.imgfilter {
     width: 70%;
   }
 
-  .form-select {
+.form-select {
     width: 47%;
     padding: 7px;
     margin: 10px;
@@ -576,85 +570,86 @@ footer{
     font-family: 'Josefin Sans', sans-serif;
   }
 
-  #posts {
+#posts {
     display: flex;
     flex-wrap: wrap;
   }
 
-  .card {
+.card {
     width: 100%;
     margin: 15px 0 15px 0;
   }
 
-  .headerPost {
+.headerPost {
     width: 90%;
     padding-bottom:10px;
   }
 
-  .contend-img {
+.contend-img {
     width: 90%;
     margin: auto;
   }
 
-  .contend-info {
+.contend-info {
     width: 88%;
     padding: 20px 0 20px 0;
   }
 
-  .contentPost {
+.contentPost {
     width: 90%;
   }
 
-  .titlePost {
+.titlePost {
     width: 90%;
     font-family: 'Josefin Sans', sans-serif;
   }
 
-  article {
-    width: 95%;
+.rangeStart {
+    width: 74%;
   }
 
-  .assments {
+.assments {
     width: 10%;
   }
 
-  .modal {
+.modal {
     width: 95%;
     top: 0;
   }
 
-  .titleModal {
+.titleModal {
     width: 80%;
   }
 
-  .imgClear {
+.imgClear {
     width: 40%;
     padding: 0 10px 0 0;
   }
 
-  .userPost, .titlePost{
+.userPost, .titlePost{
     width: 80%;
   }
 
-  .buttonDelete, .buttonUpdate{
+.buttonDelete, .buttonUpdate{
       width: 6%;
       cursor: pointer;
   }
 
-  .totalLike{
+.totalLike{
     width: 50%;
+    margin: 25% 0 0 2%;
   }
 
-  #buttonLike{
-    width: 20%;
+#buttonLike{
+    width: 26%;
+    margin: 0 auto;
   }
 
-  .imgPost{
+.imgPost{
     height: 11em;
   }
 
 #idregister{
   cursor: pointer;
-}
-
+  }
 }
