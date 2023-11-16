@@ -25,14 +25,14 @@ body{
 
 .tituloHeader.titulo{
   font-size: 600%;
-  margin: 3% 0 0 27%;  
+  margin: 3% 0 0 24%;  
 }
 
 /* Logo dentro del encabezado */
 
 .logo {
     width: 8%;
-    /* height: 8%; */
+    height: 80%;
     margin: 1% 2% 0 2%;  
 }
 
@@ -43,7 +43,7 @@ body{
 
 .buttonLogout{
   padding: 1%;
-  margin: -9em 0.2em 11em 112em;
+  margin: -7% 2% 10% 80%;
   cursor: pointer;
   width: 7%;
   background: none;
