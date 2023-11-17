@@ -21,7 +21,7 @@ jest.mock('../src/lib/auth.js', () => ({
 }));
 
 describe('loginUser', () => {
-  it('liginUser is a function', () => {
+  it('loginUser is a function', () => {
     expect(typeof login).toBe('function');
   });
 

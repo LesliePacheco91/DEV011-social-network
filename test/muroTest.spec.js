@@ -3,7 +3,7 @@
 */
 
 import { muro } from '../src/templates/muro';
-// import * as auth from '../src/lib/auth';
+import * as auth from '../src/lib/auth';
 
 // jest.mock('../src/lib/auth.js', () => ({
 
