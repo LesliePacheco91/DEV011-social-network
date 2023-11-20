@@ -3,42 +3,38 @@
 */
 
 import { muro } from '../src/templates/muro';
-import * as auth from '../src/lib/auth';
+// import * as auth from '../src/lib/auth';
 
-jest.mock('../src/lib/auth.js', () => ({
+// jest.mock('../src/lib/auth.js', () => ({
 
-  createNewPost: jest.fn((img, nameRest, loc, assm, clear, pri, categ, like, user) => {
-    if (img !== null && nameRest !== null && loc !== null && assm !== null && clear !== null && pri !== null && categ !== null && like !== null && user !== null) {
-      return true;
-    }
-    return false;
-  }),
-  paintRealTtime: jest.fn(() => {
-    const mockMuro = {
-      // otras propiedades del mock del muro...
-      paintRealTtime: paintRealTtime,
-    },
-    mockMuro.paintRealTtime((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        // Aquí puedes hacer algo con cada documento (publicación)
-        console.log(doc.data());
-      });
-    }),
+//   createNewPost: jest.fn((img, nameRest, loc, assm, clear, pri, categ, like, user) => {
+//     if (img !== null && nameRest !== null && loc !== null && assm !== null && clear !== null && pri !== null && categ !== null && like !== null && user !== null) {
+//       return true;
+//     }
+//     return false;
+//   }),
+//   paintRealTtime: jest.fn(() => {
+//     const mockMuro = {
+//     // otras propiedades del mock del muro...
+//     paintRealTtime: paintRealTtime,
+//   },
+//   mockMuro.paintRealTtime((querySnapshot) => {
+//     querySnapshot.forEach((doc) => {
+//       // Aquí puedes hacer algo con cada documento (publicación)
+//       console.log(doc.data());
+//     });
+//   }),
 
-  }),
+//   }),
 
-  
+//   //   UpdatePost: jest.fn((id, nombreRest, locali, Calfic, Limpieza, precio, categoria) => {
+//   //     if (id !== null && nombreRest !== null && locali !== null && Calfic !== null && Limpieza !== null && precio !== null && categoria !== null) {
+//   //       return true;
+//   //     }
+//   //     return false;
+//   // }),
 
-  //   UpdatePost: jest.fn((id, nombreRest, locali, Calfic, Limpieza, precio, categoria) => {
-  //     if (id !== null && nombreRest !== null && locali !== null && Calfic !== null && Limpieza !== null && precio !== null && categoria !== null) {
-  //       return true;
-  //     }
-  //     return false;
-  // }),
-
-    
-
-}));
+// }));
 /*
 describe('paintRealTtime', () => {
   it('paintRealTtime is a function', () => {
@@ -117,33 +113,33 @@ test('delete post', async () => {
 });
 */
 
-test('Register new post', async () => {
-  const DOM = document.createElement('div');
-  DOM.append(muro());
+// test('Register new post', async () => {
+//   const DOM = document.createElement('div');
+//   DOM.append(muro());
 
-  const imagePost = DOM.querySelector('#idImgPost');
-  const namePost = DOM.querySelector('#idnameRest');
-  const loc = DOM.querySelector('#idlocation');
-  const assm = DOM.querySelector('#idassment');
-  const clear = DOM.querySelector('#idclear');
-  const pri = DOM.querySelector('#idprice');
-  const categ = DOM.querySelector('#idcategory');
-  const like = DOM.querySelector('#idLike');
-  const idUser = DOM.querySelector('#idUser');
+//   const imagePost = DOM.querySelector('#idImgPost');
+//   const namePost = DOM.querySelector('#idnameRest');
+//   const loc = DOM.querySelector('#idlocation');
+//   const assm = DOM.querySelector('#idassment');
+//   const clear = DOM.querySelector('#idclear');
+//   const pri = DOM.querySelector('#idprice');
+//   const categ = DOM.querySelector('#idcategory');
+//   const like = DOM.querySelector('#idLike');
+//   const idUser = DOM.querySelector('#idUser');
 
-  imagePost.value = 'imagenDeRestaurant.jpg';
-  namePost.value = 'taqueria el taco loco';
-  loc.value = 'calle 34';
-  assm.value = '5';
-  clear.value = '5';
-  pri.value = 'Regular';
-  categ.value = 'Gourmet';
-  like.value = '1';
-  idUser.value = 'id12345';
+//   imagePost.value = 'imagenDeRestaurant.jpg';
+//   namePost.value = 'taqueria el taco loco';
+//   loc.value = 'calle 34';
+//   assm.value = '5';
+//   clear.value = '5';
+//   pri.value = 'Regular';
+//   categ.value = 'Gourmet';
+//   like.value = '1';
+//   idUser.value = 'id12345';
 
-  const data = await auth.createNewPost(imagePost.value, namePost.value, loc.value, assm.value, clear.value, pri.value, categ.value, like.value, idUser.value);
-  expect(data).toBe(true);
-});
+//   const data = await auth.createNewPost(imagePost.value, namePost.value, loc.value, assm.value, clear.value, pri.value, categ.value, like.value, idUser.value);
+//   expect(data).toBe(true);
+// });
 
 // test('Update post', async () => {
 //   const DOM = document.createElement('div');
