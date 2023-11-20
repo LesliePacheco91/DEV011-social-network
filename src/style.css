@@ -73,7 +73,7 @@ form {
     margin: 3% 0 0 2%;
 }
 
-#formNewPost{
+#formNewPost, #formPostUpdt{
   width: 92%;
 }
 /* Inputs de correo y contraseña */

@@ -22,9 +22,9 @@ export const registerNewUser = (email, password) => new Promise((resolve, reject
     if (errorCode === 'auth/email-already-in-use') {
       reject(new Error('Ya existe este email'));
     } else if (errorCode === 'auth/weak-password') {
-      reject(new Error('Contraseña invalida minino 6 caracteres'));
+      reject(new Error('Contraseña inválida minino 6 caracteres'));
     } else if (errorCode) {
-      reject(new Error('Error de registro intenta de nuevos'));
+      reject(new Error('Correo inválido intenta de nuevo'));
     }
   });
 });
