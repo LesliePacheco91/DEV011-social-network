@@ -9,9 +9,9 @@ import {
 const muro = (navigateTo) => {
   const iduser = localStorage.getItem('user');
 
-  if (iduser === undefined || iduser === null) {
-    return navigateTo('/login');
-  }
+  // if (iduser === undefined || iduser === null) {
+  //   return navigateTo('/login');
+  // }
 
   // elementos de cabecera
   const section = document.createElement('section');
