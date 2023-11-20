@@ -9,9 +9,9 @@ import {
 const muro = (navigateTo) => {
   const iduser = localStorage.getItem('user');
 
-  // if (iduser === undefined || iduser === null) {
-  //   return navigateTo('/login');
-  // }
+  if (iduser === undefined || iduser === null) {
+    return navigateTo('/login');
+  }
 
   // elementos de cabecera
   const section = document.createElement('section');
@@ -257,7 +257,7 @@ const muro = (navigateTo) => {
       idUser.value,
     );
     modal.classList.remove('modal--show');
-    // document.querySelector('#formNewPost').reset();
+    document.querySelector('#formNewPost').reset();
   });
 
   // modal para actualizar reseñas
@@ -320,9 +320,9 @@ const muro = (navigateTo) => {
   labelPrice.textContent = 'Rango de precios';
   priceUpdt.id = 'priceUpdt';
   priceUpdt.className = 'form-post';
-  priceOpt1Updt.value = 'Economico';
-  priceOpt1Updt.textContent = 'Economico';
-  priceOpt2Updt.value = 'Regualar';
+  priceOpt1Updt.value = 'Económico';
+  priceOpt1Updt.textContent = 'Económico';
+  priceOpt2Updt.value = 'Regular';
   priceOpt2Updt.textContent = 'Regular';
   priceOpt3Updt.value = 'Caro';
   priceOpt3Updt.textContent = 'Caro';
@@ -332,14 +332,14 @@ const muro = (navigateTo) => {
   labelCategory.textContent = 'Categoría';
   categoryUpdt.id = 'categoryUpdt';
   categoryUpdt.className = 'form-post';
-  option1Updt.value = 'Vegano';
-  option1Updt.textContent = 'Vegano';
+  option1Updt.value = 'Cafetería';
+  option1Updt.textContent = 'Cafetería';
   option2Updt.value = 'Comida rápida';
   option2Updt.textContent = 'Comida rápida';
-  option3Updt.value = 'Cafetería';
-  option3Updt.textContent = 'Cafetería';
-  option4Updt.value = 'Gurmet';
-  option4Updt.textContent = 'Gurmet';
+  option3Updt.value = 'Gourmet';
+  option3Updt.textContent = 'Gourmet';
+  option4Updt.value = 'Vegano';
+  option4Updt.textContent = 'Vegano';
   categoryUpdt.append(option1Updt, option2Updt, option3Updt, option4Updt);
 
   // botón de publicar
@@ -451,10 +451,9 @@ const muro = (navigateTo) => {
       iconUpdatePost.className = 'iconHeader';
       buttonUpdatepost.className = 'buttonUpdate';
 
-      if (doc.data().user === iduser) {
-        buttonDeletePost.append(iconDeletePost);
-        buttonUpdatepost.append(iconUpdatePost);
-      }
+      buttonDeletePost.append(iconDeletePost);
+      buttonUpdatepost.append(iconUpdatePost);
+
       buttonUpdatepost.addEventListener('click', async (e) => {
         e.preventDefault();
         modalUpdt.classList.add('modal--show');
@@ -563,7 +562,11 @@ const muro = (navigateTo) => {
         article,
         buttonLike,
       );
-      headerPost.append(titlePost, buttonUpdatepost, buttonDeletePost);
+      if (doc.data().user === iduser) {
+        headerPost.append(titlePost, buttonUpdatepost, buttonDeletePost);
+      } else {
+        headerPost.append(titlePost);
+      }
       li.append(headerPost, divimg, divinfo);
       listPost.appendChild(li);
     });
