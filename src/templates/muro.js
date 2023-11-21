@@ -1,12 +1,12 @@
 import {
-  createNewPost, UpdatePost, paintRealTtime, deletePost,
+  createNewPost, UpdatePost, paintRealTtime, deletePost, // newlike, updateLikes,
 } from '../lib/auth.js';
 
 const muro = (navigateTo) => {
   const iduser = localStorage.getItem('user');
 
   if (iduser === undefined || iduser === null) {
-    return navigateTo('/login');
+    navigateTo('/login');
   }
 
   // elementos de cabecera
@@ -237,7 +237,7 @@ const muro = (navigateTo) => {
     const idUser = document.querySelector('#idUser');
     createNewPost(imagePost.value, namePost.value, loc.value, assm.value, clear.value, pri.value, categ.value, like.value, idUser.value);
     modal.classList.remove('modal--show');
-    // document.querySelector('#formNewPost').reset();
+    document.querySelector('#formNewPost').reset();
   });
 
   // modal para actualizar reseñas
@@ -302,7 +302,7 @@ const muro = (navigateTo) => {
   priceUpdt.className = 'form-post';
   priceOpt1Updt.value = 'Economico';
   priceOpt1Updt.textContent = 'Economico';
-  priceOpt2Updt.value = 'Regualar';
+  priceOpt2Updt.value = 'Regular';
   priceOpt2Updt.textContent = 'Regular';
   priceOpt3Updt.value = 'Caro';
   priceOpt3Updt.textContent = 'Caro';
@@ -421,10 +421,8 @@ const muro = (navigateTo) => {
       iconUpdatePost.className = 'iconHeader';
       buttonUpdatepost.className = 'buttonUpdate';
 
-      if (doc.data().user === iduser) {
-        buttonDeletePost.append(iconDeletePost);
-        buttonUpdatepost.append(iconUpdatePost);
-      }
+      buttonDeletePost.append(iconDeletePost);
+      buttonUpdatepost.append(iconUpdatePost);
       buttonUpdatepost.addEventListener('click', async (e) => {
         e.preventDefault();
         modalUpdt.classList.add('modal--show');
@@ -441,6 +439,7 @@ const muro = (navigateTo) => {
         e.preventDefault();
         const idPost = doc.id;
 
+        // eslint-disable-next-line no-alert
         if (window.confirm('Confirmar para eliminar post')) {
           deletePost(idPost);
         }
@@ -461,8 +460,16 @@ const muro = (navigateTo) => {
       }
       let counter = 0;
       let isSelected = false;
-
+      // const morelike = parseInt(doc.data().like, 10) + 1;
       buttonLike.addEventListener('click', () => {
+      /*  if (doc.data().like > 0) {
+          updateLikes(morelike, doc.id);
+          // updateLikes(morelike, iduser, doc.id);
+        } else {
+          newlike(morelike, iduser, doc.id);
+        }
+      */
+
         if (!isSelected) {
           counter += 1;
           isSelected = true;
@@ -519,7 +526,13 @@ const muro = (navigateTo) => {
 
       rangeCateg.append(titleCateg, typeCateg);
       divinfo.append(local, rangeClear, rangePrice, rangeCateg, article, buttonLike);
-      headerPost.append(titlePost, buttonUpdatepost, buttonDeletePost);
+
+      if (doc.data().user === iduser) {
+        headerPost.append(titlePost, buttonUpdatepost, buttonDeletePost);
+      } else {
+        headerPost.append(titlePost);
+      }
+
       li.append(headerPost, divimg, divinfo);
       listPost.appendChild(li);
     });

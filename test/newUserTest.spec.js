@@ -74,12 +74,17 @@ test('valide accout register', async () => {
   const inputMail = DOM.querySelector('#idEmail');
   const inputPassword = DOM.querySelector('#form-pass');
   const button = DOM.querySelector('#buttonUser');
+  const messageAlert = DOM.querySelector('#alerts-error');
+  messageAlert.value = 'error de registro';
 
   inputMail.value = 'lesliepacheco@gmail.com';
   inputPassword.value = 'abc1234';
   button.click();
   const data = await auth.registerNewUser(inputMail.value, inputPassword.value);
   expect(data).toBe('se ha registrado');
+  if (data === 'error de registro') {
+    expect(messageAlert).toBe('error de registro');
+  }
 });
 
 test('Validar registro correcto por google', async () => {
@@ -91,3 +96,23 @@ test('Validar registro correcto por google', async () => {
   const data = await auth.registerGoogle('google.com');
   expect(data).toBe('se ha registrado por google');
 });
+
+/* test('return message error', async () => {
+  // const mock = jest.fn();
+  const DOM = document.createElement('div');
+  DOM.append(newUser());
+  const inputMail = DOM.querySelector('#idEmail');
+  const inputPassword = DOM.querySelector('#form-pass');
+  // const button = DOM.querySelector('#buttonUser');
+  const messageAlert = DOM.querySelector('#alerts-error');
+  messageAlert.textContent = 'error de registro';
+  inputMail.value = 'lesliepacheco@gmail.com';
+  inputPassword.value = 'abc';
+  // button.click();
+  const data = await auth.registerNewUser(inputMail.value, inputPassword.value);
+  // expect(data).toBe('se ha registrado');
+  if (data === 'error de registro') {
+    expect(messageAlert).toBe("'error de registro'");
+  }
+});
+*/

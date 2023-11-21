@@ -16,7 +16,7 @@ import {
 export const registerNewUser = (email, password) => new Promise((resolve, reject) => {
   createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
     const user = userCredential.user;
-    resolve(user.email);
+    resolve(user.uid);
   }).catch((error) => {
     const errorCode = error.code;
     if (errorCode === 'auth/email-already-in-use') {
@@ -24,7 +24,7 @@ export const registerNewUser = (email, password) => new Promise((resolve, reject
     } else if (errorCode === 'auth/weak-password') {
       reject(new Error('Contraseña invalida minino 6 caracteres'));
     } else if (errorCode) {
-      reject(new Error('Error de registro intenta de nuevos'));
+      reject(new Error('Correo invalido intenta de nuevo'));
     }
   });
 });
@@ -36,16 +36,28 @@ export const loginUser = (email, password) => new Promise((resolve, reject) => {
     resolve(user.uid);
   }).catch((error) => {
     const errorCode = error.code;
-    if (errorCode === 'auth/invalid-login-credentials') {
-      // const errorMessage = error.message;
+    if (errorCode === 'auth/invalid-email') {
       reject(new Error('Usuario y/o Contraseña invalidas'));
     }
   });
 });
 
-// registro mediante login
+// registro mediante google
 export const registerGoogle = (provider) => (
   signInWithPopup(auth, provider)
+    .then((result) => {
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      const user = result.user.uid;
+      console.log(token);
+      return user;
+    }).catch((error) => {
+      const errorCode = error.code;
+      return errorCode;
+    // const errorMessage = error.message;
+    // const email = error.customData.email;
+    // const credential = GoogleAuthProvider.credentialFromError(error);
+    })
 );
 // login por google
 export const loginGoogle = (provider) => (
@@ -65,7 +77,6 @@ export const loginGoogle = (provider) => (
     }));
 
 // funcion para crear publicaciones
-
 const postCollection = collection(db, 'posts');
 export const createNewPost = (img, nameRest, loc, assm, clear, pri, categ, like, user) => {
   addDoc(postCollection, {
@@ -86,7 +97,6 @@ export const createNewPost = (img, nameRest, loc, assm, clear, pri, categ, like,
 const q = query(postCollection, orderBy('date', 'desc'));
 
 // mostrar publicaciones en tiempo real
-
 export const querySnapshot = getDocs(q);
 
 // imprime los post en tiempo real
@@ -108,10 +118,22 @@ export const UpdatePost = (idPost, nombreRest, locali, Calfic, Limpieza, precio,
   });
 };
 
-// actualiza likes
-export const updateLikes = (idPost, likes) => {
-  const docRef = doc(db, 'posts', idPost);
+/* actualiza likes
+export const updateLikes = (data, idpost) => {
+  const docRef = doc(db, 'likes', idpost);
   updateDoc(docRef, {
-    like: likes,
+    totalLike: data,
   });
 };
+
+// nuevo like
+const newdatelike = collection(db, 'likes');
+export const newlike = (data, iduser, idpost) => {
+  addDoc(newdatelike, {
+    totalLike: data,
+    user: iduser,
+    post: idpost,
+  });
+};
+*/
+// const lk = query(newdatelike, orderBy('date', 'desc'));

@@ -1,8 +1,14 @@
 /**
 *@jest-environment jsdom
 */
-import login from '../src/templates/login';
+
+// <------------------------ Importación de funciones para testear -------------------------------->
+
+import { login } from '../src/templates/login';
 import * as auth from '../src/lib/auth';
+
+// <------------------------ Test: Prueba que es una función -------------------------------->
+// FALTA ESCRIBIR QUE HACE ESTE JEST.MOCK
 
 jest.mock('../src/lib/auth.js', () => ({
   loginUser: jest.fn((email, password) => {
@@ -20,30 +26,46 @@ jest.mock('../src/lib/auth.js', () => ({
 
 }));
 
-describe('loginUser', () => {
-  it('liginUser is a function', () => {
+describe('Login', () => {
+  it('newUser is a function', () => {
     expect(typeof login).toBe('function');
   });
 
-  it('loginUser have a buttom login', () => {
+  it('login have a buttom new session', () => {
     const DOM = document.createElement('div');
     DOM.append(login());
     const buttomid = DOM.querySelector('#buttonLogin');
     expect(buttomid).not.toBe(undefined);
   });
 
-  it('loginUser have buttom return home', () => {
+  it('login have buttom return home', () => {
     const DOM = document.createElement('div');
     DOM.append(login());
-    const buttonReturn = DOM.querySelector('#buttomRetur');
+    const buttonReturn = DOM.querySelector('#buttomReturn');
     expect(buttonReturn).not.toBe(undefined);
   });
 
-  it('login whit google', () => {
+  it('login have buttom login with google', () => {
     const DOM = document.createElement('div');
     DOM.append(login());
-    const buttonGoogle = DOM.querySelector('#buttonLoginGoogle');
-    expect(buttonGoogle).not.toBe(undefined);
+    const buttoGoogle = DOM.querySelector('#loginWithGoogle');
+    expect(buttoGoogle).not.toBe(undefined);
+  });
+
+  it('function buttom return home', () => {
+    const DOM = document.createElement('div');
+    const mock = jest.fn();
+    DOM.append(login(mock));
+    const buttonReturn = DOM.querySelector('#buttomReturn');
+    buttonReturn.click();
+    expect(mock).toHaveBeenLastCalledWith('/');
+  });
+
+  it('login form have element password', () => {
+    const DOM = document.createElement('div');
+    DOM.append(login());
+    const elementPassword = DOM.querySelector('#inputPass');
+    expect(elementPassword).toHaveProperty('type', 'password');
   });
 });
 
@@ -66,7 +88,7 @@ test('new session with google', async () => {
   const mock = jest.fn();
   const DOM = document.createElement('div');
   DOM.append(login(mock));
-  const buttoGoogle = DOM.querySelector('#loginWithGoogle');
+  const buttoGoogle = DOM.querySelector('#buttonLoginGoogle');
   buttoGoogle.click();
   const data = await auth.loginGoogle('google.com');
   expect(data).toBe('se ha iniciado por google');

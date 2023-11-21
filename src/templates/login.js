@@ -16,7 +16,6 @@ const login = (navigateTo) => {
   const imgGoogle = document.createElement('img');
   const textButtonGoogle = document.createElement('span');
   const buttons = document.createElement('section');
-
   // <-------------------------- Título de la página "login" ------------------------------->
 
   title.textContent = 'Iniciar sesión';
@@ -52,8 +51,8 @@ const login = (navigateTo) => {
     loginUser(inputEmail.value, inputPass.value)
       .then((ok) => {
         if (ok) {
-          navigateTo('/muro');
           localStorage.setItem('user', ok);
+          navigateTo('/muro');
         }
       }).catch((error) => {
         alerts.textContent = error;
@@ -97,7 +96,7 @@ const login = (navigateTo) => {
   buttonGoogle.append(imgGoogle, textButtonGoogle);
   form.append(inputEmail, inputPass, alerts);
   buttons.append(buttonLogin, buttonGoogle, buttonReturn);
-  section.append(title, form, buttons, buttonGoogle);
+  section.append(title, form, buttons);
 
   return section;
 };
