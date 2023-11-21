@@ -187,13 +187,10 @@ label {
   width: 96%;
   text-align: center;
 }
-.logo {
-  width: 8%;
-}
 .elementHeder {
   background: #780606;
   width: 100%;
-  margin: 1.5em 0 1.5em 0;
+  margin: 5em 0 1.5em 0;
   justify-content: center;
   display: flex;
 }
