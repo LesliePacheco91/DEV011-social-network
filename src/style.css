@@ -1,0 +1,662 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+
+/* ------------------------------------------ Estilos Generales ---------------------------------------------------- */
+/* Selector universal */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
+}
+
+/* Encabezado */
+.header{
+    display: flex;
+    flex-direction:row;
+    width: 100%;
+    justify-content:baseline;
+}
+
+.tituloHeader.titulo{
+  font-size: 600%;
+  margin: 3% 0 0 24%;  
+}
+
+/* Logo dentro del encabezado */
+
+.logo {
+    width: 8%;
+    height: 80%;
+    margin: 1% 2% 0 2%;  
+}
+
+.imgLogout {
+    width: 100%;
+    padding-right: 2%;  
+}
+
+.buttonLogout{
+  padding: 1%;
+  margin: -7% 2% 10% 80%;
+  cursor: pointer;
+  width: 7%;
+  background: none;
+  border: 0;
+}
+
+/* Contenedor del título y contenido */
+
+/* Títulos de la página */
+.titulo {
+    color: #a10c0c;
+    font-family: 'Lobster Two', sans-serif;
+}
+
+.tituloLogin.titulo, .tituloRegistro.titulo {
+    font-size: 270%;
+}
+
+/* Contenedor Inputs de correo y contraseña */
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 32%;
+    margin: 3% 0 0 2%;
+}
+
+#formNewPost, #formPostUpdt{
+  width: 92%;
+}
+/* Inputs de correo y contraseña */
+.form-data, .form-post {
+    border:0;
+    width: 80%;
+    padding: 2%;
+    margin: 2% 0 2% 0;
+    background: 0;
+    font-size: 120%;
+} 
+
+.form-data{
+    border-bottom: 2px solid #fff;
+    color: #fff;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.form-post{
+    border-bottom: 2px solid #ca0f0d;
+    color: #ca0f0d;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+/* Botones de páginas login y newUser */
+.botones{
+display: flex;
+max-width: 100%;
+margin: 0 auto;
+align-content: center;
+}
+
+/* Botones SIN botón de Google */
+.register, .registerPost {
+    padding: 5%;
+    width: 100%;
+    font-size:115%;
+    border: 0;
+    border-radius: 10px;
+    margin: 25px auto 35px auto;
+    font-family: 'Lobster Two', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+}
+
+.register{
+  color:#a10c0c;
+  background:#ffffff7a;
+}
+
+.registerPost{
+  width: 79%;
+  background:#a10c0c;
+  color:#fff;
+  padding: 3%;
+}
+
+/* Botón de Google */
+.registergoogle{
+    display: inline-flex;
+    width: 100%;
+    color:#a10c0c;
+    background:#ffffff7a;
+    font-size: 115%;
+    border: 0;
+    border-radius: 10px;
+    margin: 25px auto 35px auto;
+    padding: 5%;
+    cursor: pointer;    
+}
+
+
+
+html, body{
+    background: linear-gradient(176deg, rgba(245,185,33,1) 38%, rgba(239,57,32,1) 80%, rgba(212,5,100,1) 100%);
+    background-repeat: no-repeat;
+}
+
+/* Imagen del botón de Google */
+.imgGoogle {
+    width: 10%;
+    padding-left: 2%;
+    margin: 0 auto;
+}
+
+/* Nombre del botón de Google */
+.title-google{
+    padding-left: 3%;
+}
+
+/* Pie de página */
+footer{
+    text-align: center;
+    padding: 1%;
+}
+
+.titleLocal {
+  padding-bottom: 10px;
+}
+
+/* -------- Estilos Home ----------------------------- */
+
+/* Botones de Iniciar Sesión y Registro del home */
+.butom-home {
+    width: 15%;
+    margin: 10px;
+    border: 0;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.369);
+    border-radius: 10px;
+    color: rgb(200, 53, 8);
+    font-size: 150%;
+    cursor: pointer;
+}
+
+/* Imagen de los botones del home */
+.img-login{
+    width: 60%;
+    margin: 10px;
+    cursor: pointer;
+}
+
+/* *******    estilos muro   *********/
+
+label {
+  text-align: left;
+  width: 85%;
+  padding-top: 5px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.rangeStart{
+  width: 62%;
+}
+
+.elementHeader {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background: #780606;
+  width: 100%;
+  height: auto;
+  margin: -6em 0 1em 0;
+}
+
+.buttonPost {
+  background: 0;
+  width: 5%;
+  border: 0;
+  cursor: pointer;
+}
+
+.imgNewPost {
+  width: 75%;
+  cursor: pointer;
+}
+
+section{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.modal {
+  width: 40%;
+  background: #ffffffed;
+  position: fixed;
+  margin: 10px;
+  border-radius: 10px;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .6s .9s;
+  top: 35px;
+  --transform: translateY(-100vh);
+  --transition: transform .8s;
+}
+
+.modal--show{
+  opacity: 1;
+  pointer-events: unset;
+  transition: opacity .6s;
+  --transform: translateY(0);
+  --transition: transform .8s .8s;
+}
+
+.titleModal {
+  font-family: 'Lobster Two', sans-serif;
+  width: 75%;
+  text-align: center;
+  color: #a10c0c;
+  font-size: 220%;
+  margin-top: 3%;
+}
+
+.buttonCloseMdl {
+  width: 2em;
+  margin: 3% 0 0 2%;
+  cursor: pointer;
+  font-weight: bold;
+  color: #fff;
+  background: #a10c0c;
+  border: 0;
+  border-radius: 20%;
+  font-size: larger;
+}
+
+.head-modal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#posts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  width: 43%;
+  list-style: none;
+  background: #ffffffc4;
+  margin: 10px;
+  border-radius: 5px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.headerPost {
+  text-align: left;
+  width: 100%;
+  margin: auto;
+  padding: 10px 10px 0 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+}
+
+.iconHeader {
+  width: 100%;
+  padding: 3px;
+  cursor: pointer;
+}
+
+.imgLike{
+  width: 38%;
+  margin-top: 15%;
+}
+
+.buttonDelete, .buttonUpdate{
+  width: 4%;
+  background: 0;
+  border: 0;
+  margin: 0 5px 0 5px;
+  cursor: pointer;
+}
+
+.totalLike{
+  width: 37%;
+  margin: 25% 0 0 2%;
+}
+
+.userPost, .titlePost{
+  width: 80%;
+  padding: 5px 0 5px 0;
+}
+
+.contend-img {
+  width: 25%;
+  margin: 10px;
+}
+
+.imgPost{
+  width: 100%;
+  height: 10em;
+  object-fit: cover;
+  display: block;
+}
+
+.contend-info {
+  width: 65%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  text-align: left;
+}
+
+#buttonLike{
+  display: flex;
+  flex-wrap: wrap;
+  background: 0;
+  border: 0;
+  width: 24%;
+  cursor: pointer;
+  margin: 0 1% 0 13%;
+}
+
+.iconloc{
+  width: 6%;
+  margin-right: 5px;
+}
+
+.assments {
+  width: 8%;
+  margin: 2%;
+  padding: 10px 0 10px 0;
+}
+
+.contedRange {
+  width: 33%;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: 'Josefin Sans', sans-serif;
+  justify-content: center;
+  text-align: center;
+}
+
+.titleRange {
+  width: 100%;
+  text-align: center;
+}
+
+/* ------------------------------------------ Estilos New User ----------------------------------------------------- */
+
+/* Alertas */
+#alerts-error{
+    color: red;
+}
+
+/* **************************************************** R E S P O N S I V E **************************************** */
+
+@media (max-width: 900px) {
+
+/* ------------------------------------------ Estilos Generales ---------------------------------------------------- */
+
+/* Logo dentro del encabezado */
+.logo {
+    width: 17%;
+    margin: 3% 0 0 2%;
+}
+
+/* Título de la página */
+
+.tituloHeader.titulo{
+  font-size: 240%;
+  margin: 7% 0 0 5%;
+}
+
+.titulo {
+    font-size: 32px;
+    margin-bottom: 1em;
+    width: 55%;
+    text-align: center;
+}
+
+section{
+  margin-top: 3%;
+}
+
+/* Botones de páginas login y newUser */
+.botones{
+    flex-direction: column;
+}
+
+form{
+    width: 90%;
+    margin: auto;
+    padding: 15px;
+}
+
+/* Botones SIN botón de Google */
+.register, .registerPost{
+    width: 127%;
+    font-size:20px;
+    margin: 25px auto 20px auto;
+    cursor: pointer;
+}
+
+.registerPost{
+  width: 79%;
+  background:#a10c0c;
+  color:#fff;
+  padding: 3%;
+}
+
+/* Botón de Google */
+.registergoogle{
+    width: 127%;
+    font-size:20px;
+    border: 0;
+    border-radius: 10px;
+    margin: 25px auto 20px auto;
+}
+
+/* Imagen del botón de Google */
+.imgGoogle {
+    width: 23px;
+    padding-left: 2px;
+}
+
+/* Nombre del botón de Google */
+.title-google{
+    padding-left: 14px;
+}
+
+/* Inputs de correo y contraseña */
+.form-data {
+    width: 80%;
+    padding: 10PX;
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-family: Calibri, sans-serif;
+} 
+
+/* Pie de página */
+footer{
+    /* margin-top: 35.5%; */
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 12px;
+}
+
+.autoras{
+    display: flex;
+    flex-direction: column;
+}
+
+.separador{
+    display: none;
+}
+
+.tituloLogin.titulo, .tituloRegistro.titulo {
+  font-size: 200%;
+}
+
+/* ------------------------------------------ Estilos Home --------------------------------------------------------- */
+
+/* Botones de Iniciar Sesión y Registro del Home */
+.butom-home {
+    width: 60%;
+    font-size: 25px;
+}
+
+/* -------------------Estilos del muro ---------------------- */
+
+.buttonLogout {
+  width: 15%;
+  right: 15px;
+  position: absolute;
+  top: 11px;
+  margin: 1em 0em 2em 9em;
+  padding: 2%;
+}
+
+.elementHeader {
+  height: 2.5em;
+  margin: 0 1em 0 0;
+}
+
+.buttonPost {
+    width: 10%;
+    cursor: pointer;
+  }
+
+.imgNewPost {
+    width: 100%;
+  }
+
+.filters {
+    width: 100%;
+    margin: 15px 0 5px 0;
+  }
+
+.contenOrder{
+    font-family: 'Josefin Sans', sans-serif;
+  }
+
+.imgLike{
+    width: 46%;
+  }
+
+.Buttonfilrer {
+    width: 17%;
+    margin: 0 10px 0 10px;
+  }
+
+.imgfilter {
+    width: 70%;
+  }
+
+.form-select {
+    width: 47%;
+    padding: 7px;
+    margin: 10px;
+    background: #ffffffa1;
+    border-radius: 5px;
+    border: 0;
+    font-size: 15px;
+    font-family: 'Josefin Sans', sans-serif;
+  }
+
+#posts {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+.card {
+    width: 100%;
+    margin: 15px 0 15px 0;
+  }
+
+.headerPost {
+    width: 90%;
+    padding-bottom:10px;
+  }
+
+.contend-img {
+    width: 90%;
+    margin: auto;
+  }
+
+.contend-info {
+    width: 88%;
+    padding: 20px 0 20px 0;
+  }
+
+.contentPost {
+    width: 90%;
+  }
+
+.titlePost {
+    width: 90%;
+    font-family: 'Josefin Sans', sans-serif;
+  }
+
+.rangeStart {
+    width: 78%;
+  }
+
+.assments {
+    width: 10%;
+  }
+
+.modal {
+    width: 95%;
+    top: 0;
+  }
+
+.titleModal {
+    width: 80%;
+  }
+
+.imgClear {
+    width: 40%;
+    padding: 0 10px 0 0;
+  }
+
+.userPost, .titlePost{
+    width: 80%;
+  }
+
+.buttonDelete, .buttonUpdate{
+      width: 6%;
+      cursor: pointer;
+  }
+
+.totalLike{
+    width: 50%;
+    margin: 25% 0 0 2%;
+  }
+
+#buttonLike{
+    width: 26%;
+  }
+
+.imgPost{
+    height: 11em;
+  }
+
+#idregister{
+  cursor: pointer;
+  }
+}
