@@ -6,14 +6,16 @@ import { login } from './templates/login.js';
 // newUser y muro van con llaves porque se usan en más de una hoja
 import { newUser } from './templates/newUser.js';
 import { muro } from './templates/muro.js';
+import { perfil } from './templates/perfil.js';
 
 // <---------------------------------- Rutas de los módulos -------------------------------------->
 
 const routes = [
-  { path: '/', component: home }, // indica que es ruta por defencto
-  { path: '/login', component: login },
+  { path: '/', component: login }, // indica que es ruta por defencto
+  // { path: '/login', component: login },
   { path: '/newUser', component: newUser },
   { path: '/muro', component: muro },
+  { path: '/perfil', component: perfil },
 ];
 
 // <-------------------------------- Declaración de Variables ------------------------------------>

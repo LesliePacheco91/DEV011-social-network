@@ -4,22 +4,33 @@ import {
   paintRealTtime,
   deletePost,
   updateLikes,
+  repoveLike,
+  subirImg,
+  readfile,
 } from '../lib/auth.js';
+
+// import { getStorage, ref, uploadBytes, getDownloadURL } from '../lib/fireBase';
 
 const muro = (navigateTo) => {
   const iduser = localStorage.getItem('user');
-
-  // if (iduser === undefined || iduser === null) {
-  //   return navigateTo('/login');
-  // }
+  const emailUser = localStorage.getItem('email');
 
   // elementos de cabecera
   const section = document.createElement('section');
+  const buttonConfig = document.createElement('button');
+  const titleButonConfig = document.createElement('h3');
   const buttonLogout = document.createElement('button');
+  const titleButtonLogout = document.createElement('h3');
+  const titleButonNewPost = document.createElement('h3');
+  const imgConfig = document.createElement('img');
   const imgLogout = document.createElement('img');
   const elemenNav = document.createElement('nav');
   const buttonPost = document.createElement('button');
   const imgNewPost = document.createElement('img');
+
+  const buttonFilter = document.createElement('button');
+  const imgFilter = document.createElement('img');
+  const titleButomFilter = document.createElement('h3');
 
   // elementos del modal para registrar reseña
   const modal = document.createElement('div');
@@ -32,7 +43,7 @@ const muro = (navigateTo) => {
   const location = document.createElement('input');
   const assment = document.createElement('input');
   const cleaning = document.createElement('input');
-  const likepost = document.createElement('input');
+  // const likepost = document.createElement('input');
   const price = document.createElement('select');
   const priceOpt0 = document.createElement('option');
   const priceOpt1 = document.createElement('option');
@@ -48,7 +59,7 @@ const muro = (navigateTo) => {
 
   // modal para actualizar reseña
   // elementos del modal para registrar nuevo post
-  const user = document.createElement('input');
+  const userData = document.createElement('input');
   const modalUpdt = document.createElement('div');
   const idP = document.createElement('input');
   const buttonCloseMdlUpdt = document.createElement('button');
@@ -85,18 +96,46 @@ const muro = (navigateTo) => {
   // nameUser.className = 'nameUser';
 
   elemenNav.className = 'elementHeader';
+  // boton configuracion de perfil
+  buttonConfig.className = 'config-acount';
+  imgConfig.src = '../img/configuraciones_Perfil.png';
+  imgConfig.className = 'imgConfig';
+  titleButonConfig.className = 'titleButon';
+  titleButonConfig.textContent = 'Configurar';
+  buttonConfig.append(imgConfig, titleButonConfig);
 
+  buttonConfig.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    navigateTo('/perfil');
+  });
+  // boton nuevo post
   buttonPost.className = 'buttonPost';
   imgNewPost.src = '../img/add.png';
   imgNewPost.className = 'imgNewPost';
+  titleButonNewPost.className = 'titleButon';
+  titleButonNewPost.textContent = 'Nuevo post';
+
+  // buttom filter
+  buttonFilter.className = 'buttonPost';
+  imgFilter.src = '../img/estrellaFiltro.png';
+  imgFilter.className = 'imgFilter';
+  titleButomFilter.className = 'titleButon';
+  titleButomFilter.textContent = 'Filtrar';
+  buttonFilter.append(imgFilter, titleButomFilter);
+
+  // boton cerrar sesión
   buttonLogout.classList = ('buttonLogout');
+  titleButtonLogout.className = 'titleButon';
+  titleButtonLogout.textContent = 'Cerrar Sesión';
   imgLogout.src = '../img/cerrar-sesion.png';
   imgLogout.classList = 'imgLogout';
-  buttonLogout.append(imgLogout);
+  buttonLogout.append(imgLogout, titleButtonLogout);
   buttonLogout.addEventListener('click', (e) => {
     e.preventDefault();
     localStorage.removeItem('user');
-    navigateTo('/login');
+    localStorage.removeItem('email');
+    navigateTo('/');
   });
   // elementos del modal
   modal.className = 'modal';
@@ -109,7 +148,9 @@ const muro = (navigateTo) => {
   titleModal.className = 'titleModal';
   // cuerpo del modal
   formNewPost.id = 'formNewPost';
-  imagPost.type = 'text';
+  formNewPost.enctype = 'multipart/form-data';
+  imagPost.type = 'file';
+  imagPost.accept = 'image/png, image/jpeg';
   imagPost.className = 'form-post';
   imagPost.id = 'idImgPost';
   imagPost.placeholder = 'Ingresa una imagen';
@@ -151,13 +192,6 @@ const muro = (navigateTo) => {
   cleaning.name = 'clear';
   cleaning.required = 'true';
 
-  // campo like "es un campo oculto"
-  likepost.type = 'hidden';
-  likepost.id = 'idLike';
-  likepost.value = '0';
-  likepost.name = 'likePost';
-  likepost.required = 'true';
-
   // campo de rango de precios
   price.id = 'idprice';
   price.className = 'form-post';
@@ -194,10 +228,10 @@ const muro = (navigateTo) => {
   category.append(option0, option1, option2, option3, option4);
 
   // campo usuario
-  user.type = 'hidden';
-  user.id = 'idUser';
-  user.value = iduser;
-  user.name = 'iduser';
+  userData.type = 'hidden';
+  userData.id = 'idUser';
+  userData.value = iduser;
+  userData.name = 'iduser';
 
   // botón de publicar
   buttonRegPost.textContent = 'Publicar';
@@ -212,11 +246,11 @@ const muro = (navigateTo) => {
     cleaning,
     price,
     category,
-    likepost,
-    user,
+    // likepost,
+    userData,
     buttonRegPost,
   );
-  buttonPost.append(imgNewPost);
+  buttonPost.append(imgNewPost, titleButonNewPost);
   headModal.append(titleModal, buttonCloseMdl);
   modal.append(headModal, formNewPost);
 
@@ -235,27 +269,42 @@ const muro = (navigateTo) => {
   // Boton para registrar reseña
   buttonRegPost.addEventListener('click', (e) => {
     e.preventDefault();
-
     const imagePost = document.querySelector('#idImgPost');
-    const namePost = document.querySelector('#idnameRest');
-    const loc = document.querySelector('#idlocation');
-    const assm = document.querySelector('#idassment');
-    const clear = document.querySelector('#idclear');
-    const pri = document.querySelector('#idprice');
-    const categ = document.querySelector('#idcategory');
-    const like = document.querySelector('#idLike');
-    const idUser = document.querySelector('#idUser');
-    createNewPost(
-      imagePost.value,
-      namePost.value,
-      loc.value,
-      assm.value,
-      clear.value,
-      pri.value,
-      categ.value,
-      like.value,
-      idUser.value,
-    );
+    const namePost = document.querySelector('#idnameRest').value;
+    const loc = document.querySelector('#idlocation').value;
+    const assm = document.querySelector('#idassment').value;
+    const clear = document.querySelector('#idclear').value;
+    const pri = document.querySelector('#idprice').value;
+    const categ = document.querySelector('#idcategory').value;
+    const idUser = document.querySelector('#idUser').value;
+
+    if (imagePost.files.length === 0 || imagePost.files.length === null || imagePost.files.length === undefined) {
+      console.log('Se debe seleccionar un archivo');
+    } else {
+      const file = imagePost.files[0];
+      if (file.name.length > 40) {
+        console.log('El nombre de la imagen es muy largo');
+      } else {
+        console.log('puedes subir la imagen');
+        subirImg(file).then((info) => {
+          readfile(info).then((info) => {
+            const urlImg = info;
+            createNewPost(
+              urlImg,
+              namePost,
+              loc,
+              assm,
+              clear,
+              pri,
+              categ,
+              emailUser,
+            );
+          }).catch((error) => {
+            console.log(error);
+          });
+        });
+      }
+    }
     modal.classList.remove('modal--show');
     document.querySelector('#formNewPost').reset();
   });
@@ -367,11 +416,10 @@ const muro = (navigateTo) => {
 
   headModalUpdt.append(titleModalUpdt, buttonCloseMdlUpdt);
   modalUpdt.append(headModalUpdt, formPostUpdt);
-  elemenNav.append(buttonPost);
+  elemenNav.append(buttonPost, buttonFilter, buttonConfig, buttonLogout);
 
   /// funcion de actualizar post
-  modalUpdt
-    .querySelector('#idregisterPostUpdate')
+  modalUpdt.querySelector('#idregisterPostUpdate')
     .addEventListener('click', (e) => {
       e.preventDefault();
       modalUpdt.classList.remove('modal--show');
@@ -396,12 +444,13 @@ const muro = (navigateTo) => {
   // elementos del post
   contentPost.className = 'contentPost';
   listPost.id = 'posts';
-
   paintRealTtime((querySnapshot) => {
     listPost.textContent = '';
     querySnapshot.forEach((doc) => {
       // post
+
       const li = document.createElement('li');
+
       // cabecera el post
       const headerPost = document.createElement('div');
       const buttonDeletePost = document.createElement('button');
@@ -421,6 +470,7 @@ const muro = (navigateTo) => {
       const totalLike = document.createElement('h3');
       const likes = document.createElement('img');
       const article = document.createElement('article');
+      const titleRangeStart = document.createElement('h4');
       const iconloc = document.createElement('img');
       const contendLoc = document.createElement('span');
       const local = document.createElement('p');
@@ -433,14 +483,12 @@ const muro = (navigateTo) => {
       const rangeCateg = document.createElement('article');
       const titleCateg = document.createElement('h4');
       const typeCateg = document.createElement('p');
-
       li.classList.add('card');
       li.setAttribute('itemscope', '');
       li.setAttribute('itemtype', 'gastroTour');
       divimg.classList = 'contend-img';
       userPost.className = 'userPost';
-      // userPost.textContent = 'Leslie Pacheco';
-
+      userPost.textContent = doc.data().user;
       headerPost.className = 'headerPost';
 
       iconDeletePost.src = '../img/basura.png';
@@ -475,7 +523,10 @@ const muro = (navigateTo) => {
         }
       });
 
+      // const pathReference = ref(storage, 'posts/usuario(2).png');
+
       imgPost.src = doc.data().img;
+      //imgPost.src = '../img/primer-plano-deliciosos-tacos.jpg'
       imgPost.className = 'imgPost';
       divimg.append(imgPost);
 
@@ -483,37 +534,52 @@ const muro = (navigateTo) => {
       titlePost.textContent = doc.data().nameRest;
       titlePost.className = 'titlePost';
 
-      if (doc.data().like > 0) {
-        likes.src = '../img/like.png';
-      } else {
-        likes.src = '../img/dislike.png';
-      }
-      if (doc.data().user === iduser) {
-        let counter = 0;
-        let isSelected = false;
+      if (doc.data().like != null || doc.data().like !== undefined) {
+        const userLike = doc.data().like.filter((idus) => idus === iduser);
 
+        if (userLike.length === 0) {
+          buttonLike.addEventListener('click', (e) => {
+            e.preventDefault();
+            const idPost = doc.id;
+            updateLikes(idPost, iduser);
+          });
+        } else {
+          buttonLike.addEventListener('click', (e) => {
+            e.preventDefault();
+            const idPost = doc.id;
+            repoveLike(idPost, iduser);
+          });
+        }
+
+        if (doc.data().like.length > 0) {
+          if (userLike.length !== 0) {
+            likes.src = '../img/mylike.png';
+          } else {
+            likes.src = '../img/like.png';
+          }
+        } else {
+          likes.src = '../img/dislike.png';
+        }
+
+        totalLike.textContent = doc.data().like.length;
+        totalLike.className = 'totalLike';
+        buttonLike.append(likes, totalLike);
+        buttonLike.id = 'buttonLike';
+      } else {
         buttonLike.addEventListener('click', (e) => {
           e.preventDefault();
           const idPost = doc.id;
-          const totalLikes = parseInt(doc.data().like, 10);
-          if (!isSelected) {
-            counter += 1;
-            isSelected = true;
-            likes.src = '../img/like.png';
-          } else {
-            counter -= 1;
-            isSelected = false;
-            likes.src = '../img/dislike.png';
-          }
-          totalLike.textContent = counter;
-          updateLikes(idPost, totalLikes);
+          updateLikes(idPost, iduser);
         });
+
+        likes.src = '../img/dislike.png';
+
+        totalLike.textContent = 0;
+        totalLike.className = 'totalLike';
+        buttonLike.append(likes, totalLike);
+        buttonLike.id = 'buttonLike';
       }
 
-      totalLike.textContent = doc.data().like;
-      totalLike.className = 'totalLike';
-      buttonLike.append(likes, totalLike);
-      buttonLike.id = 'buttonLike';
       iconloc.src = '../img/ubicacion.png';
       iconloc.className = 'iconloc';
       contendLoc.textContent = doc.data().loc;
@@ -525,6 +591,9 @@ const muro = (navigateTo) => {
       // impresion de las estrellas
 
       article.className = 'rangeStart';
+      titleRangeStart.textContent = 'Calificacion:';
+      titleRangeStart.className = 'titleRangeStart';
+      article.appendChild(titleRangeStart);
       for (let z = 0; z < doc.data().assm; z += 1) {
         const assmentsPost = document.createElement('img');
 
@@ -552,29 +621,30 @@ const muro = (navigateTo) => {
       titleCateg.className = 'titleRange';
       rangeCateg.className = 'contedRange';
       typeCateg.textContent = doc.data().categ;
+      headerPost.append(titlePost);
 
       rangeCateg.append(titleCateg, typeCateg);
       divinfo.append(
+        headerPost,
+        buttonLike,
         local,
         rangeClear,
         rangePrice,
         rangeCateg,
         article,
-        buttonLike,
       );
-      if (doc.data().user === iduser) {
-        headerPost.append(titlePost, buttonUpdatepost, buttonDeletePost);
-      } else {
-        headerPost.append(titlePost);
+
+      if (doc.data().user === emailUser) {
+        divinfo.append(buttonUpdatepost, buttonDeletePost);
       }
-      li.append(headerPost, divimg, divinfo);
+      li.append(userPost, divimg, divinfo);
       listPost.appendChild(li);
     });
   });
 
   contentPost.append(listPost);
 
-  section.append(modal, buttonLogout, elemenNav, contentPost, modalUpdt);
+  section.append(elemenNav, modal, contentPost, modalUpdt);
 
   return section;
 };

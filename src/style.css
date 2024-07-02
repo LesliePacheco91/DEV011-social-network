@@ -1,20 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital@1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap');
+
 /* ------------------------------------------ Estilos Generales ---------------------------------------------------- */
 /* Selector universal */
+
+.header {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  justify-content: baseline;
+  background:#fd542c;
+    background-repeat: repeat;
+  background-repeat: no-repeat;
+  padding-bottom: 16em;
+}
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
-  display: grid;
-  min-height: 100vh;
+body {
+  display: flex;
+  justify-content: center;
   grid-template-rows: auto 1fr auto;
 }
-
 /* Encabezado */
 .header{
     display: flex;
@@ -23,9 +37,15 @@ body{
     justify-content:baseline;
 }
 
-.tituloHeader.titulo{
-  font-size: 600%;
-  margin: 3% 0 0 24%;  
+.userPost {
+  margin: 15px 0 0 17px;
+}
+
+.tituloHeader {
+  font-size: 54px;
+  margin-top: 27px; 
+  color:#fff;
+  font-family: 'Lobster Two', sans-serif;
 }
 
 /* Logo dentro del encabezado */
@@ -36,30 +56,13 @@ body{
     margin: 1% 2% 0 2%;  
 }
 
-.imgLogout {
-    width: 100%;
-    padding-right: 2%;  
-}
-
-.buttonLogout{
-  padding: 1%;
-  margin: -7% 2% 10% 80%;
-  cursor: pointer;
-  width: 7%;
-  background: none;
-  border: 0;
-}
-
 /* Contenedor del título y contenido */
 
-/* Títulos de la página */
-.titulo {
-    color: #a10c0c;
-    font-family: 'Lobster Two', sans-serif;
-}
 
-.tituloLogin.titulo, .tituloRegistro.titulo {
-    font-size: 270%;
+.tituloLogin, .tituloRegistro {
+    font-size: 40px;
+    font-family: "Dosis", sans-serif;
+    font-optical-sizing: auto;
 }
 
 /* Contenedor Inputs de correo y contraseña */
@@ -79,89 +82,99 @@ form {
 /* Inputs de correo y contraseña */
 .form-data, .form-post {
     border:0;
-    width: 80%;
+    width: 100%;
     padding: 2%;
     margin: 2% 0 2% 0;
     background: 0;
-    font-size: 120%;
+    font-size: 19px;
 } 
 
 .form-data{
-    border-bottom: 2px solid #fff;
-    color: #fff;
+  border: 2px solid #b6b6b6;
+    color: #717070;
+    border-radius:100px;
     font-family: 'Josefin Sans', sans-serif;
 }
 
-.form-post{
-    border-bottom: 2px solid #ca0f0d;
-    color: #ca0f0d;
-    font-family: 'Josefin Sans', sans-serif;
+.form-post {
+  border: 1px solid #8e8e8e;
+  color: #413d3d;
+  font-family: 'Josefin Sans', sans-serif;
+  border-radius: 100px;
 }
 
-/* Botones de páginas login y newUser */
-.botones{
-display: flex;
-max-width: 100%;
-margin: 0 auto;
-align-content: center;
-}
 
 /* Botones SIN botón de Google */
-.register, .registerPost {
-    padding: 5%;
+.register {
+    padding: 3%;
     width: 100%;
     font-size:115%;
     border: 0;
-    border-radius: 10px;
-    margin: 25px auto 35px auto;
-    font-family: 'Lobster Two', sans-serif;
-    font-family: 'Poppins', sans-serif;
+    border-radius: 100px;
+    margin: 0px auto 40px auto;
+    font-family: "Dosis", sans-serif;
+    font-optical-sizing: auto;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .register{
-  color:#a10c0c;
-  background:#ffffff7a;
+  color:#fff;
+  background: #fd542c;
 }
 
 .registerPost{
-  width: 79%;
-  background:#a10c0c;
+  border: 0;
+  border-radius: 100px;
+  width: 100%;
+  background:#fd542c;
   color:#fff;
   padding: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Botón de Google */
 .registergoogle{
-    display: inline-flex;
-    width: 100%;
-    color:#a10c0c;
-    background:#ffffff7a;
-    font-size: 115%;
+    width: 2em;
+    height: 2em;
+    background:#e4e4e4;
+    font-size: 30px;
     border: 0;
-    border-radius: 10px;
-    margin: 25px auto 35px auto;
-    padding: 5%;
-    cursor: pointer;    
+    border-radius: 100px;
+    margin: 10px auto 25px auto;
+    padding: 3%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Dosis", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
 }
 
-
-
-html, body{
-    background: linear-gradient(176deg, rgba(245,185,33,1) 38%, rgba(239,57,32,1) 80%, rgba(212,5,100,1) 100%);
-    background-repeat: no-repeat;
-}
 
 /* Imagen del botón de Google */
 .imgGoogle {
-    width: 10%;
-    padding-left: 2%;
-    margin: 0 auto;
+    width: 70%;
+}
+
+#buttonReturn {
+  font-size: 25px;
+  border: 0;
+  background: 0;
+  color: #fd542c;
+  font-family: "Dosis", sans-serif;
+  border-bottom: 2px solid #fd542c;
+  cursor: pointer;
 }
 
 /* Nombre del botón de Google */
 .title-google{
-    padding-left: 3%;
+  font-size: 20px;
+  font-family: "Dosis", sans-serif;
+  margin-top: 15px;
 }
 
 /* Pie de página */
@@ -171,7 +184,7 @@ footer{
 }
 
 .titleLocal {
-  padding-bottom: 10px;
+  padding-bottom: 15px;
 }
 
 /* -------- Estilos Home ----------------------------- */
@@ -206,42 +219,63 @@ label {
 }
 
 .rangeStart{
-  width: 62%;
+  width: 70%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
 }
 
 .elementHeader {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-content: center;
-  background: #780606;
-  width: 100%;
-  height: auto;
-  margin: -6em 0 1em 0;
+  width: 10%;
+  height: 20em;
+  border-radius: 100px;
+  flex-direction: column;
+  top: 14em;
+  left: 2em;
+  position: fixed;
 }
 
-.buttonPost {
-  background: 0;
-  width: 5%;
-  border: 0;
-  cursor: pointer;
-}
 
-.imgNewPost {
-  width: 75%;
-  cursor: pointer;
+.imgNewPost,  .imgConfig, .imgMuro, .imgFilter{
+  width: 30%;
 }
-
+.imgLogout {
+  width: 20%;
+}
+.buttonLogout, .buttonPost, .config-acount, .buttonMuro{
+cursor: pointer;
+width: 100%;
+height: 4em;
+background: #fd542c;
+border: 0;
+border-radius: 100px;
+cursor: pointer;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 14px;
+color: #fff;
+}
 section{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 95%;
 }
 
 .modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
   width: 40%;
-  background: #ffffffed;
+  background: #fffffffa;
   position: fixed;
   margin: 10px;
   border-radius: 10px;
@@ -263,23 +297,24 @@ section{
 }
 
 .titleModal {
-  font-family: 'Lobster Two', sans-serif;
+  font-family: "Dosis", sans-serif;
   width: 75%;
   text-align: center;
-  color: #a10c0c;
-  font-size: 220%;
+  color: #000;
+  font-size: 22px;
   margin-top: 3%;
 }
 
 .buttonCloseMdl {
-  width: 2em;
+  width: 3em;
+  height: 3em;
   margin: 3% 0 0 2%;
   cursor: pointer;
   font-weight: bold;
   color: #fff;
-  background: #a10c0c;
+  background: #fd542c;
   border: 0;
-  border-radius: 20%;
+  border-radius: 100px;
   font-size: larger;
 }
 
@@ -287,6 +322,7 @@ section{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  width: 95%;
 }
 
 #posts {
@@ -298,18 +334,19 @@ section{
 .card {
   display: flex;
   flex-wrap: wrap;
-  width: 43%;
+  justify-content: center;
+  width: 35%;
   list-style: none;
   background: #ffffffc4;
   margin: 10px;
-  border-radius: 5px;
+  border-radius: 20px;
   font-family: 'Josefin Sans', sans-serif;
+  box-shadow: 10px 10px 16px -1px rgba(0,0,0,0.31);
 }
 
 .headerPost {
   text-align: left;
-  width: 100%;
-  margin: auto;
+  width: 80%;
   padding: 10px 10px 0 10px;
   display: flex;
   flex-wrap: wrap;
@@ -324,11 +361,11 @@ section{
 
 .imgLike{
   width: 38%;
-  margin-top: 15%;
+  margin-top: 0;
 }
 
 .buttonDelete, .buttonUpdate{
-  width: 4%;
+  width: 9%;
   background: 0;
   border: 0;
   margin: 0 5px 0 5px;
@@ -336,43 +373,46 @@ section{
 }
 
 .totalLike{
-  width: 37%;
-  margin: 25% 0 0 2%;
+  width: 30%;
+  margin: 0;
 }
 
 .userPost, .titlePost{
-  width: 80%;
+  width: 100%;
   padding: 5px 0 5px 0;
 }
 
 .contend-img {
-  width: 25%;
+  width: 95%;
   margin: 10px;
 }
 
 .imgPost{
   width: 100%;
-  height: 10em;
+  height: 30em;
   object-fit: cover;
   display: block;
 }
 
 .contend-info {
-  width: 65%;
+  width: 90%;
   display: flex;
   flex-wrap: wrap;
-  margin: auto;
   text-align: left;
+  margin-top: 10px;
+  margin-bottom: 15px;
 }
 
 #buttonLike{
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
   background: 0;
   border: 0;
-  width: 24%;
+  width: 17%;
   cursor: pointer;
-  margin: 0 1% 0 13%;
+  margin: 0 6px 0 0%;
+  justify-content: center;
+  align-items: center;
 }
 
 .iconloc{
@@ -382,8 +422,7 @@ section{
 
 .assments {
   width: 8%;
-  margin: 2%;
-  padding: 10px 0 10px 0;
+  margin: 1%;
 }
 
 .contedRange {
@@ -393,6 +432,7 @@ section{
   font-family: 'Josefin Sans', sans-serif;
   justify-content: center;
   text-align: center;
+  margin-bottom: 15px;
 }
 
 .titleRange {
@@ -400,30 +440,98 @@ section{
   text-align: center;
 }
 
-/* ------------------------------------------ Estilos New User ----------------------------------------------------- */
+/* ------------ Estilos New User ---------------------- */
 
 /* Alertas */
 #alerts-error{
     color: red;
 }
 
-/* **************************************************** R E S P O N S I V E **************************************** */
+#root {
+  position: absolute;
+  width: 100%;
+  margin-top: 8em;
+  background: #fff;
+  padding-top: 20px;
+  justify-content: center;
+  display: flex;
+}
 
-@media (max-width: 900px) {
+/***** login *****/
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 30%;
+  padding: 15px;
+  margin: 0;
+}
+
+.botones {
+  display: flex;
+  margin: 0 auto;
+  align-content: center;
+  width: 30%;
+  padding: 15px;
+}
+
+
+
+/*******  perfil *****/
+.img-container{
+  width: 15%;
+}
+.img-count{
+  width: 100%;
+  border-radius: 100%;
+}
+/* ************** R E S P O N S I V E *************** */
+
+@media (max-width: 1200px) {
 
 /* ------------------------------------------ Estilos Generales ---------------------------------------------------- */
+
+/* cabecera */
+
+
+.header {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  justify-content: baseline;
+    background-repeat: repeat;
+  background-repeat: no-repeat;
+  padding-bottom: 6em;
+}
+
+.header .tituloHeader{
+  color:#fff;
+}
+
+/* cuerpo */
+
+#root {
+  border-radius: 50px 50px 0 0;
+  background: #fff;
+  position: absolute;
+  width: 100%;
+  margin-top: 7em;
+}
 
 /* Logo dentro del encabezado */
 .logo {
     width: 17%;
-    margin: 3% 0 0 2%;
+    margin: 5% 0 0 5%;
 }
 
 /* Título de la página */
 
 .tituloHeader.titulo{
-  font-size: 240%;
-  margin: 7% 0 0 5%;
+  font-size: 40px;
+  margin: 15px
 }
 
 .titulo {
@@ -433,13 +541,10 @@ section{
     text-align: center;
 }
 
-section{
-  margin-top: 3%;
-}
-
 /* Botones de páginas login y newUser */
 .botones{
     flex-direction: column;
+    width: 90%;
 }
 
 form{
@@ -449,43 +554,37 @@ form{
 }
 
 /* Botones SIN botón de Google */
-.register, .registerPost{
-    width: 127%;
+.register{
     font-size:20px;
-    margin: 25px auto 20px auto;
+    margin: 0px auto 20px auto;
     cursor: pointer;
 }
 
 .registerPost{
-  width: 79%;
-  background:#a10c0c;
+  width: 100%;
+  background:#fd542c;
   color:#fff;
-  padding: 3%;
+  padding: 2%;
+  margin: 14px 0 20px 0;
+  border: 0;
+  border-radius: 100px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 25px;
+
 }
+
 
 /* Botón de Google */
 .registergoogle{
-    width: 127%;
-    font-size:20px;
     border: 0;
-    border-radius: 10px;
-    margin: 25px auto 20px auto;
+    margin: 10px auto 20px auto;
 }
 
-/* Imagen del botón de Google */
-.imgGoogle {
-    width: 23px;
-    padding-left: 2px;
-}
 
-/* Nombre del botón de Google */
-.title-google{
-    padding-left: 14px;
-}
 
 /* Inputs de correo y contraseña */
 .form-data {
-    width: 80%;
+    width: 100%;
     padding: 10PX;
     margin-bottom: 15px;
     font-size: 20px;
@@ -508,41 +607,60 @@ footer{
     display: none;
 }
 
-.tituloLogin.titulo, .tituloRegistro.titulo {
-  font-size: 200%;
+.tituloLogin , .tituloRegistro {
+  font-size: 30px;
 }
 
-/* ------------------------------------------ Estilos Home --------------------------------------------------------- */
+/* --------------- Estilos Home -------------------- */
+
+.elementHeader {
+  display: flex;
+  width: 80%;
+  height: 5em;
+  border-radius: 100px;
+  flex-direction: row;
+  top: 5px;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+}
 
 /* Botones de Iniciar Sesión y Registro del Home */
 .butom-home {
-    width: 60%;
-    font-size: 25px;
+  width: 50%;
+  font-size: 25px;
+  background: #e8e8e8;
+  margin-top: 50px;
+  cursor: pointer;
 }
 
 /* -------------------Estilos del muro ---------------------- */
 
-.buttonLogout {
-  width: 15%;
-  right: 15px;
-  position: absolute;
-  top: 11px;
-  margin: 1em 0em 2em 9em;
-  padding: 2%;
-}
-
-.elementHeader {
-  height: 2.5em;
-  margin: 0 1em 0 0;
-}
-
-.buttonPost {
-    width: 10%;
+  .buttonPost, .buttonLogout , .config-acount, .buttonMuro, .imgFilter {
+    width: 5.5em;
+    height: 5.5em;
     cursor: pointer;
+    margin-left: 10px;
+    background: #fd542c;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 0;
+    justify-content: center;
   }
 
-.imgNewPost {
+  .titleButon{
+    display: none;
+  }
+
+.imgNewPost{
     width: 100%;
+  }
+.imgConfig, .imgMuro{
+  width: 90%;
+}
+
+  .imgLogout{
+    width: 70%;
   }
 
 .filters {
@@ -586,21 +704,32 @@ footer{
 .card {
     width: 100%;
     margin: 15px 0 15px 0;
+    justify-content: start;
   }
 
 .headerPost {
-    width: 90%;
-    padding-bottom:10px;
+    width: 80%;
+    padding:10px 0 10px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
   }
 
 .contend-img {
-    width: 90%;
-    margin: auto;
+    width: 100%;
+    margin: 0;
   }
 
-.contend-info {
-    width: 88%;
-    padding: 20px 0 20px 0;
+  .contend-info {
+    width: 95%;
+    padding: 10px 0px 20px 10px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: auto;
   }
 
 .contentPost {
@@ -608,17 +737,21 @@ footer{
   }
 
 .titlePost {
-    width: 90%;
+    width: 100%;
     font-family: 'Josefin Sans', sans-serif;
   }
 
 .rangeStart {
-    width: 78%;
+    width: 80%;
+    margin-top: 6px;
+  }
+  .titleRangeStart {
+    width: 30%;
   }
 
 .assments {
-    width: 10%;
-  }
+    width: 7%;
+}
 
 .modal {
     width: 95%;
@@ -634,26 +767,26 @@ footer{
     padding: 0 10px 0 0;
   }
 
-.userPost, .titlePost{
+.userPost{
     width: 80%;
   }
 
 .buttonDelete, .buttonUpdate{
-      width: 6%;
+      width: 7%;
       cursor: pointer;
   }
 
 .totalLike{
-    width: 50%;
-    margin: 25% 0 0 2%;
+    width: 30%;
+    margin: 0;
   }
 
 #buttonLike{
-    width: 26%;
+    width: 18%;
   }
 
 .imgPost{
-    height: 11em;
+    height: 20em;
   }
 
 #idregister{

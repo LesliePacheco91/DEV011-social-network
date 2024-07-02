@@ -10,6 +10,7 @@ import {
   getDocs,
   onSnapshot,
   orderBy, query, doc, deleteDoc, updateDoc,
+  arrayUnion, arrayRemove, getStorage, ref, uploadBytes, getDownloadURL,
 } from './fireBase.js';
 
 // funcion para registro de usuario mediante formulario
@@ -36,8 +37,13 @@ export const loginUser = (email, password) => new Promise((resolve, reject) => {
     resolve(user.uid);
   }).catch((error) => {
     const errorCode = error.code;
-    if (errorCode === 'auth/invalid-email') {
-      reject(new Error('Usuario y/o Contraseña invalidas'));
+
+    if (errorCode === 'auth/invalid-login-credentials') {
+      reject(new Error('Usuario y/o contraseña incorrectos'));
+    } else if (errorCode === 'auth/missing-password') {
+      reject(new Error('Campo de contraseña vacía'));
+    } else if (errorCode === 'auth/invalid-email') {
+      reject(new Error('Campo de correo vacía'));
     }
   });
 });
@@ -49,14 +55,10 @@ export const registerGoogle = (provider) => (
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user.uid;
-      console.log(token);
       return user;
     }).catch((error) => {
       const errorCode = error.code;
       return errorCode;
-    // const errorMessage = error.message;
-    // const email = error.customData.email;
-    // const credential = GoogleAuthProvider.credentialFromError(error);
     }));
 
 // login por google
@@ -65,21 +67,17 @@ export const loginGoogle = (provider) => (
     .then((result) => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
-      const user = result.user.uid;
-      console.log(token);
+      const user = result.user;
+      // const user = result.user.uid;
       return user;
     }).catch((error) => {
       const errorCode = error.code;
       return errorCode;
-      // const errorMessage = error.message;
-      // const email = error.customData.email;
-      // const credential = GoogleAuthProvider.credentialFromError(error);
     }));
 
 // funcion para crear publicaciones
-
 const postCollection = collection(db, 'posts');
-export const createNewPost = (img, nameRest, loc, assm, clear, pri, categ, like, user) => {
+export const createNewPost = (img, nameRest, loc, assm, clear, pri, categ, user) => {
   addDoc(postCollection, {
     img,
     nameRest,
@@ -88,7 +86,6 @@ export const createNewPost = (img, nameRest, loc, assm, clear, pri, categ, like,
     clear,
     pri,
     categ,
-    like,
     user,
     date: Date.now(),
   });
@@ -97,9 +94,11 @@ export const createNewPost = (img, nameRest, loc, assm, clear, pri, categ, like,
 // llamar la coleccion de manera ordenada
 const q = query(postCollection, orderBy('date', 'desc'));
 
-// mostrar publicaciones en tiempo real
+// llamar la coleccion de manera ordenada por calificación
+// const q = query(postCollection, orderBy('assm', 'desc'));
 
-export const querySnapshot = getDocs(q);
+// mostrar publicaciones en tiempo real
+// export const querySnapshot = getDocs(q);
 
 // imprime los post en tiempo real
 export const paintRealTtime = (Callback) => (onSnapshot(q, Callback));
@@ -120,10 +119,57 @@ export const UpdatePost = (idPost, nombreRest, locali, Calfic, Limpieza, precio,
   });
 };
 
-// actualiza likes
-export const updateLikes = (idPost, likes) => {
+export const updateLikes = (idPost, iduser) => {
   const docRef = doc(db, 'posts', idPost);
   updateDoc(docRef, {
-    like: likes,
+    like: arrayUnion(iduser),
   });
 };
+
+export const repoveLike = (idPost, iduser) => {
+  const docRef = doc(db, 'posts', idPost);
+  updateDoc(docRef, {
+    like: arrayRemove(iduser),
+  });
+};
+const storage = getStorage();
+export const subirImg = (file) => new Promise((resolve, reject) => {
+  const storageRef = ref(storage, `posts/${file.name}`);
+  uploadBytes(storageRef, file).then((snapshot) => {
+    const info = snapshot;
+    resolve(storageRef);
+  }).catch((error) => {
+    reject(new Error('error de importar imagen'));
+  });
+});
+
+export const readfile = (info) => new Promise((resolve, reject) => {
+  getDownloadURL(info).then((url) => {
+    const urlImg = url;
+    resolve(urlImg);
+  }).catch((error) => {
+    reject(new Error('error de descargar imagen'));
+  });
+});
+
+// guardar datos del perfil del usuario
+const infoUser = collection(db, 'infoUser');
+export const SabeInfoUser = (email, img, name) => {
+  addDoc(infoUser, {
+    email,
+    img,
+    name,
+    date: Date.now(),
+  });
+};
+
+// actualizar datos en del perfil del usuario
+export const UpdateInfoUser = (email, img, name) => {
+  const infoDocRef = doc(db, 'infoUser', email);
+  updateDoc(infoDocRef, {
+    img: img,
+    name: name,
+  });
+};
+
+// visualizar datos del perfil del usuario

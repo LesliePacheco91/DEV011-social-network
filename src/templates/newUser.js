@@ -14,7 +14,7 @@ const newUser = (navigateTo) => {
   const alerts = document.createElement('span');
   const buttonGoogle = document.createElement('button');
   const imgGoogle = document.createElement('img');
-  const textButtonGoogle = document.createElement('span');
+  const textButtonGoogle = document.createElement('h3');
   const buttons = document.createElement('section');
   // const inputName = document.createElement('input');
   // const imgRegister = document.createElement('img');
@@ -96,6 +96,7 @@ const newUser = (navigateTo) => {
   buttonRegister.setAttribute('id', 'buttonUser');
   buttonRegister.addEventListener('click', (e) => {
     e.preventDefault();
+    localStorage.setItem('email', inputEmail.value);
     registerNewUser(inputEmail.value, inputPass.value)
       .then((ok) => {
         if (ok) {
@@ -111,7 +112,7 @@ const newUser = (navigateTo) => {
 
   buttonGoogle.className = 'registergoogle';
   buttonGoogle.setAttribute('id', 'buttonRegisterGoogle');
-  textButtonGoogle.textContent = 'Registrarse con google';
+  textButtonGoogle.textContent = 'Registrarse con';
   textButtonGoogle.className = 'title-google';
 
   buttonGoogle.addEventListener('click', (e) => {
@@ -135,18 +136,17 @@ const newUser = (navigateTo) => {
 
   // <-------------------- Botón para regresar a la página "home" -------------------------->
 
-  buttonReturn.textContent = 'Regresar';
+  buttonReturn.textContent = 'Iniciar sesión';
   buttonReturn.setAttribute('id', 'buttonReturn');
-  buttonReturn.className = 'register';
   buttonReturn.addEventListener('click', () => {
     navigateTo('/');
   });
 
   // <---------------- Orden de la estructura de los elementos HTML ------------------------>
 
-  buttonGoogle.append(imgGoogle, textButtonGoogle);
+  buttonGoogle.append(imgGoogle);
   form.append(inputEmail, inputPass, alerts);
-  buttons.append(buttonRegister, buttonGoogle, buttonReturn);
+  buttons.append(buttonRegister, textButtonGoogle, buttonGoogle, buttonReturn);
   section.append(title, form, buttons);
 
   return section;

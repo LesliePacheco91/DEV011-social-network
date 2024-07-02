@@ -14,7 +14,7 @@ const login = (navigateTo) => {
   const buttonLogin = document.createElement('input');
   const buttonGoogle = document.createElement('button');
   const imgGoogle = document.createElement('img');
-  const textButtonGoogle = document.createElement('span');
+  const textButtonGoogle = document.createElement('h3');
   const buttons = document.createElement('section');
 
   // <-------------------------- Título de la página "login" ------------------------------->
@@ -41,7 +41,7 @@ const login = (navigateTo) => {
 
   buttons.className = 'botones';
 
-  // <------------- Botón para iniciar sesión con correo electrónico ----------------------->
+  // <-Botón para iniciar sesión con correo electrónico ----->
 
   buttonLogin.value = 'Iniciar';
   buttonLogin.type = 'submit';
@@ -49,20 +49,19 @@ const login = (navigateTo) => {
   buttonLogin.setAttribute('id', 'buttonLogin');
   buttonLogin.addEventListener('click', (e) => {
     e.preventDefault();
+    localStorage.setItem('email', inputEmail.value);
     loginUser(inputEmail.value, inputPass.value)
       .then((ok) => {
         if (ok) {
-          console.log('hola', ok);
           localStorage.setItem('user', ok);
           navigateTo('/muro');
         }
       }).catch((error) => {
-        console.log('hola', error);
         document.getElementById('alerts-error').textContent = error;
       });
   });
 
-  // <-------------- Botón para iniciar sesión con cuenta de Google ------------------------>
+  // <--Botón para iniciar sesión con cuenta de Google ---->
   buttonGoogle.className = 'registergoogle';
   buttonGoogle.setAttribute('id', 'buttonLoginGoogle');
 
@@ -71,7 +70,8 @@ const login = (navigateTo) => {
     const resultado = loginGoogle(provider);
     resultado.then((user) => {
       if (user) {
-        localStorage.setItem('user', user);
+        localStorage.setItem('user', user.uid);
+        localStorage.setItem('email', user.email);
         navigateTo('/muro');
       }
     }).catch((errorCode) => {
@@ -82,23 +82,22 @@ const login = (navigateTo) => {
   imgGoogle.src = '../img/001-google.png';
   imgGoogle.alt = 'Logo Javascript';
   imgGoogle.className = 'imgGoogle';
-  textButtonGoogle.textContent = 'Iniciar con google';
+  textButtonGoogle.textContent = 'Iniciar con';
   textButtonGoogle.className = 'title-google';
 
   // <-------------------- Botón para regresar a la página "home" -------------------------->
 
-  buttonReturn.textContent = 'Regresar al inicio';
-  buttonReturn.className = 'register';
+  buttonReturn.textContent = 'Registrarse';
   buttonReturn.id = 'buttonReturn';
   buttonReturn.addEventListener('click', () => {
-    navigateTo('/');
+    navigateTo('/newUser');
   });
 
   // <---------------- Orden de la estructura de los elementos HTML ------------------------>
 
-  buttonGoogle.append(imgGoogle, textButtonGoogle);
+  buttonGoogle.append(imgGoogle);
   form.append(inputEmail, inputPass, alerts);
-  buttons.append(buttonLogin, buttonGoogle, buttonReturn);
+  buttons.append(buttonLogin, textButtonGoogle, buttonGoogle, buttonReturn);
   section.append(title, form, buttons);
 
   return section;
