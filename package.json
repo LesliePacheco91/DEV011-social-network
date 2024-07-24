@@ -35,7 +35,7 @@
     "vite": "^3.1.0"
   },
   "engines": {
-    "node": ">=16.x"
+    "node": "20.x"
   },
   "bootcamp": {
     "createdAt": "2023-09-22T12:20:01.431Z",
