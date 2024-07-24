@@ -36,7 +36,7 @@ import {
 
 };
 */
-
+/*
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -50,7 +50,18 @@ const firebaseConfig = {
   measurementId: 'G-EP9SLJ1M2G',
 };
 
-// Initialize Firebase
+*/
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: 'AIzaSyAKZs71Qhhyw3xabPUqTJLrpyGisCGzdAo',
+  authDomain: 'gastrotours-adf8b.firebaseapp.com',
+  projectId: 'gastrotours-adf8b',
+  storageBucket: 'gastrotours-adf8b.appspot.com',
+  messagingSenderId: '207984290236',
+  appId: '1:207984290236:web:d605cb3fafdbdc011423b9',
+};
+
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
