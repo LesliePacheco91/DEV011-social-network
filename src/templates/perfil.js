@@ -1,11 +1,9 @@
 import {
   SabeInfoUser,
   UpdateInfoUser,
-} from '../lib/auth.js';
+} from '../lib/index.js';
 
 const perfil = (navigateTo) => {
-
- 
   const iduser = localStorage.getItem('user');
   const emailUser = localStorage.getItem('email');
   const section = document.createElement('section');

@@ -7,7 +7,8 @@ import {
   repoveLike,
   subirImg,
   readfile,
-} from '../lib/auth.js';
+  filterMuro,
+} from '../lib/index.js';
 
 // import { getStorage, ref, uploadBytes, getDownloadURL } from '../lib/fireBase';
 
@@ -123,6 +124,11 @@ const muro = (navigateTo) => {
   titleButomFilter.className = 'titleButon';
   titleButomFilter.textContent = 'Filtrar';
   buttonFilter.append(imgFilter, titleButomFilter);
+
+  buttonFilter.addEventListener('click', (e) => {
+    e.preventDefault();
+    filterMuro('assm', iduser, emailUser);
+  });
 
   // boton cerrar sesión
   buttonLogout.classList = ('buttonLogout');
@@ -450,7 +456,6 @@ const muro = (navigateTo) => {
       // post
 
       const li = document.createElement('li');
-
       // cabecera el post
       const headerPost = document.createElement('div');
       const buttonDeletePost = document.createElement('button');
@@ -526,7 +531,6 @@ const muro = (navigateTo) => {
       // const pathReference = ref(storage, 'posts/usuario(2).png');
 
       imgPost.src = doc.data().img;
-      //imgPost.src = '../img/primer-plano-deliciosos-tacos.jpg'
       imgPost.className = 'imgPost';
       divimg.append(imgPost);
 
